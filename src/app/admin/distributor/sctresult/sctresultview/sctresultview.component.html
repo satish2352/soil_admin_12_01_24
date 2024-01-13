@@ -1,0 +1,122 @@
+<div class="main-content">
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <span class="page-title">
+                SCT Result View
+            </span>
+            <ul class="breadcrumbs">
+                <li>
+                    <a routerlink="/admin/dashboard">Home</a>
+                </li>
+                <li>
+                    <a routerlink="/admin/sctresult-list">SCT Result</a>
+                </li>
+                <li class="active">SCT Result View</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <div class="card-content">
+                    <form [formGroup]="formGroupNew" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="input-field col s12 m4 l4">
+                                <i class="material-icons prefix">account_circle</i>
+                                <!-- <input id="applicantFirstName" name="fname" class="validate" type="text" value="" style="text-transform:uppercase" formcontrolname="fname" readonly required/> -->
+                                <label for="first_name">{{ formGroupNew.get('fname').value }}</label>
+
+                            </div>
+
+
+                            <div class="input-field col s12 m4 l4">
+                                <i class="material-icons prefix">phone</i>
+                                <!-- <input id="area" name="area" placeholder="" class="validate" type="text" value="" formcontrolname="area" readonly required/> -->
+                                <label for="mobile_number">{{ formGroupNew.get('area').value }}</label>
+
+                            </div>
+                            <div class="input-field col s12 m4 l4">
+                                <i class="material-icons prefix">alternate_email</i>
+
+                                <!-- <input id="description" name="description" class="validate" type="text" value="" formcontrolname="description" readonly required/> -->
+                                <label>{{ formGroupNew.get('description').value }}</label>
+                                <!-- <div *ngIf="submitted && f.description.errors" class="invalid-input">
+                                        <span class="red-text">
+                                            <strong>Required*</strong>
+                                        </span>
+                                    </div> -->
+                            </div>
+
+                            <div class="input-field col s12 m4 l4">
+                                <!-- <i class="material-icons prefix">format_list_numbered</i> -->
+                                <!-- <input id="latitude" name="latitude" class="validate" type="number" value="" formcontrolname="latitude" readonly required/> -->
+                                <label>{{ formGroupNew.get('latitude').value }}</label>
+
+                            </div>
+
+
+                            <div class="input-field col s12 m4 l4">
+                                <!-- <i class="material-icons prefix">format_list_numbered</i> -->
+                                <!-- <input id="longitude" name="longitude" class="validate" type="number" value="" formcontrolname="longitude" readonly required/> -->
+                                <label>{{ formGroupNew.get('longitude').value }}</label>
+
+                            </div>
+
+                            <!-- 
+                                                                <div class="input-field col s12 m4 l4">
+                                                                    <i class="material-icons prefix">format_list_numbered</i>
+                                                                    <input id="date" name="date" class="validate" type="number" value=""
+                                                                        formControlName="date" readonly required />
+                                                                    <label for="date">Date</label>
+                                                                    <div *ngIf="submitted && f.date.errors" class="invalid-input">
+                                                                        <div *ngIf="f.date.errors.required">
+                                                                            <span class="red-text"><strong>Required*</strong></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> -->
+
+
+                        </div>
+
+                        <div class="col s12 m4 l4">
+                            <a href={{photoviewone}} target="_blank" download>
+                                <img src={{photoviewone}} alt="photoviewone" height="400px" />
+                            </a>
+
+                        </div>
+
+                        <div class="col s12 m4 l4">
+                            <a href={{photoviewtwo}} target="_blank" download>
+                                <img src={{photoviewtwo}} alt="photoviewtwo" height="400px" />
+                            </a>
+                        </div>
+
+                        <div class="col s12 m4 l4">
+                            <a href={{photoviewthree}} target="_blank" download>
+                                <img src={{photoviewthree}} alt="photoviewthree" height="400px" />
+
+                            </a>
+                        </div>
+
+                        <div class="col s12 m4 l4">
+                            <a href={{photoviewfour}} target="_blank" download>
+                                <img src={{photoviewfour}} alt="photoviewfour" height="400px" />
+                            </a>
+                        </div>
+
+                        <div class="col s12 m4 l4">
+                            <a href={{photoviewfive}} target="_blank" download>
+                                <img src={{photoviewfive}} alt="photoviewfive" height="400px" />
+                            </a>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

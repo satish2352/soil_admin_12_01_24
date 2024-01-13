@@ -1,0 +1,65 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title">View Order</span>
+        <ul class="breadcrumbs">
+          <li><a routerLink="/admin/dashboard">Home</a></li>
+          <li><a routerLink="/admin/warehouse-orders">Warehouse Orders</a></li>
+          <li class="active">View Order</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row" *ngIf="order">
+      <div class="col s12 m12 l12">
+        <div class="card">
+          <div class="card-content">
+              <table class="highlight">
+                <tbody>
+                  <tr>
+                    <th>Order No</th>
+                    <td>{{order.order_no}}</td>
+                    <th>Order Date</th>
+                    <td>{{order.order_date| date: 'dd/MM/yyyy'}}</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Order for</th>
+                    <td>{{order.order_created_by|uppercase}}</td>
+                    <th>Order Status</th>
+                    <td>
+                      <span *ngIf="order.order_dispatched=='yes'">Dispatched</span>
+                      <span *ngIf="order.order_dispatched=='no'">Not Dispatched</span>
+                    </td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Order Dispatched Date</th>
+                    <td *ngIf="order.order_dispatched_date;else other_content">{{order.order_dispatched_date| date: 'dd/MM/yyyy'}}</td>
+                    <ng-template #other_content><td>-</td></ng-template>
+                    <th>Order Amount</th>
+                    <td>{{order.created_disctributor_amount}}</td>
+                    <td></td>
+                  </tr>
+                  <tr class="light-green lighten-4">
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Rate of Product</th>
+                    <th>Qty.</th>
+                    <th>Amount</th>
+                  </tr>
+                  <tr *ngFor="let p of order.all_product">
+                    <td>{{p.prod_id}}</td>
+                    <td>{{p.title}}</td>
+                    <td>{{p.rate_of_prod}}</td>
+                    <td>{{p.qty}}</td>
+                    <td>{{p.final_amt}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

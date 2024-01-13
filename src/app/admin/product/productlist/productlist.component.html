@@ -1,0 +1,118 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title">
+          Product List
+        </span>
+        <ul class="breadcrumbs">
+          <li><a routerLinkActive="activelink">Home</a></li>
+          <li>Product List</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <td style="float: right;">
+                  <a
+                    routerLink="/admin/product-add"
+                    class="waves-effect waves-light btn"
+                  >
+                    <i class="material-icons left">library_add</i>
+                    Add Product
+                  </a>
+                </td>
+              </div>
+            </div>
+            <table
+              style="font-size: small;"
+              class="datatable responsive-table highlight"
+              id="pagedatatable"
+            >
+              <thead>
+                <tr>
+                  <th style="white-space: nowrap;">Sr No.</th>
+                  <th style="white-space: nowrap;">Product Title</th>
+                  <th style="white-space: nowrap;">Product Detail</th>
+                  <th style="white-space: nowrap;">Product Link</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                  <td>{{(10*(p-1))+(i+1)}}</td>
+                  <td>{{ datalist.title }}</td>
+                  <td>
+                    <table class="responsive-table">
+                      <tr>
+                        <th>Quantity</th>
+                        <td>{{ datalist.quantity }}</td>
+                        <!-- </tr>
+                                            <tr> -->
+                        <th>Unit</th>
+                        <td>{{ datalist.quantity_unit }}</td>
+                      </tr>
+                      <tr>
+                        <th>DSC Price</th>
+                        <td>{{ datalist.dsc_price }}</td>
+                        <!-- <th>Farmer Price</th>
+                        <td>{{ datalist.farmer_price }}</td> -->
+                        <!-- </tr>
+                                            <tr> -->
+                        <th>MRP</th>
+                        <td>{{ datalist.old_price }}</td>
+                      </tr>
+                      <tr>
+                        <th>BSC Price</th>
+                        <td>{{ datalist.bsc_price }}</td>
+                        
+                        <th>Farmer Price</th>
+                        <td>{{ datalist.farmer_price }}</td>
+                        <!-- <th>DSC Price</th>
+                        <td>{{ datalist.dsc_price }}</td> -->
+                      </tr>
+                      <tr>
+                        <th>FSC Price</th>
+                        <td>{{ datalist.fsc_price }}</td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td>{{ datalist.link }}</td>
+                  <td style="white-space: nowrap;">
+                    <a
+                      href="JavaScript:void(0)"
+                      class="btn-floating"
+                      title="Edit Information"
+                      style="background-color: green;"
+                      (click)="getForEdit(datalist.id)"
+                    >
+                      <i class="material-icons">edit</i>
+                    </a>
+                    &nbsp;
+                    <a
+                      href="JavaScript:void(0)"
+                      class="btn-floating"
+                      title="Delete"
+                      style="background-color: red;"
+                      (click)="deleteItem(datalist.id)"
+                    >
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

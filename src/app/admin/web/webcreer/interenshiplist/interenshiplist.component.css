@@ -1,0 +1,10 @@
+button{
+    /* background-color: #26a69a; */
+    float :right;
+}
+
+.header {
+    fontSize: 12px;
+    bold: true;
+   left: -20px!important;
+  }

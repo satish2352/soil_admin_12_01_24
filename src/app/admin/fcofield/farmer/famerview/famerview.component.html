@@ -1,0 +1,222 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    View Farmer
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li><a routerLink="/admin/farmer-list">Farmer</a></li>
+                    <li class="active">Vie  w Farmer</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <form [formGroup]="farmerForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="fname" name="fname" type="text" formControlName="fname"
+                                         class="active validate" required />
+                                    <label for="fname">First Name<span class="red-text">*</span></label>
+                                    <div *ngIf="f.fname.errors && submitted">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="mname" name="mname" class="form-control input_capital  capitalize"
+                                        type="text" value="" class="validate" formControlName="mname" readonly required/>
+                                    <label for="mname">Middle Name<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.mname.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="lanme" name="lname" class="validate" type="text" value=""
+                                        formControlName="lname" readonly required/>
+                                    <label for="lanme">Last Name<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.lname.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id="phone" maxlength="10" name="phone" placeholder="" class="validate"
+                                        type="text" value="" formControlName="phone" readonly required/>
+                                    <label for="phone">Mobile Number<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">alternate_email</i>
+
+                                    <input id="email" name="email" class="validate" type="text" value=""
+                                        formControlName="email" (change)="getCheckemailexist($event)" readonly required/>
+                                    <label for="email">Email ID<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">format_list_numbered</i>
+                                    <input id="aadharcard" name="aadharcard" class="validate" type="text" value=""
+                                        formControlName="aadharcard" readonly required/>
+                                    <label for="aadharcard">Adhar Card No<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.aadharcard.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id='educatioDetails'>
+                                <div>
+                                    <p class="teal lighten-2" style="padding: 10px;"><b>RESIDENTIAL DETAILS</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m4 l4">
+                                        <!-- <label>Select State</label> -->
+                                        <select class="" formControlName="state">
+                                            <option value="" disabled selected>Choose State</option>
+                                            <option *ngFor="let state of allstate" [value]="state.location_id">
+                                                {{state.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <!-- <label>Select District</label> -->
+                                        <select class="" formControlName="district">
+                                            <option value="" disabled selected>Choose District</option>
+                                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                                {{dist.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.district.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <!-- <label>Select Taluka</label> -->
+                                        <select class="" formControlName="taluka">
+                                            <option value="" disabled selected>Choose Taluka</option>
+                                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                                {{taluka.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <!-- <label>Select City</label> -->
+                                        <select class="" formControlName="city">
+                                            <option value="" disabled selected>Choose City</option>
+                                            <option *ngFor="let city of allcity" [value]="city.location_id">
+                                                {{city.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m4 l4">
+                                      <input id="pincode" name="pincode" class="validate" type="number" value=""
+                                          formControlName="pincode" readonly required/>
+                                      <label for="pincode">Pincode<span class="red-text">*</span></label>
+                                      <div *ngIf="submitted && f.pincode.errors" class="invalid-input">
+                                          <span class="red-text"><strong>Required*</strong></span>
+                                      </div>
+                                    </div>
+                                    <div class="input-field col s12 m12 l12">
+                                      <textarea id="address" class="materialize-textarea validate"
+                                          formControlName="address" required rows="2"></textarea>
+                                      <label for="address" class='active'>Address<span class="red-text">*</span></label>
+                                      <div *ngIf="submitted && f.address.errors" class="invalid-input">
+                                          <span class="red-text"><strong>Required*</strong></span>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div id='empDetal'>
+                                <div>
+                                    <p class="teal lighten-2" style="padding: 10px;"><b>OTHER DETAILS</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="crop" name="crop" class="validate" type="text" value=""
+                                            formControlName="crop" readonly required/>
+                                        <label for="crop">Crop <span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.crop.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="acre" name="acre" class="validate" type="number" value=""
+                                            formControlName="acre" readonly required/>
+                                        <label for="acre">Acre<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.acre.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="password" name="password" class="validate" type="text" value=""
+                                            formControlName="password" readonly required/>
+                                        <label for="password">Password<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col s12 m8 l8">
+                                <label>Upload Farmer Photo<span class="red-text">*</span></label>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Browse</span>
+                                        <input type="file" (change)="onFileSelect($event)" accept="image/*"/>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload file" />
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="col s12 m4 l4">
+                                <img src={{photo}} alt="photo" height="100px"/>
+                              </div>
+                            </div>
+
+                            <input id="datafor" name="datafor" class="validate" type="text" value="0"
+                                formControlName="datafor" hidden />
+                            <input id="user_id" name="user_id" class="validate" type="text" value="0"
+                                formControlName="user_id" hidden />
+
+                            <div class="row" style="float:right;">
+                                <!-- <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

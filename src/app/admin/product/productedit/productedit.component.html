@@ -1,0 +1,227 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Product Edit
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Web</a></li>
+                    <li class="active">Product Edit</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="input-field col s12 m12 l12">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="title" name="title" type="text" formControlName="title"
+                                        class="active validate" required />
+                                    <label for="title">Enter Title<span class="red-text">*</span></label>
+                                    <div *ngIf="f.title.errors && submitted">
+                                        <span class="red-text"><strong>Enter Title/Invalid</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id='educatioDetails'>
+                                <div class="col s12">
+                                    <p class="sub-heading"><b>Enter Content and Product Link</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m12 l12">
+                                        <!-- <label>Enter Content</label> -->
+                                        <!-- <ckeditor formControlName="content"></ckeditor> -->
+                                        <input id="content" name="content" type="text" formControlName="content"
+                                            class="active validate" required />
+                                        <label for="content">Enter Content<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.content.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Enter Content</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="link" name="link" type="text" formControlName="link"
+                                            class="active validate" required />
+                                        <label for="link">Product Link<span class="red-text">*</span></label>
+                                        <div *ngIf="f.link.errors && submitted">
+                                            <span class="red-text"><strong>Product Link is
+                                                    required/Invalid</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id='educatioDetails'>
+                                <div class="col s12">
+                                    <p class="sub-heading"><b>Enter Product Details</b></p>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-content">
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="quantity" name="quantity" type="text" formControlName="quantity"
+                                                class="active validate" required />
+                                            <label for="">Unit quantity<span class="red-text">*</span></label>
+                                            <div *ngIf="validatedata.quantity.errors && submitted">
+                                                <span class="red-text"><strong>Unit quantity is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <label>Select Unit</label>
+                                            <select class="browser-default" formControlName="quantity_unit">
+                                                <option value="" disabled selected>Select Unit</option>
+                                                <option *ngFor="let unitdata of unitsall" [value]="unitdata.name"
+                                                    [selected]="unitdata.name === unitedit">
+                                                    {{unitdata.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && validatedata.quantity_unit.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>Select
+                                                        Unit</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="farmer_price" name="farmer_price"
+                                                class="form-control input_capital  capitalize" type="text" value=""
+                                                class="validate" formControlName="farmer_price" />
+                                            <label for="farmer_price">Farmer Price</label>
+                                            <div *ngIf="submitted && validatedata.farmer_price.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>Farmer Price is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="old_price" name="old_price" class="validate" type="text" value=""
+                                                formControlName="old_price" />
+                                            <label for="old_price">Old Price <span class="red-text">*</span></label>
+                                            <div *ngIf="submitted && validatedata.old_price.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>Old Price is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="dsc_price" name="dsc_price" class="validate" type="text" value=""
+                                                formControlName="dsc_price" />
+                                            <label for="dsc_price">Division Service Center Price <span
+                                                    class="red-text">*</span></label>
+                                            <div *ngIf="submitted && validatedata.dsc_price.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>DSC Price is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="bsc_price" name="bsc_price" class="validate" type="text" value=""
+                                                formControlName="bsc_price" />
+                                            <label for="bsc_price">Block Service Center Price <span
+                                                    class="red-text">*</span></label>
+                                            <div *ngIf="submitted && validatedata.bsc_price.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>BSC Price is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <input id="fsc_price" name="fsc_price" class="validate" type="text" value=""
+                                                formControlName="fsc_price" />
+                                            <label for="fsc_price">Farmer Service Center Price<span
+                                                    class="red-text">*</span></label>
+                                            <div *ngIf="submitted && validatedata.fsc_price.errors"
+                                                class="invalid-input">
+                                                <span class="red-text"><strong>FSC Price is
+                                                        required/Invalid</strong></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div id='educatioDetails'>
+                                <div class="col s12">
+                                    <p class="sub-heading"><b>Upload Image</b></p>
+                                </div>
+
+
+                                <ng-container formArrayName="photoDetails">
+                                    <ng-container *ngFor="let frmgrphoto of photo.controls;let ii=index;">
+
+                                        <div class="input-field col s12 m4 l4">
+                                            <div class="row" [formGroupName]="ii">
+                                                <label>Upload File</label>
+                                                <div class="file-field input-field">
+                                                    <div class="btn">
+                                                        <span>Browse</span>
+                                                        <input type="file" (change)="onFileSelect($event,ii)"
+                                                            formControlName="photo_one" />
+                                                    </div>
+                                                    <div class="file-path-wrapper">
+                                                        <input class="file-path validate" type="text"
+                                                            placeholder="Upload file" />
+                                                    </div>
+                                                    <div *ngIf="submitted && frmgrphoto.controls.photo_one.errors"
+                                                        class="invalid-input">
+                                                        <span class="red-text"><strong>Product Image is
+                                                                required/Invalid</strong></span>
+                                                    </div>
+                                                </div>
+
+                                                <a href="javascript:void(0);" class="btn" style="background-color: red;"
+                                                    (click)="deletePhoto(ii)"
+                                                    onclick="confirm('Are you sure want to delete')"><i
+                                                        class="material-icons left">delete</i> Delete</a>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                </ng-container>
+
+                                <div class="row" style="float:right;">
+                                    <div class="col s12">
+
+                                        <span class="right">
+                                            <a href="javascript:void(0);" class="btn" style="background-color: green;"
+                                                (click)="addMorePhoto()"><i class="material-icons left">add_box</i>
+                                                Add</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                                <input class="validate" type="text" value="0" formControlName="datafor" hidden />
+                                <input class="validate" type="text" value="0" formControlName="id" hidden />
+                            </div>
+
+                            <div class="row" style="float:right;">
+                                <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

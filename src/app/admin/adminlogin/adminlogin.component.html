@@ -1,0 +1,58 @@
+
+    <main>
+        <div class="main-content">
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <span class="page-title">
+                        Admin Login
+                    </span>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="card">
+                        <div class="card-content">
+    
+                            <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+    
+    
+                                <div class="row">
+                                    <div class="input-field col s12 m4 l4">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="email" name="email" class="validate" type="text"
+                                            value=""  formControlName="email"/>
+                                        <label for="email">Enter email <span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.email.errors" class="invalid-input">
+                                            <div *ngIf="f.email.errors.required"> Enter email</div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m4 l4">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="password" name="password"
+                                            class="form-control input_capital  capitalize" type="text" value=""
+                                             class="validate" formControlName="password"/>
+                                        <label for="password">Enter Password</label>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-input">
+                                            <div *ngIf="f.password.errors.required"> Enter Password</div>
+                                        </div>
+    
+                                    </div>
+                                   
+                                </div>
+    
+    
+                                <div class="row">
+                                    <div class="col s12">
+                                        <button type="submit"  class="btn btn-save">Save</button>
+                                        
+                                    </div>
+                                </div>
+                            </form>
+                        </div><!-- ./card content -->
+                    </div><!-- ./card -->
+                </div>
+            </div>
+        </div>
+    </main>

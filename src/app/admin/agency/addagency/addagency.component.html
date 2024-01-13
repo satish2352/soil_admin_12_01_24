@@ -1,0 +1,126 @@
+<main>
+    <div class="main-content">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <span class="page-title">Add New Agency </span>
+          <ul class="breadcrumbs">
+            <li><a routerLink="/admin/dashboard">Home</a></li>
+            <li><a routerLink="/admin/agency-list">Agency</a></li>
+            <li class="active">Add Agency</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
+              <form [formGroup]="agencyForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                      <!-- <i class="material-icons prefix">account_circle</i> -->
+                      <input id="agency_name" name="agency_name" type="text" formControlName="agency_name"
+                          class="active validate" required />
+                      <label for="agency_name">Agency Name<span class="red-text">*</span></label>
+                      <!-- <div *ngIf="f.agencyName.errors && submitted">
+                          <span class="red-text"><strong>Agency Name is required/Invalid</strong></span>
+                      </div> -->
+                  </div>
+                </div>
+                
+  
+                <div class="row">
+                  <div class="col m12">
+                    <label>Distributor<span class="red-text">*</span></label>
+                  </div>
+                  <div class="input-field col s12 m12 l12">
+                    <select id="agency_under_distributor_id" class="validate" formControlName="agency_under_distributor_id">
+                        <option value="" disabled selected>Choose distributor</option>
+                        <option *ngFor="let dist of distributors" [value]="dist.id">
+                            {{dist.fname}} {{dist.mname}} {{dist.lname}}</option>
+                    </select>
+                    <!-- <label for="">Distributor<span class="red-text">*</span></label> -->
+                    <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                        <span class="red-text"><strong> Select State</strong></span>
+                    </div> -->
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="input-field col s12 m12 l12">
+                    <textarea id="address" class="materialize-textarea active validate" formControlName="address" rows="2"></textarea>
+                    <label for="address" class='active'>Agency Address<span class="red-text">*</span></label>
+                    <!-- <div *ngIf="submitted && f.address.errors" class="invalid-input">
+                        <span class="red-text"><strong>Enter Address</strong></span>
+                    </div> -->
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col m12">
+                    <label>Agency Photo<span class="red-text">*</span></label>
+                  </div>
+                  <div class="file-field input-field col m6">
+                      <div class="btn">
+                          <span>Browse</span>
+                          <input type="file" (change)="onFileSelect($event)"/>
+                      </div>
+                      <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text" placeholder="Upload file" accept="imgae/*"/>
+                      </div>
+                      <!-- <div *ngIf="submitted && f.photo_one.errors" class="invalid-input">
+                          <span class="red-text"><strong>Select Image</strong></span>
+                      </div> -->
+                  </div>
+                  <div class="col m6" *ngIf="filepreview">
+                    <img [src]="filepreview" alt="" width="150px" height="150px">
+                  </div>
+  
+  
+                  
+                    
+                </div>
+  
+                <div class="row">
+                  <div class="col s8 m4 l8">
+                    <h6 class="red-text">Select Marker On Map For Latitude  and Longitude<span class="red-text">*</span></h6>
+                    <agm-map [latitude]="lat" [longitude]="lon" (mapClick)="mapClick($event)" [zoom]="zoom">
+                      <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+                    </agm-map>
+                    
+                </div>
+
+                <div class="col s4 m4 l4">
+                  <label class="red-text">Latitude  and Longitude<span class="red-text">*</span></label>
+               
+
+                <div class="input-field col s12 m12 l12">
+               
+                  <input id="lat" name="lat" type="number" formControlName="lat"
+                      class="active validate" value="lat" required readonly />
+                  <!-- <label for="lat">Agency Latitude<span class="red-text">*</span></label> -->
+                </div>
+                <div class="input-field col s12 m12 l12">
+                 
+                  <input id="lon" name="lon" type="number" formControlName="lon"
+                      class="active validate" value="lon" required readonly />
+                  <!-- <label for="lon">Agency Longitude<span class="red-text">*</span></label> -->
+                  
+                </div>
+              </div>
+            </div>
+
+               
+                <div class="row" style="float:right;">
+                  <div class="col s12">
+                      <button type="submit" class="btn btn-save" [disabled]="agencyForm.invalid">Save</button>
+                  </div>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

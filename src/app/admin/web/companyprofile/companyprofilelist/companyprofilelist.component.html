@@ -1,0 +1,61 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Company Profile List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Company Profile List</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <span style="float: right;">
+                                    <a routerLink="/admin/companyprofile-add"
+                                        class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Company Profile</a></span>
+                            </div>
+                        </div>
+                        <table style="font-weight:small;" class="datatable responsive-table highlight" id="pagedatatable">
+                            <thead>
+                                <tr>
+                                    <th style="white-space: nowrap">Sr No.</th>
+                                    <th>Title</th>
+                                    <th>Content</th>
+                                    <th>Image</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <td>{{(10*(p-1))+(i+1)}}</td>
+                                    <td><span >{{datalist.title}}</span></td>
+                                    <td><span ><div [innerHtml]="datalist.content"></div></span></td>
+                                    <td><span ><img src={{datalist.photopath}} alt="image" height="50px"></span></td>
+                                    <td style="white-space: nowrap">
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
+                                                class="material-icons"
+                                                >edit</i></a>
+                                        &nbsp;
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteCompanyProfile(datalist.id)"
+                                        ><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

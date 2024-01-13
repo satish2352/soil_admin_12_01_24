@@ -1,0 +1,71 @@
+<main>
+  <div class="main-content">
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <span class="page-title">
+                  Career & Certificate Logo List
+              </span>
+              <ul class="breadcrumbs">
+                  <li><a routerLink="/admin/dashboard">Home</a></li>
+                  <li class="active">Career & Certificate Logo List</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="row">
+                          <div class="col s12 m12 l12">
+                             
+                          </div>
+                      </div>
+                      <table style="font-weight:small;" class="datatable responsive-table highlight" id="pagedatatable">
+                          <thead>
+                              <tr>
+                                  <th style="white-space: nowrap">Sr No.</th>
+                                  <th>Internship Menu Name</th>
+                                  <th>Internship Logo</th>
+                                  <th>Distributor Menu Name</th>
+                                  <th>Distributor Logo</th>
+                                  <th>Job Menu Name</th>
+                                  <th>Job Logo</th>
+                                  <th>Certificate Logo</th>
+                                  <th>Update</th>
+
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                  <td>{{(10*(p-1))+(i+1)}}</td>
+                                  
+                                  <td>{{datalist.enternshipmenuname}}</td>
+                                  <td><span ><img src={{datalist.internshipmenuphoto}} alt="image" height="100px" width="100px"></span></td>
+                                  <td>{{datalist.distmenuname}}</td>
+                                  <td><span ><img src={{datalist.dsitmenuphotoview}} alt="image" height="100px" width="100px"></span></td>
+                                  <td>{{datalist.jobmenuname}}</td>
+                                  <td><span ><img src={{datalist.jobmenuphotoview}} alt="image" height="100px" width="100px"></span></td>
+                                  <td><span ><img src={{datalist.certificatephotoview}} alt="image" height="100px" width="100px"></span></td>   
+                       
+
+
+                                   <td style="white-space: nowrap">
+                                      <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
+                                              class="material-icons"
+                                              >edit</i></a>
+                                      &nbsp;
+                                      <!-- <a href="JavaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteItem(datalist.id)"
+                                      onclick="confirm('Are you sure want to delete')"><i
+                                              class="material-icons">delete</i></a> -->
+                                  </td> 
+                              </tr>
+                          </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

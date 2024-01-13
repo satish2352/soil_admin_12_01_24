@@ -1,0 +1,199 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Distributor List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Career Distributor List</li>
+                </ul>
+            </div>
+        </div>
+        <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
+            (click)="exportToExcel()">Export to Excel</button>
+        &nbsp;&nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs"
+            (click)="exportToPdf()">Export to PDF</button>
+
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+                                    <form [formGroup]="farmerForm">
+                                        <div class="col s12 m12 l12">
+                                            <!-- <div class="card white"> -->
+                                            <div class="card-content white-red">
+
+                                                <div class="row">
+
+                                                    <div class="input-field col s12 m3 l3">
+                                                        <select class="" formControlName="state">
+                                                            <option value="" disabled selected>Choose State</option>
+                                                            <option *ngFor="let state of allstate"
+                                                                [value]="state.location_id">
+                                                                {{state.name}}</option>
+                                                        </select>
+                                                        <!-- <div *ngIf="submitted && f.state.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class="" formControlName="district">
+                                                            <option value="" disabled selected>Choose District
+                                                            </option>
+                                                            <option *ngFor="let dist of alldist"
+                                                                [value]="dist.location_id">
+                                                                {{dist.name}}</option>
+                                                        </select>
+                                                        <!-- <div *ngIf="submitted && f.district.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class="" formControlName="taluka">
+                                                            <option value="" disabled selected>Choose Taluka
+                                                            </option>
+                                                            <option *ngFor="let taluka of alltaluka"
+                                                                [value]="taluka.location_id">
+                                                                {{taluka.name}}</option>
+                                                        </select>
+                                                        <!-- <div *ngIf="submitted && f.taluka.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class="" formControlName="city">
+                                                            <option value="" disabled selected>Choose City</option>
+                                                            <option *ngFor="let city of allcity"
+                                                                [value]="city.location_id">
+                                                                {{city.name}}</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <!-- your-component.component.html -->
+
+                                                    <!-- <div class="input-field col s12 m3 l3">
+                                                        <select class="" formControlName="created_disctributor_id"
+                                                            (change)="filterDataByDistributor()">
+                                                            <option value="" disabled selected>Choose Distributor
+                                                            </option>
+                                                            <option *ngFor="let dist of filteredDistributor"
+                                                                [value]="dist.user_id">
+                                                                {{ dist.fname }} {{ dist.lname }} {{ dist.lname }}
+                                                            </option>
+                                                        </select>
+                                                    </div> -->
+                                                    <!-- your-component.component.html -->
+<!-- 
+                                                    <div class="input-field col s12 m3 l3">
+                                                        <select class="" formControlName="created_disctributor_id">
+                                                            <option value="" disabled selected>Choose Distributor
+                                                            </option>
+                                                            <option *ngFor="let dist of filteredDistributor"
+                                                                [value]="dist.user_id">
+                                                                {{ dist.fname }} {{ dist.lname }} {{ dist.lname }}
+                                                            </option>
+                                                        </select>
+                                                    </div> -->
+
+
+
+                                                    <!-- <div class="input-field col s12 m3 l3">
+                                                            <label>Select State</label>
+                                                            <select class="" formControlName="created_disctributor_id" (change)="getDataByDist()">
+                                                                <option value="" disabled selected>Choose Distributor</option>
+                                                                <option *ngFor="let distributordetails of distributordetailsall" [value]="distributordetails.user_id">
+                                                                    {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}</option>
+                                                            </select>
+                                                            <div *ngIf="f.created_disctributor_id.errors && submitted">
+                                                                <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                                            </div>
+                
+                                                        </div> -->
+
+                                                </div>
+
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nowrap">
+                            <table style="font-weight:small;" class="datatable responsive-table highlight"
+                                id="exportTable">
+                                <thead>
+                                    <tr>
+                                        <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Name</th>
+                                        <th style="white-space: nowrap">Contact Number</th>
+                                        <th style="white-space: nowrap">State</th>
+                                        <th style="white-space: nowrap">District</th>
+                                        <th style="white-space: nowrap">Taluka</th>
+                                        <th style="white-space: nowrap">Village</th>
+
+
+                                        <th style="white-space: nowrap">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                        <td>{{(10*(p-1))+(i+1)}}</td>
+                                        <!-- <td></td> -->
+                                        <!-- <tr
+                                    *ngFor="let listdata of alllist ;let i=index;">
+                                        <td>{{i+1}}</td> -->
+                                        <td style="white-space: nowrap"><span>{{listdata.fname}} {{listdata.mname}}
+                                                {{listdata.lname}}</span>&nbsp; &nbsp;
+                                            <span *ngIf="listdata.new_user_type"
+                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me"> &nbsp; {{listdata.new_user_type}} &nbsp;</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.state}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.district}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.taluka}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.city}}</span></td>
+
+                                        <td style="white-space: nowrap;">
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
+                                                style="background-color: green;" (click)="getForUpdate(listdata.id)"><i
+                                                    class="material-icons">edit</i>{{listdata.id}}</a>
+                                            &nbsp;
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
+                                                style="background-color: violet;" (click)="getForView(listdata.id)"><i
+                                                    class="material-icons">remove_red_eye</i></a>
+                                            &nbsp;
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

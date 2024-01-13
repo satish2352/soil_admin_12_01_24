@@ -1,0 +1,267 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    {{pagetitle}}
+                </span>
+                <ul class="breadcrumbs">
+                  <li><a routerLink="/admin/dashboard">Home</a></li>
+                  <li><a routerLink="/admin/distributor-list">Distributors</a></li>
+                  <li class="active">{{pagetitle}}</li>
+              </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <form [formGroup]="formGroupNew" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="applicantFirstName" name="fname" class="validate" type="text" value=""
+                                        style="text-transform:uppercase" formControlName="fname" required/>
+                                    <label for="first_name">First Name <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.fname.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="applicantFirstName" name="mname"
+                                        class="form-control input_capital  capitalize" type="text" value=""
+                                        style="text-transform:uppercase" class="validate" formControlName="mname" required/>
+                                    <label for="middle_name">Middle Name<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.mname.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <input id="applicantFirstName" name="lname" class="validate" type="text" value=""
+                                        style="text-transform:uppercase" formControlName="lname" required/>
+                                    <label for="last_name">Last Name <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.lname.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">phone</i>
+                                    <input id="mobileno" maxlength="10" minlength="10" name="phone" placeholder="" class="validate"
+                                        type="text" value="" formControlName="phone" required/>
+                                    <label for="mobile_number">Mobile Number <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required/Incorrect*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">alternate_email</i>
+
+                                    <input id="emailId" name="email" class="validate" type="email" value=""
+                                        formControlName="email" (change)="getCheckemailexist($event)" required/>
+                                    <label for="email_id">Email ID</label>
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <i class="material-icons prefix">format_list_numbered</i>
+                                    <input id="aadharcard" name="aadharcard" class="validate" type="text" maxlength="12" minlength="12" value=""
+                                        formControlName="aadharcard" required/>
+                                    <label for="aadharcard">Adhar Card No</label>
+                                    <div *ngIf="submitted && f.aadharcard.errors" class="invalid-input">
+                                       
+                                          <span class="red-text"><strong>Required/Incorrect*</strong></span>
+                            
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div id='educatioDetails'>
+                                <div>
+                                    <p class="teal lighten-2" style="padding: 10px;"><b>Residential Details</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="state">
+                                            <option value="" disabled selected>Choose your state</option>
+                                            <option *ngFor="let state of allstate" [value]="state.location_id">
+                                                {{state.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="district">
+                                            <option value="" disabled selected>Choose your District</option>
+                                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                                {{dist.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.district.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="taluka">
+                                            <option value="" disabled selected>Choose your Taluka</option>
+                                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                                {{taluka.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="city">
+                                            <option value="" disabled selected>Choose your City</option>
+                                            <option *ngFor="let city of allcity" [value]="city.location_id">
+                                                {{city.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.city.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                      <input id="pincode" name="pincode" class="validate" type="number" value=""
+                                          formControlName="pincode" required/>
+                                      <label for="pincode">Pincode<span class="red-text">*</span></label>
+                                      <div *ngIf="submitted && f.pincode.errors" class="invalid-input">
+                                          <span class="red-text"><strong>Required*</strong></span>
+                                      </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m12 l12">
+                                      <textarea id="address" class="materialize-textarea validate"
+                                          formControlName="address" required></textarea>
+                                      <label for="address" class='active'>Address<span
+                                              class="red-text">*</span></label>
+                                      <div *ngIf="submitted && f.address.errors" class="invalid-input">
+                                          <span class="red-text"><strong>Required*</strong></span>
+                                      </div>
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div id='empDetal'>
+                                <div>
+                                    <p class="teal lighten-2" style="padding: 10px;"><b>Other Details</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="occupation" name="occupation" class="validate" type="text" value=""
+                                            style="text-transform:uppercase" formControlName="occupation" required/>
+                                        <label for="occupation">Business/Occupation/Work <span
+                                                class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.occupation.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="education" name="education" class="validate" type="text" value=""
+                                            formControlName="education" required/>
+                                        <label for="education">Education<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.education.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="exp_in_agricultural" name="exp_in_agricultural" class="validate"
+                                            type="number" value="" formControlName="exp_in_agricultural" required/>
+                                        <label for="exp_in_agricultural">Experience in Agricultural Field (in years)<span
+                                                class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.exp_in_agricultural.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="other_distributorship">
+                                            <option value="" disabled selected> Any Other Distributorship*</option>
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.other_distributorship.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="reference_from" name="reference_from" class="validate" type="text"
+                                            value="" formControlName="reference_from" required/>
+                                        <label for="reference_from">Reference From<span
+                                                class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.reference_from.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="shop_location" name="shop_location" class="validate" type="text"
+                                            value="" formControlName="shop_location" required/>
+                                        <label for="shop_location">Shop Location<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.shop_location.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="password" name="password" class="validate" type="text" value=""
+                                            formControlName="password" required/>
+                                        <label for="password">Password<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.password.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class="input-field col s12 m4 l4">
+                                    <select class="" formControlName="user_type">
+                                        <option value="" disabled selected>Which Level</option>
+                                        <option *ngFor="let to_whom_showlist of to_whom_showall" [value]="to_whom_showlist.name">{{to_whom_showlist.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.user_type.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <select id="agency_under_distributor_id" class="validate" formControlName="created_by">
+                                        <option value="" disabled selected>Choose distributor</option>
+                                        <option *ngFor="let dist of fsc_list_all" [value]="dist.id">
+                                            {{dist.fname}} {{dist.mname}} {{dist.lname}}</option>
+                                    </select> 
+                                    <div *ngIf="submitted && f.created_by.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                  </div>
+                            </div>
+
+                            <div class="row" style="float:right;">
+                                <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

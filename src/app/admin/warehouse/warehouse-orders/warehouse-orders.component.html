@@ -1,0 +1,66 @@
+<main>
+  <div class="main-content">
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <span class="page-title">
+                  Warehouse Orders
+              </span>
+              <ul class="breadcrumbs">
+                  <li><a routerLink="/admin/dashboard">Home</a></li>
+                  <li class="active">Warehouse Orders</li>
+              </ul>
+          </div>
+      </div>
+      <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
+      (click)="exportToExcel()">Export to Excel</button>
+  &nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to
+      PDF</button>
+
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <div class="card">
+                      <div class="card-content">
+                      <table style="font-size: small;" class="datatable responsive-table highlight" id="exportTable">
+                          <thead>
+                              <tr>
+                                  <th style="white-space: nowrap">Sr No.</th>
+                                  <th style="white-space: nowrap">Order No</th>
+                                  <th>From</th>
+                                  <th>Date</th>
+                                  <th>Amount</th>
+                                  <th>Status</th>
+                                  <th style="white-space: nowrap">Dispatched Date</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr  *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                  <td>{{(10*(p-1))+(i+1)}}</td>
+                                  <td><span>{{order.order_no}}</span></td>
+                                  <td style="white-space: nowrap"><span>{{order.fname}} {{order.mname}} {{order.lname}}</span></td>
+                                  <td><span>{{order.order_date | date: 'dd/MM/yyyy'}}</span></td>
+                                  <td><span>{{order.created_disctributor_amount}}</span></td>
+                                  <td>
+                                    <span *ngIf="order.order_dispatched=='no' && order.forward_to_warehouse=='no'">Not Dispatched</span>
+                                    <span *ngIf="order.order_dispatched=='yes' && order.forward_to_warehouse=='yes'">Dispatched</span>
+                                  </td>
+                                  <td><span>{{order.order_dispatched_date| date: 'dd/MM/yyyy'}}</span></td>
+                                  <td>
+                                      <a href="javaScript:void(0)" class="btn-floating" title="View Details" style="background-color: #26A69A;" (click)="viewOrder(order.order_no, order.created_disctributor_id)"><i
+                                      class="material-icons"
+                                      >remove_red_eye</i></a>
+                                      &nbsp;
+                                      <a *ngIf="order.order_dispatched=='no'" href="javaScript:void(0)" class="btn-floating" title="Dispatch" style="background-color: green;" (click)="dispatchOrder(order.order_no, order.created_disctributor_id)"><i
+                                              class="material-icons"
+                                              >done</i></a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

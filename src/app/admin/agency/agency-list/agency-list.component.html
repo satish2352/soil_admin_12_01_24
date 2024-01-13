@@ -1,0 +1,66 @@
+<main>
+  <div class="main-content">
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <span class="page-title">
+                  Agency List
+              </span>
+              <ul class="breadcrumbs">
+                  <li><a routerLink="/admin/dashboard">Home</a></li>
+                  <li class="active">Agency List</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="row">
+                          <div class="col s12 m12 l12">
+                              <span style="float: right;">
+                                  <a routerLink="/admin/add-agency"
+                                      class="waves-effect waves-light btn"><i
+                                          class="material-icons left">library_add</i>Add Agency</a></span>
+                          </div>
+                      </div>
+                      <table style="font-size: small;" class="datatable responsive-table highlight" id="pagedatatable">
+                          <thead>
+                              <tr>
+                                  <th style="white-space: nowrap">Sr No.</th>
+                                  <th style="white-space: nowrap">Agency Name</th>
+                                  <th>Latitude</th>
+                                  <th>Longitude</th>
+                                  <th>Address</th>
+                                  <th>Photo</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr  *ngFor="let agency of allagencylist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                  <td>{{(10*(p-1))+(i+1)}}</td>
+                                  <td style="white-space: nowrap"><span>{{agency.agency_name}}</span></td>
+                                  <td ><span>{{agency.lat}}</span></td>
+                                  <td><span>{{agency.lon}}</span></td>
+                                  <td><span>{{agency.address}}</span></td>
+                                  <td>
+                                    <img [src]="agency.photopath" width="100px" height="100px" alt="">
+                                  </td>
+                                  <td style="white-space: nowrap">
+                                      <a href="javaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="editAgency(agency.id)"><i
+                                              class="material-icons"
+                                              >edit</i></a>
+                                      &nbsp;
+                                      <a href="javaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteagency(agency.id)"><i
+                                              class="material-icons">delete</i></a>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

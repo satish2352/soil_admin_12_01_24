@@ -1,0 +1,62 @@
+<main>
+  <div class="main-content">
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <span class="page-title">
+                Web Count List
+              </span>
+              <ul class="breadcrumbs">
+                  <li><a routerLink="/admin/dashboard">Home</a></li>
+                  <li class="active">Web Count List</li>
+              </ul>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col s12 m12 l12">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="row">
+                          <div class="col s12 m12 l12">
+
+                          </div>
+                      </div>
+                      <table style="font-weight:small;" class="datatable responsive-table highlight" id="pagedatatable">
+                          <thead>
+                              <tr>
+                                  <th style="white-space: nowrap">Sr No.</th>
+                                  <th>Farmer Count</th>
+                                  <th>Seminar Meeting Count</th>
+                                  <th>App Download Count</th>
+                                  <th>Youtube Subscriber Count</th>
+                                  <th>Distributor Count</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                  <td>{{(10*(p-1))+(i+1)}}</td>
+                                  <td >{{datalist.farmer_count}}</td>
+                                  <td>{{datalist.sem_meet_count}}</td>
+                                  <td>{{datalist.app_down_count}}</td>
+                                  <td>{{datalist.youtube_sus_count}}</td>
+                                  <td>{{datalist.distributor_count}}</td>
+                                  <td style="white-space: nowrap">
+                                      <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
+                                              class="material-icons"
+                                              >edit</i></a>
+                                      &nbsp;
+                                      <!-- <a href="JavaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteItem(datalist.id)"
+                                      onclick="confirm('Are you sure want to delete')"><i
+                                              class="material-icons">delete</i></a> -->
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</main>

@@ -1,0 +1,47 @@
+<main>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"> -->
+    <!--Sign In card-->
+    <div class="row center">
+        <!--Branding logo-->
+        <div class="col s12 center-align center" style="margin-top: 1%"></div>
+        <div class="col s12 m10 offset-m1 l4 offset-l3">
+            <div class="card sticky-action z-depth-4 card-panel hoverable" style=" margin : 0px; padding : 2px">
+
+                <!--Login fields-->
+                <form [formGroup]="adminLoginForm" (ngSubmit)="onSubmit()">
+                    <div class="card-content">
+                        <div class="row center-align">
+                            <div class="col s12 center-align center" style="margin-top: 1%">
+                                <img src="../../assets/img/logo.png" alt="App Logo" class=""
+                                    style="width:140px ; height :150px;" />
+                            </div>
+                            <span class="card-title grey-text text-darken-4 center-align">Sign In</span>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix center">account_circle</i>
+                                <input id="email" name="email" class="validate" type="text" value=""
+                                    formControlName="email" required autofocus/>
+                                <label for="email">Email <span class="red-text">*</span></label>
+                                <div *ngIf="submitted && f.email.errors" class="invalid-input">
+                                    <span *ngIf="f.email.errors.email" class="red-text" style="font-size: small;">Invalid Email*</span>
+                                    <span *ngIf="f.email.errors.required" class="red-text" style="font-size: small;">Required*</span>
+                                  </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix center">dialpad</i>
+                                <input id="password" name="password" class="form-control input_capital  capitalize"
+                                    type="password" value="" class="validate" formControlName="password" required/>
+                                <label for="password">Password<span class="red-text">*</span></label>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-input">
+                                    <span class="red-text" style="font-size: small;">Required*</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-save">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

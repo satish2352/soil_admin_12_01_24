@@ -1,0 +1,108 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    SCT Result List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">SCT Result List</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <span style="float: right;">
+                                    <a routerLink="/admin/distributor-add" class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Distributor</a></span>
+                            </div>
+                        </div>
+                        <!-- <div class="nowrap"> -->
+                          <table style="font-size: small" class="datatable responsive-table highlight" id="">
+                            <thead>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th >Name</th>
+                                    <th >Title</th>
+                                    <th >Area</th>
+                                    <th >Description</th>
+                                    <th >Latitude</th>
+                                    <th >Longitude</th>
+                                    <th >Photo One</th>
+                                    <th >Photo Two</th>
+                                    <th >Photo Three</th>
+                                    <th >Photo Four</th>
+                                    <th >Photo Five</th>
+                                    <!-- <th style="white-space: nowrap">Created By</th> -->
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <td>{{(10*(p-1))+(i+1)}}</td>
+                                    <td ><span >{{listdata.dfname}} {{listdata.dmname}}
+                                            {{listdata.dlname}}</span></td>
+                                    <td ><span >{{listdata.title}}</span></td>
+                                    <td ><span style="text-transform:uppercase">{{listdata.area}}</span></td>
+                                    <td ><span style="text-transform:uppercase">{{listdata.description}}</span></td>
+                                    <td ><span style="text-transform:uppercase">{{listdata.latitude}}</span></td>
+                                    <td ><span style="text-transform:uppercase">{{listdata.longitude}}</span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathone}} target="_blank" download>
+
+                                       <img src={{listdata.photopathone}} alt="image" height="50px" width="30px">
+                                       
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathtwo}} target="_blank" download>
+
+                                       <img src={{listdata.photopathtwo}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopaththree}} target="_blank" download>
+
+                                       <img src={{listdata.photopaththree}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathfour}} target="_blank" download>
+
+                                       <img src={{listdata.photopathfour}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathfive}} target="_blank" download>
+
+                                       <img src={{listdata.photopathfive}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <!-- <td style="white-space: nowrap"><span style="text-transform:uppercase">{{listdata.created_by}}</span></td> -->
+                                 
+                                    <td style="white-space: nowrap;">
+                                       
+                                        <a href="JavaScript:void(0)" class="btn-floating"
+                                        title="Edit" style="background-color: violet;" (click)="getForView(listdata.id)"><i
+                                            class="material-icons" >remove_red_eye</i></a>
+                                    &nbsp;
+                                        
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+</main>

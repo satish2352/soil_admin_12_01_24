@@ -1,0 +1,139 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Add Plot Visit
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li><a routerLink="/admin/plotvisit-list">Plot Visit</a></li>
+                    <li class="active">Add Plot Visit</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <form [formGroup]="farmerForm" (ngSubmit)="onSubmit()">
+                            <div id='educatioDetails'>
+                                <div>
+                                    <p class="teal lighten-2" style="padding: 10px;"><b>ADD DETAILS</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m6 l6">
+                                        <select class="" formControlName="farmer_id"
+                                            (change)="getFarmerDetails($event);">
+                                            <option value="" disabled selected>Choose Farmer</option>
+                                            <option *ngFor="let farmerdetails of famrmerdetailsall"
+                                                [value]="farmerdetails.user_id">
+                                                {{farmerdetails.fname}} {{farmerdetails.mname}}
+                                                {{farmerdetails.lname}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.farmer_id.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="input-field col s12 m6 l6">
+                                        <input id="date" name="date" class="validate" type="date" value=""
+                                            formControlName="date" required/>
+                                        <label for="date">Date<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.date.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div id='educatioDetails'  *ngIf="phone">
+                              <div>
+                                <p class="teal lighten-2" style="padding: 10px;"><b>FARMER DETAILS</b></p>
+                              </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m12 l12">
+                                        <table class="datatable responsive-table highlight">
+                                            <thead>
+                                                <tr>
+                                                    <th>Contact Number</th>
+                                                    <th>Address</th>
+                                                    <th>State</th>
+                                                    <th>District</th>
+                                                    <th>Taluka</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>{{phone}}</td>
+                                                <td>{{address}}</td>
+                                                <td>{{state}}</td>
+                                                <td>{{district}}</td>
+                                                <td>{{taluka}}</td>
+                                              </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                  </div>
+                            </div>
+
+                            <div id='empDetal'>
+                              <div>
+                                <p class="teal lighten-2" style="padding: 10px;"><b>VISIT DETAILS</b></p>
+                              </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m12 l12">
+                                        <textarea id="description_about_visit" class="materialize-textarea validate"
+                                            formControlName="description_about_visit" required></textarea>
+                                        <label for="description_about_visit" class='active'>Description About Visit<span
+                                                class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.description_about_visit.errors"
+                                            class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m12 l12">
+                                        <input id="about_visit" name="about_visit" class="validate" type="text" value=""
+                                            formControlName="about_visit" required/>
+                                        <label for="about_visit">About Visit<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.about_visit.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m6 l6">
+                                        <input id="crop" name="crop" class="validate" type="text" value=""
+                                            style="text-transform:uppercase" formControlName="crop" required/>
+                                        <label for="crop">Crop <span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.crop.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 m6 l6">
+                                        <input id="acer" name="acer" class="validate" type="number" value=""
+                                            formControlName="acer" required/>
+                                        <label for="acer">Acre<span class="red-text">*</span></label>
+                                        <div *ngIf="submitted && f.acer.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input id="datafor" name="datafor" class="validate" type="text" value="0"
+                                formControlName="datafor" hidden />
+                            <input id="visit_id" name="visit_id" class="validate" type="text" value="0"
+                                formControlName="visit_id" hidden />
+
+                            <div class="row" style="float:right;">
+                                <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

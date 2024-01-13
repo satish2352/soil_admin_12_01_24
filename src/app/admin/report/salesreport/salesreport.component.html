@@ -1,0 +1,144 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Sales Report
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Sales Report</li>
+                </ul>
+            </div>
+        </div>
+        <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
+            (click)="exportToExcel()">Export to Excel</button>
+        &nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to
+            PDF</button>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+
+                            
+                            <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                                <div class="col s2 m2 l2">From Date</div>
+                                <div class="col s2 m2 l2">
+                                    <input id="datefrom" name="datefrom" type="date" formControlName="datefrom"
+                                        class="active validate" required />
+                                    <label for="datefrom">From Date<span class="red-text">*</span></label>
+                                    <div *ngIf="f.datefrom.errors && submitted">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="col s2 m2 l2">To Date</div>
+                                <div class="col s2 m2 l2">
+                                    <input id="dateto" name="dateto" type="date" formControlName="dateto"
+                                        class="active validate" required />
+                                    <label for="dateto">To Date<span class="red-text">*</span></label>
+                                    <div *ngIf="f.dateto.errors && submitted">
+                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="col s2 m2 l2">
+                                <select class="col s2 m2 l2" formControlName="dist_id" (change)="getDataByDist()">
+                                    <option value="" disabled selected>Choose Distributor</option>
+                                    <option *ngFor="let distributordetails of distributordetailsall" [value]="distributordetails.user_id">
+                                      {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}
+                                    </option>
+                                  </select>
+                                  
+                                  <!-- <div *ngIf="selectedDistributor">
+                                    Selected Distributor: {{selectedDistributor.fname}} {{selectedDistributor.mname}} {{selectedDistributor.lname}}
+                                </div> -->
+                            </div>
+                                  
+
+
+
+                             
+                                <!-- (change)="getDataByDist()" -->
+                                <div class="col s2 m2 l2">
+                                    <button type="submit" class="btn btn-save">Get Report</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <table class="highlight">
+                            <tbody>
+                                <tr *ngIf="datefrom!=null">
+                                    <th>From Date</th>
+                                    <td>{{datefrom | date: 'dd/MM/yyyy'}}</td>
+                                    <th>To Date</th>
+                                    <td>{{dateto | date: 'dd/MM/yyyy'}}</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Total Order</th>
+                                    <td>{{totalorder}}</td>
+                                    <th>Total Amount</th>
+                                    <td>
+                                        {{totalamount}}
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <table style="font-size: small;" class="datatable responsive-table highlight" id="exportTable">
+                            <thead>
+                                <tr>
+                                    <th style="white-space: nowrap" (click)="sortTable('Sr no')">Sr No.<i
+                                            class="material-icons" style="padding-bottom:10px;"
+                                            [ngClass]="getArrowClass('Sr no')">arrow_upward</i></th>
+                                    <!-- <th style="white-space: nowrap" (click)="sortTable('order_no')">Order No</th> -->
+                                    <th style="white-space: nowrap; " (click)="sortTable('order_no')"> Order No <i
+                                            class="material-icons" style="padding-bottom:10px"
+                                            [ngClass]="getArrowClass('order_no')">arrow_upward</i>
+                                    </th>
+                                    <th (click)="sortTable('datefrom')">From <i class="material-icons"
+                                            style="padding-bottom:10px"
+                                            [ngClass]="getArrowClass('datefrom')">arrow_upward</i></th>
+                                       
+                                    <th (click)="sortTable('dateto')">Date <i class="material-icons"
+                                            style="padding-bottom:10px"
+                                            [ngClass]="getArrowClass('dateto')">arrow_upward</i></th>
+                                    <th (click)="sortTable('created_disctributor_amount')">Amount <i
+                                            class="material-icons" style="padding-bottom:10px"
+                                            [ngClass]="getArrowClass('created_disctributor_amount')">arrow_upward</i>
+                                    </th>
+                                    <th>District</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let order of orders | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <td>{{(10*(p-1))+(i+1)}}</td>
+                                    <td><span>{{order.order_no}}</span></td>
+                                    <td style="white-space: nowrap"><span>{{order.fname}} {{order.mname}}
+                                            {{order.lname}}</span></td>
+                                    <td><span>{{order.order_date | date: 'dd/MM/yyyy'}}</span></td>
+                                    <td><span>{{order.created_disctributor_amount}}</span></td>
+                                    <td><span>{{order.district}}</span></td>
+
+                                    <td style="white-space: nowrap">
+                                        <a href="javaScript:void(0)" class="btn-floating" title="View Details"
+                                            style="background-color: #26A69A;"
+                                            (click)="editOrder(order.order_no, order.created_disctributor_id)"><i
+                                                class="material-icons">remove_red_eye</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

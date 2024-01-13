@@ -1,0 +1,230 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Distributor List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Distributor List</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <span style="float: right;">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <a routerLink="/admin/distributor-add" class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Distributor</a></span>
+                                <span style="float: right;"> &nbsp;&nbsp;&nbsp;
+                                    <a routerLink="/admin/distributor-addspecific"
+                                        class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Distributor
+                                        Specific</a></span>
+                                <button style="margin-left:100px"
+                                    class="btn btn-info text-white font-weight-normal text-xs"
+                                    (click)="exportToExcel()">Export to Excel</button>
+                                &nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs"
+                                    (click)="exportToPdf()">Export to PDF</button>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input [(ngModel)]="searchText" type="text" placeholder="Search">
+                            </div>
+                            <div class="input-field col s12 m3 l3">
+                                <div class="row">
+
+                                    <div class="input-field col s12 m3 l3">
+                                        <select class="" formControlName="state">
+                                            <option value="" disabled selected>Choose State</option>
+                                            <option *ngFor="let state of allstate" [value]="state.location_id">
+                                                {{state.name}}</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="input-field col s12 m3 l3">
+
+                                        <select class="" formControlName="district">
+                                            <option value="" disabled selected>Choose District
+                                            </option>
+                                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                                {{dist.name}}</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="input-field col s12 m3 l3">
+
+                                        <select class="" formControlName="taluka">
+                                            <option value="" disabled selected>Choose Taluka
+                                            </option>
+                                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                                {{taluka.name}}</option>
+                                        </select>
+
+                                    </div>
+
+                                    <div class="input-field col s12 m3 l3">
+
+                                        <select class="" formControlName="city">
+                                            <option value="" disabled selected>Choose City</option>
+                                            <option *ngFor="let city of allcity" [value]="city.location_id">
+                                                {{city.name}}</option>
+                                        </select>
+
+                                    </div>
+                                    <!-- <div class="col s2 m2 l2">
+                                        <select class="col s2 m2 l2" formControlName="dist_id"
+                                            (change)="getDataByDist()">
+                                            <option value="" disabled selected>Choose Distributor</option>
+                                            <option *ngFor="let distributordetails of distributordetailsall"
+                                                [value]="distributordetails.user_id">
+                                                {{distributordetails.fname}} {{distributordetails.mname}}
+                                                {{distributordetails.lname}}
+                                            </option>
+                                        </select>
+
+
+                                    </div> -->
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="nowrap">
+                            <table style="font-size: small" class="datatable responsive-table highlight"
+                                id="exportTable">
+                                <thead>
+                                    <tr>
+                                        <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Name</th>
+                                        <th style="white-space: nowrap">User Name / Password</th>
+                                        <th style="white-space: nowrap">Contact Number</th>
+                                        <th style="white-space: nowrap">Date</th>
+                                        <th style="white-space: nowrap">State</th>
+                                        <th style="white-space: nowrap">District</th>
+                                        <th style="white-space: nowrap">Taluka</th>
+                                        <th style="white-space: nowrap">Village</th>
+                                        <th style="white-space: nowrap">User Type</th>
+                                        <!-- <th style="white-space: nowrap">Adhar Card</th> -->
+                                        <th style="white-space: nowrap">Pramotion/Demotion</th>
+                                        <th style="white-space: nowrap">Status</th>
+
+                                        <th style="white-space: nowrap">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let listdata of alllist  | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                        <td>{{(10*(p-1))+(i+1)}}</td>
+                                        <td style="white-space: nowrap;text-transform:uppercase">
+                                            <span>{{listdata.fname}} {{listdata.mname}}
+                                                {{listdata.lname}}</span>&nbsp; &nbsp;
+                                            <span *ngIf="listdata.new_user_type"
+                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me"> &nbsp; {{listdata.new_user_type}} &nbsp;</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span>{{listdata.email}} /
+                                                {{listdata.visible_password}}</span></td>
+                                        <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
+                                        <td style="white-space: nowrap"><span>{{listdata.created_at| date:
+                                                'dd/MM/yyyy'}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.state}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.district}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.taluka}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.city}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.user_type}}</span></td>
+                                        <!-- <td><span>
+                                        <a href={{listdata.aadhar_card_image_front}} target="_blank" download>
+
+                                       <img src={{listdata.aadhar_card_image_front}} alt="image" height="50px">
+                                       
+                                     </a>
+                                    </span></td> -->
+                                        <td style="white-space: nowrap;">
+                                            <!-- User Pramotion -->
+
+                                            <a *ngIf="listdata.new_user_type !=''" href="JavaScript:void(0)"
+                                                class="btn-floating" title="Pramote" style="background-color: green;"
+                                                (click)="setUserPramotion($event, listdata.user_id,listdata.new_user_type)"><i
+                                                    class="material-icons">trending_up</i></a>
+                                            &nbsp;
+
+                                            <a *ngIf="listdata.user_type !='fsc'" href="JavaScript:void(0)"
+                                                class="btn-floating" title="Demote" style="background-color: green;"
+                                                (click)="demoteDistributor($event, listdata.user_id)"><i
+                                                    class="material-icons">trending_down</i></a>
+                                            &nbsp;
+
+
+                                            <a *ngIf="listdata.user_type =='fsc' && listdata.new_user_type =='' "
+                                                href="JavaScript:void(0)" title="">&nbsp; NA &nbsp; </a>
+                                            &nbsp;
+
+
+                                        </td>
+
+                                        <td style="white-space: nowrap;">
+                                            <div class="switch">
+                                                <label>
+                                                    <!-- Off -->
+                                                    <input [checked]="(listdata.is_block == 'yes')?false:true"
+                                                        type="checkbox" (change)="setStatus($event, listdata.user_id)">
+                                                    <span class="lever"></span>
+                                                    <!-- On -->
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td style="white-space: nowrap;">
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
+                                                style="background-color: green;"
+                                                (click)="getForEdit(listdata.user_id)"><i
+                                                    class="material-icons">edit</i></a>
+                                            &nbsp;
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
+                                                style="background-color: violet;"
+                                                (click)="getForView(listdata.user_id)"><i
+                                                    class="material-icons">remove_red_eye</i></a>
+                                            &nbsp;
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="Delete"
+                                                style="background-color: red;" (click)="delete(listdata.id)"
+                                                onclick="confirm('Are you sure want to delete distributor?')"><i
+                                                    class="material-icons">delete</i></a>
+                                            &nbsp;
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="View Complaints"
+                                                style="background-color: yellow;"
+                                                (click)="showComplaints(listdata.user_id)"><i
+                                                    class="material-icons">feedback</i></a>
+                                            &nbsp;
+                                            <a href="JavaScript:void(0)" class="btn-floating" title="View Messages"
+                                                style="background-color: blue;"
+                                                (click)="showMessages(listdata.user_id)"><i
+                                                    class="material-icons">message</i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

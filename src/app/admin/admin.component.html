@@ -1,0 +1,897 @@
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<!-- <ngx-ui-loader></ngx-ui-loader> -->
+<nav class="top-nav" role="navigation">
+  <div class="row">
+    <div class="col s12">
+      <div class="nav-wrapper">
+        <a class="dash-title">ADMIN PANEL</a>
+        <div class="right">
+          <a
+            href="#"
+            data-target="nav-mobile"
+            class="button-collapse sidenav-trigger top-nav full hide-on-large-only"
+          >
+            <i class="material-icons">menu</i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ul id="nav-mobile" class="sidenav sidenav-fixed fixed">
+    <li>
+      <div class="logo">
+        <a href="javascript:void(0)">
+          <img
+            src="assets/img/logo.png"
+            style="height: 80px; width: 80px;"
+            alt="SoilCharge Logo"
+          />
+        </a>
+      </div>
+    </li>
+    <div class="divider"></div>
+    <li class="active">
+      <a
+        class="waves-effect waves-green"
+        routerLink="/admin/dashboard"
+        routerLinkActive="activelink"
+      >
+        <i class="material-icons">dashboard</i>
+        Dashboard
+      </a>
+    </li>
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold" routerLinkActive="activelink">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">language</i>
+          Web
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/marquee-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Add WebSite News
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/companyprofile-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Company Profile
+              </a>
+            </li>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/aboutus-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                About us
+              </a>
+            </li>
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/visiomission-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Vision & Mission
+              </a>
+            </li> -->
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/coverphoto-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Cover Photo
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/gallaryphoto-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Gallery Photo
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webvideo-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Video
+              </a>
+            </li>
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webaudio-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Audio
+              </a>
+            </li> -->
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/testimonials-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Testimonials
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/blogarticle-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Blog Article
+              </a>
+            </li>
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/blogschedule-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Blog Schedule
+              </a>
+            </li> -->
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/blogreply-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Blog Reply
+              </a>
+            </li> -->
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcount-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Website Count
+              </a>
+            </li>
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcareerdist-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Career Distributor
+              </a>
+            </li> -->
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcareerinternship-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Career Internship
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcareerjob-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Career Job
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcareername-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Career Menu
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webenq-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Website Enquiry
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webproductinfo-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Product Information
+              </a>
+            </li>
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/principle-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Principle
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">location_city</i>
+          Mobile App
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/mobileapp-adress-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                 Address
+              </a>
+            </li>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/mobileapp-crop-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Crop
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/mobileapp-messeges-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Messeges
+              </a>
+            </li>
+
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/mobileapp-complaint-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Complaint
+              </a>
+            </li>
+
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/mobileapp-youtube-suscriber-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                You tube Suscriber
+              </a>
+            </li>
+          
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">place</i>
+          Uploads
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/bannerbr-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Banner/Broucher
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul> -->
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">location_city</i>
+          FCO-Office
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/farmer-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Farmer
+              </a>
+            </li>
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/plotvisit-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Plot Visit
+              </a>
+            </li> -->
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Distributor Follow up</a>
+                        </li> -->
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- <ul class="collapsible collapsible-accordion">
+            <li class="bold">
+                <a class="collapsible-header waves-effect waves-green"><i class="material-icons">domain</i>FCO-Field
+                </a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li class="" routerLinkActive="activelink" style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Farmer</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul> -->
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">account_balance_wallet</i>
+          Account
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/salesreport"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Comp to Dist ( Sales )
+              </a>
+            </li>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/disttocompreport"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Dist to Cust ( Sales )
+              </a>
+            </li>
+
+
+
+
+
+
+            
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/my-orders"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                All Order(Purchase)
+              </a>
+            </li>
+            <!-- <ul class="collapsible collapsible-accordion">
+              <li class="bold">
+                <a
+                  class="collapsible-header waves-effect waves-green"
+                  *ngxPermissionsOnly="['superadmin']"
+                >
+                  <i class="material-icons">store</i>
+                  Warehouse
+                </a>
+                <div class="collapsible-body">
+                  <ul>
+                    <li class="" routerLinkActive="activelink" style="cursor: auto;">
+                      <a
+                        routerLink="/admin/warehouse-orders"
+                        class="waves-effect waves-green"
+                      >
+                        <i class="material-icons">arrow_forward_ios</i>
+                        Warehouse Orders
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul> -->
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/warehouse-orders"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Warehouse Orders
+              </a>
+            </li>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/amtpaiddist"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Confirm Order
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/allorderdispatched"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Order Dispatched
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/allordernotdispatched"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Order Not Dispatched
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">description</i>
+          Report
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/allorderdispatched"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Order Dispatched
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/allordernotdispatched"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Order Not Dispatched
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/my-orders"
+              >webcareerdist-list
+                <i class="material-icons">arrow_forward_ios</i>
+                All Order
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/amtpaiddist"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Amt Paid ( Distributor )
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/salesreport"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Comp to Dist ( Sales )
+              </a>
+            </li>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                href="javascript:void(0)"
+                class="waves-effect waves-green"
+                routerLink="/admin/disttocompreport"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Dist to  Cust ( Sales )
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- <ul class="collapsible collapsible-accordion">
+            <li class="bold">
+                <a class="collapsible-header waves-effect waves-green"><i
+                        class="material-icons">verified_user</i>Expert</a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Soil Charger Technology</a>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Crop Info</a>
+                        </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Video</a>
+                        </li>
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Audio</a>
+                        </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Product & Order</a>
+                        </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Testimonial</a> </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Ask Expert</a> </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>News & Event</a> </li>
+
+                        <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)" class="waves-effect waves-green"><i
+                                    class="material-icons">arrow_forward_ios</i>Market Links.</a> </li>
+                    </ul>
+                </div>
+            </li>
+        </ul> -->
+
+    <!-- <ul class="collapsible collapsible-accordion">
+          <li class="bold">
+              <a class="collapsible-header waves-effect waves-green"><i
+                      class="material-icons">share</i>Blog</a>
+              <div class="collapsible-body">
+                  <ul>
+                      <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)"
+                              class="waves-effect waves-green"><i
+                                  class="material-icons">arrow_forward_ios</i>SCT Article</a>
+                      </li>
+
+                      <li class="" routerLinkActive="activelink"  style="cursor: auto" ><a href="javascript:void(0)"
+                              class="waves-effect waves-green"><i
+                                  class="material-icons">arrow_forward_ios</i>SCT Schedule</a>
+                      </li>
+                  </ul>
+              </div>
+          </li>
+        </ul> -->
+
+    <!-- <li class="active"><a class="waves-effect waves-green"><i class="material-icons">label_important</i>Dispatch</a>
+        </li>
+
+
+        <li class="active"><a class="waves-effect waves-green"><i class="material-icons">label_important</i>Production</a>
+        </li>
+
+
+        <li class="active"><a class="waves-effect waves-green"><i class="material-icons">label_important</i>Distribution</a>
+        </li>
+
+        <li class="active"><a class="waves-effect waves-green"><i class="material-icons">label_important</i>Hr</a>
+        </li>
+
+        <li class="active"><a   class="waves-effect waves-green"><i class="material-icons">label_important</i>Career</a>
+        </li> -->
+
+    <li class="">
+      <a
+        routerLink="/admin/product-list"
+        routerLinkActive="activelink"
+        class="waves-effect waves-green"
+      >
+        <i class="material-icons">label_important</i>
+        Product
+      </a>
+    </li>
+
+    <li class="">
+      <a
+        routerLink="/admin/notifications"
+        routerLinkActive="activelink"
+        class="waves-effect waves-green"
+      >
+        <i class="material-icons">notifications_active</i>
+        Notifications
+      </a>
+    </li>
+
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">airport_shuttle</i>
+          Distributor
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributor-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Distributor List
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributor-visit"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Farm Visit
+                <!-- <br />
+                To Farmer -->
+              </a>
+            </li>
+              <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/webcareerdist-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Career Distributor
+              </a>
+            </li>
+            
+
+            <!-- <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributorvideoall-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Dist Video Add
+              </a>
+            </li> -->
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributorvideo-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Dist Target Video
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributorfarmermeeting-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Farmer Meeting
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributordistributormeeting-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Distributor Meeting
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/sctresult-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                SCT Result
+              </a>
+            </li>
+
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/distributor-video-view"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Video Viewed By Distributor
+                <!-- <br />
+                To Farmer -->
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="" routerLinkActive="activelink" style="cursor: auto;">
+        <a routerLink="/admin/mlm-list" class="waves-effect waves-green">
+          <i class="material-icons">arrow_forward_ios</i>
+          Sct Structure
+        </a>
+      </li>
+    </ul>
+    <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">place</i>
+          Agency
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/agency-list"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Agency List
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <!-- <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a class="collapsible-header waves-effect waves-green">
+          <i class="material-icons">swap_horizontal_circle</i>
+          Orders
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a routerLink="/admin/my-orders" class="waves-effect waves-green">
+                <i class="material-icons">arrow_forward_ios</i>
+                My Orders
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul> -->
+
+    <!-- <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a
+          class="collapsible-header waves-effect waves-green"
+          *ngxPermissionsOnly="['superadmin']"
+        >
+          <i class="material-icons">store</i>
+          Warehouse
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a
+                routerLink="/admin/warehouse-orders"
+                class="waves-effect waves-green"
+              >
+                <i class="material-icons">arrow_forward_ios</i>
+                Warehouse Orders
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul> -->
+
+    <!-- <ul class="collapsible collapsible-accordion">
+      <li class="bold">
+        <a
+          class="collapsible-header waves-effect waves-green"
+          *ngxPermissionsOnly="['superadmin']"
+        >
+          <i class="material-icons">people</i>
+          Sct Structure
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="" routerLinkActive="activelink" style="cursor: auto;">
+              <a routerLink="/admin/mlm-list" class="waves-effect waves-green">
+                <i class="material-icons">arrow_forward_ios</i>
+                Sct Structure
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul> -->
+
+    <div class="divider"></div>
+    <li>
+      <a (click)="logout()" class="waves-effect waves-green">
+        <i class="material-icons">exit_to_app</i>
+        Logout
+      </a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
+<div class="footer">
+  <p class="copyright">
+    Soil Charger Technology
+  </p>
+</div>

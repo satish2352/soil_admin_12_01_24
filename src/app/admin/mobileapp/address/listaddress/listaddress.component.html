@@ -1,0 +1,149 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="input-field col s12 m12 l12">
+        <div class="col s12 m12 l12">
+          <span class="page-title">
+            Address and Contact Information
+          </span>
+          <ul class="breadcrumbs">
+            <li><a routerLink="/admin/dashboard">Home</a></li>
+            <li class="active">Address and Contact Information</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m12 l12">
+          <div class="col s12 m12 l12">
+            <div class="card">
+              <div class="card-content">
+                <div *ngFor="let datalist of alllist">
+                    <div class="row">
+                        <div class="input-field col s12 m4 l4">
+                          <span>Address</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span >{{datalist.address}}</span>
+                       </div>
+                    </div>
+                <hr>
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Mobile No 1</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.mobile_one}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Mobile No 2</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.mobile_two}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Email Office</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.email_office}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Email Sales</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.email_sales}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Email Careers</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.email_careers}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Website Link</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.website_link}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Facebook Link</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.facebook_link}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Instagram Link</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.instagram_link}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Twitter Link</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.twitter_link}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Whatsapp Link</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span>{{datalist.whatsapp_link}}</span>
+                       </div>
+                    </div>
+                <hr>
+
+                    <div class="row">
+                       <div class="input-field col s12 m4 l4">
+                          <span>Action</span>
+                       </div>
+                       <div class="input-field col s12 m4 l4">
+                          <span style="white-space: nowrap">
+                          <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)" >
+                          <i  class="material-icons" >edit</i></a>
+                          </span>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

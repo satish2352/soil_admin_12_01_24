@@ -1,0 +1,165 @@
+<main>
+    <div class="main-content">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <span class="page-title">
+            View Internship 
+          </span>
+          <ul class="breadcrumbs">
+            <li><a routerLink="/admin/dashboard">Home</a></li>
+            <li><a routerLink="/admin/webcareerinternship-list">Internship</a></li>
+        
+          </ul>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
+              <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="input-field col s12 m12 l12">
+                    <!-- <i class="material-icons prefix">account_circle</i> -->
+                    <input
+                      id="title"
+                      name="title"
+                      type="text"
+                      formControlName="name"
+                      class="active validate"
+                      required
+                    />
+                    <label for="title">
+                      Enter Name
+                      <span class="red-text">*</span>
+                    </label>
+                    <div *ngIf="f.name.errors && submitted">
+                      <span class="red-text">
+                        <strong>Required/Invalid*</strong>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+  
+                <div id="educatioDetails">
+                  <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                      <!-- <i class="material-icons prefix">account_circle</i> -->
+                      <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        formControlName="email"
+                        class="active validate"
+                        required
+                      />
+                      <label for="title">
+                        Enter Email
+                        <span class="red-text">*</span>
+                      </label>
+                      <div *ngIf="f.email.errors && submitted">
+                        <span class="red-text">
+                          <strong>Required/Invalid*</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                      <!-- <i class="material-icons prefix">account_circle</i> -->
+                      <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        formControlName="address"
+                        class="active validate"
+                        required
+                      />
+                      <label for="title">
+                        Enter Address
+                        <span class="red-text">*</span>
+                      </label>
+                      <div *ngIf="f.address.errors && submitted">
+                        <span class="red-text">
+                          <strong>Required/Invalid*</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                      <!-- <i class="material-icons prefix">account_circle</i> -->
+                      <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        formControlName="mobile"
+                        class="active validate"
+                        required
+                      />
+                      <label for="title">
+                        Enter Mobile No
+                        <span class="red-text">*</span>
+                      </label>
+                      <div *ngIf="f.mobile.errors && submitted">
+                        <span class="red-text">
+                          <strong>Required/Invalid*</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                      <!-- <i class="material-icons prefix">account_circle</i> -->
+                      <input
+                        id="title"
+                        name="title"
+                        type="text"
+                        formControlName="qualification"
+                        class="active validate"
+                        required
+                      />
+                      <label for="qualification">
+                        Enter qualification
+                        <span class="red-text">*</span>
+                      </label>
+                      <div *ngIf="f.mobile.errors && submitted">
+                        <span class="red-text">
+                          <strong>Required/Invalid*</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <input
+                  class="validate"
+                  type="text"
+                  value="0"
+                  formControlName="datafor"
+                  hidden
+                />
+                <input
+                  class="validate"
+                  type="text"
+                  value="0"
+                  formControlName="id"
+                  hidden
+                />
+  
+                <div class="row" style="float: right;">
+                  <div class="col s12">
+                    <!-- <button type="submit" class="btn btn-save">Save</button> -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

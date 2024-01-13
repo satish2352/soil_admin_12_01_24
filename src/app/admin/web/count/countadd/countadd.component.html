@@ -1,0 +1,78 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title">
+          Add Video
+        </span>
+        <ul class="breadcrumbs">
+          <li><a routerLink="/admin/dashboard">Home</a></li>
+          <li><a routerLink="/admin/webvideo-list">Web Count</a></li>
+          <li class="active">Add Web Count</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card">
+          <div class="card-content">
+            <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="input-field col s12 m3 l3">
+                  <input id="title" name="title" type="text" formControlName="farmer_count" class="active validate"
+                    required />
+                  <label for="title">Enter Farmer Count<span class="red-text">*</span></label>
+                  <div *ngIf="f.farmer_count.errors && submitted">
+                    <span class="red-text"><strong>Required*</strong></span>
+                  </div>
+                </div>
+
+                <div class="input-field col s12 m3 l3">
+                  <input id="title" name="title" type="text" formControlName="sem_meet_count" class="active validate"
+                    required />
+                  <label for="title">Enter Seminar Meeting Count<span class="red-text">*</span></label>
+                  <div *ngIf="f.sem_meet_count.errors && submitted">
+                    <span class="red-text"><strong>Required*</strong></span>
+                  </div>
+                </div>
+
+                <div class="input-field col s12 m3 l3">
+                  <input id="title" name="title" type="text" formControlName="app_down_count" class="active validate"
+                    required />
+                  <label for="title">Enter App Download Count<span class="red-text">*</span></label>
+                  <div *ngIf="f.app_down_count.errors && submitted">
+                    <span class="red-text"><strong>Required*</strong></span>
+                  </div>
+                </div>
+
+                <div class="input-field col s12 m3 l3">
+                  <input id="title" name="title" type="text" formControlName="youtube_sus_count" class="active validate"
+                    required />
+                  <label for="title">Enter Youtube Subscriber Count<span class="red-text">*</span></label>
+                  <div *ngIf="f.youtube_sus_count.errors && submitted">
+                    <span class="red-text"><strong>Required*</strong></span>
+                  </div>
+                </div>
+
+                <div class="input-field col s12 m3 l3">
+                  <input id="title" name="title" type="text" formControlName="distributor_count" class="active validate"
+                    required />
+                  <label for="title">Enter Distributor Count<span class="red-text">*</span></label>
+                  <div *ngIf="f.distributor_count.errors && submitted">
+                    <span class="red-text"><strong>Required*</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="float:right;">
+                <div class="col s12">
+                  <button type="submit" class="btn btn-save">Save</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

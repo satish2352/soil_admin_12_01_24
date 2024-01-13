@@ -1,0 +1,50 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Complaint
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li><a routerLink="/admin/dashboard">Dashboard</a></li>
+                    <li class="active">Complaint</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="nowrap">
+                          <table style="font-size: small;" class="datatable responsive-table highlight" id="exportTable">
+                            <thead>
+                                <tr>
+                                    <th style="white-space: nowrap">Sr No.</th>
+                                    <th style="white-space: nowrap">Date</th>
+                                    <th style="white-space: nowrap">Recipient</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <!-- <th style="white-space: nowrap">Document</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let m of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <td>{{(10*(p-1))+(i+1)}}</td>
+                                    <td style="white-space: nowrap"><span >{{m.date}}</span></td>
+                                    <td style="white-space: nowrap"><span >{{m.recipient_name}}</span></td>
+                                    <td>{{m.subject}}</td>
+                                    <td>{{m.complaint}}</td>
+                                    <!-- <td style="white-space: nowrap"><a href="javacript:void(0)">{{m.document}}</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

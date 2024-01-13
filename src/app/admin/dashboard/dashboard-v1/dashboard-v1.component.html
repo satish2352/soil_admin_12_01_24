@@ -1,0 +1,316 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title">
+          Dashboard
+        </span>
+        <ul class="breadcrumbs">
+          <li><a routerLink="/admin/dashboard">Admin</a></li>
+          <li class="active">Dashboard</li>
+        </ul>
+      </div>
+      <div class="col s12 m12 l12">
+        <div class="row">
+          <div class="col s12 m3">
+            <div class="card red">
+              <div class="card-content white-text">
+                <p><b>Distributors</b></p>
+                <span class="card-title">{{distributor_count}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="card light-blue">
+              <div class="card-content white-text">
+                <p><b>Farmers</b></p>
+                <span class="card-title">{{farmer_count}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="card green">
+              <div class="card-content white-text">
+                <p><b>Products</b></p>
+                <span class="card-title">{{product_count}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m3">
+            <div class="card yellow">
+              <div class="card-content white-text">
+                <p><b>Orders</b></p>
+                <span class="card-title">{{order_count}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m3">
+            <div class="card red">
+              <div class="card-content white-text">
+                <p><b>DSC</b></p>
+                <span class="card-title">{{dsc_count}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m3">
+            <div class="card blue">
+              <div class="card-content white-text">
+                <p><b>BSC</b></p>
+                <span class="card-title">{{bsc_count}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 m3">
+            <div class="card green">
+              <div class="card-content white-text">
+                <p><b>FSC</b></p>
+                <span class="card-title">{{fsc_count}}</span>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="row">
+            <div class="col s12 m6 l6">
+              <div class="row">
+                <form [formGroup]="farmerForm" (ngSubmit)="onSubmit()">
+                  <div class="col s12 m12 l12">
+                    <div class="card white">
+                      <div class="card-content white-red">
+                        <p><b>Farmer</b></p>
+                        <div class="row">
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select State</label> -->
+                            <select class="" formControlName="state">
+                              <option value="" disabled selected>Choose State</option>
+                              <option *ngFor="let state of allstate" [value]="state.location_id">
+                                {{state.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select District</label> -->
+                            <select class="" formControlName="district">
+                              <option value="" disabled selected>Choose District</option>
+                              <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                {{dist.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.district.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+                          <!-- </div>
+      
+                      <div class="row"> -->
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select Taluka</label> -->
+                            <select class="" formControlName="taluka">
+                              <option value="" disabled selected>Choose Taluka</option>
+                              <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                {{taluka.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select City</label> -->
+                            <select class="" formControlName="city" (change)="getDataByCityFarmer();">
+                              <option value="" disabled selected>Choose City</option>
+                              <option *ngFor="let city of allcity" [value]="city.location_id">
+                                {{city.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.city.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+                          <div class="input-field col s12 m4 l4">
+                            <button type="submit" class="btn btn-save">Get Report</button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s12 m12 l12">
+                            <!-- *ngIf="graphData?.length>0;else Nodata" -->
+                            <div style="display: flex;justify-content: flex-end;">
+                              <div class="d-flex justify-content-center" style="float: left;  overflow: auto;
+                          white-space: nowrap;">
+                                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
+                                  [results]="webdash_farmer_count_all" [gradient]="gradient" [xAxis]="showXAxis"
+                                  [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                                </ngx-charts-bar-vertical>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+      
+      
+            <div class="col s12 m6 l6">
+              <div class="row">
+                <form [formGroup]="distForm" (ngSubmit)="onSubmitDist()">
+                  <div class="col s12 m12 l12">
+                    <div class="card white">
+                      <div class="card-content white-red">
+                        <p><b>Distributor</b></p>
+                        <div class="row">
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select State</label> -->
+                            <select class="" formControlName="dist_type" (change)="selectDist($event)">
+                              <option value="" disabled selected>Select Distributor Type</option>
+                              <option *ngFor="let dist_type of distributor_type" [value]="dist_type.name">
+                                {{dist_type.id}}</option>
+      
+                            </select>
+                            <!-- <div *ngIf="submitted && dist_type.controls.dist_type.errors"
+                                  class="invalid-input">
+                                  <span class="red-text"><strong>Required*</strong></span>
+                              </div> -->
+                          </div>
+      
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select State</label> -->
+                            <select class="" formControlName="statenew">
+                              <option value="" disabled selected>Choose State</option>
+                              <option *ngFor="let state of allstate" [value]="state.location_id">
+                                {{state.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && ff.statenew.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select District</label> -->
+                            <select class="" formControlName="districtnew">
+                              <option value="" disabled selected>Choose District</option>
+                              <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                {{dist.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && ff.districtnew.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+                          <!-- </div>
+      
+                      <div class="row"> -->
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select Taluka</label> -->
+                            <select class="" formControlName="talukanew">
+                              <option value="" disabled selected>Choose Taluka</option>
+                              <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                {{taluka.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && ff.talukanew.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+      
+                          <div class="input-field col s12 m4 l4">
+                            <!-- <label>Select City</label> -->
+                            <select class="" formControlName="citynew" (change)="getDataByCityDist();">
+                              <option value="" disabled selected>Choose City</option>
+                              <option *ngFor="let city of allcity" [value]="city.location_id">
+                                {{city.name}}</option>
+                            </select>
+                            <div *ngIf="submitted && ff.citynew.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                            </div>
+                          </div>
+                          <div class="input-field col s12 m4 l4">
+                            <button type="submit" class="btn btn-save">Get Report</button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="input-field col s12 m12 l12">
+                            <!-- *ngIf="graphData?.length>0;else Nodata" -->
+                            <div style="display: flex;justify-content: flex-end;">
+                              <div class="d-flex justify-content-center" style="float: left;  overflow: auto;
+                          white-space: nowrap;">
+                                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme"
+                                  [results]="webdash_dist_count_all" [gradient]="gradient" [xAxis]="showXAxis"
+                                  [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel"
+                                  [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                                </ngx-charts-bar-vertical>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+      
+      
+      
+      
+          </div>
+
+
+           <!-- Temp -->
+           <div class="col s12 m12">
+            <div class="card white">
+              <p><b>Product Information</b></p>
+              <div class="card-content white-black">
+                <table style="font-size: small" class="datatable responsive-table highlight" id="pagedatatable">
+                  <thead>
+                    <tr>
+                      <th>Product Title</th>
+                      <th>No Of Product</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let listdata of product_count_productwise">
+                      <td><span style="text-transform:uppercase">{{listdata.title}}</span></td>
+                      <td><span style="text-transform:uppercase">{{listdata.product_count}}</span></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+         
+
+          <!-- Temp End -->
+        </div>
+      </div>
+    </div>
+
+  
+
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <agm-map [latitude]="lat" [longitude]="lng">
+          <agm-marker *ngFor="let allagencylistdata of allagencylist" [latitude]="allagencylistdata.lat"
+            [longitude]="allagencylistdata.lon">
+            <agm-info-window>{{allagencylistdata.agency_name}}
+              {{allagencylistdata.fname}}{{allagencylistdata.mname}}{{allagencylistdata.lname}}
+              {{allagencylistdata.phone}}</agm-info-window>
+          </agm-marker>
+
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</main>

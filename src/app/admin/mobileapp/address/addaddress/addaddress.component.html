@@ -1,0 +1,136 @@
+<main>
+    <div class="main-content">
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <span class="page-title">
+            Add Information
+          </span>
+          <ul class="breadcrumbs">
+            <li><a routerLink="/admin/dashboard">Home</a></li>
+            <li><a routerLink="/admin/webvideo-list">Basic Information</a></li>
+            <li class="active">Add Basic Information</li>
+          </ul>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col s12 m12 l12">
+          <div class="card">
+            <div class="card-content">
+              <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="address" class="active validate"
+                      required />
+                    <label for="title">Enter Address<span class="red-text">*</span></label>
+                    <div *ngIf="f.address.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+  
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="mobile_one" class="active validate"
+                      required />
+                    <label for="title">Enter Mobile No 1<span class="red-text">*</span></label>
+                    <div *ngIf="f.mobile_one.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+  
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="mobile_two" class="active validate"
+                      required />
+                    <label for="title">Enter Mobile No 2<span class="red-text">*</span></label>
+                    <div *ngIf="f.mobile_two.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+  
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="email_office" class="active validate"
+                      required />
+                    <label for="title">Enter Email Office<span class="red-text">*</span></label>
+                    <div *ngIf="f.email_office.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="email_sales" class="active validate"
+                      required />
+                    <label for="title">Enter Email Sales<span class="red-text">*</span></label>
+                    <div *ngIf="f.email_sales.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="email_careers" class="active validate"
+                      required />
+                    <label for="title">Enter Email Careers<span class="red-text">*</span></label>
+                    <div *ngIf="f.email_careers.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+  
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="website_link" class="active validate"
+                      required />
+                    <label for="title">Enter Website Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.website_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="facebook_link" class="active validate"
+                      required />
+                    <label for="title">Enter Facebok Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.facebook_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="instagram_link" class="active validate"
+                      required />
+                    <label for="title">Enter Instagram Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.instagram_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="twitter_link" class="active validate"
+                      required />
+                    <label for="title">Enter Twitter Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.twitter_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="whatsapp_link" class="active validate"
+                      required />
+                    <label for="title">Enter Whats app Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.whatsapp_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="row" style="float:right;">
+                  <div class="col s12">
+                    <button type="submit" class="btn btn-save">Update</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  

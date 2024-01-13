@@ -1,0 +1,18 @@
+button{
+    /* background-color: #26a69a; */
+    float :right;
+}
+.arrow-up {
+    padding-bottom:15px;
+   
+    transform: rotate(180deg);
+  }
+  
+  .arrow-down {
+    padding-bottom:10px;
+    transform: rotate(0deg);
+  }
+  i{
+    text-align: center;
+   
+  }

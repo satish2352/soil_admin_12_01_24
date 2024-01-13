@@ -1,0 +1,188 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Distributor Meeting List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Distributor Meeting List</li>
+                </ul>
+            </div>
+        </div>
+
+        <button  style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToExcel()">Export to Excel</button>
+        &nbsp;&nbsp;<button  class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to PDF</button>
+
+
+        <div class="row">
+
+
+
+
+
+            <div class="col s12 m12 l12">
+
+
+
+                <div class="card">
+
+                    <div class="col s12 m12 l12">
+                        <div class="row">
+                            <form [formGroup]="farmerForm">
+                                <div class="col s12 m12 l12">
+                                    <!-- <div class="card white"> -->
+                                    <div class="card-content white-red">
+
+                                        <div class="row">
+
+                                            <div class="input-field col s12 m3 l3">
+                                                <select class="" formControlName="state">
+                                                    <option value="" disabled selected>Choose State</option>
+                                                    <option *ngFor="let state of allstate" [value]="state.location_id">
+                                                        {{state.name}}</option>
+                                                </select>
+                                                <!-- <div *ngIf="submitted && f.state.errors"
+                                                        class="invalid-input">
+                                                        <span class="red-text"><strong>Required*</strong></span>
+                                                    </div> -->
+                                            </div>
+
+                                            <div class="input-field col s12 m3 l3">
+
+                                                <select class="" formControlName="district">
+                                                    <option value="" disabled selected>Choose District
+                                                    </option>
+                                                    <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                                        {{dist.name}}</option>
+                                                </select>
+                                                <!-- <div *ngIf="submitted && f.district.errors"
+                                                        class="invalid-input">
+                                                        <span class="red-text"><strong>Required*</strong></span>
+                                                    </div> -->
+                                            </div>
+
+                                            <div class="input-field col s12 m3 l3">
+
+                                                <select class="" formControlName="taluka">
+                                                    <option value="" disabled selected>Choose Taluka
+                                                    </option>
+                                                    <option *ngFor="let taluka of alltaluka"
+                                                        [value]="taluka.location_id">
+                                                        {{taluka.name}}</option>
+                                                </select>
+                                                <!-- <div *ngIf="submitted && f.taluka.errors"
+                                                        class="invalid-input">
+                                                        <span class="red-text"><strong>Required*</strong></span>
+                                                    </div> -->
+                                            </div>
+
+                                            <div class="input-field col s12 m3 l3">
+
+                                                <select class="" formControlName="city">
+                                                    <option value="" disabled selected>Choose City</option>
+                                                    <option *ngFor="let city of allcity" [value]="city.location_id">
+                                                        {{city.name}}</option>
+                                                </select>
+                                               
+                                            </div>
+                                            <div class="col s2 m2 l2">
+                                                <select class="col s2 m2 l2" formControlName="dist_id" (change)="getDataByDist()">
+                                                    <option value="" disabled selected>Choose Distributor</option>
+                                                    <option *ngFor="let distributordetails of distributordetailsall" [value]="distributordetails.user_id">
+                                                      {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}
+                                                    </option>
+                                                  </select>
+                                                  
+                                                 
+                                            </div>
+                
+
+                                        </div>
+
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <!-- <span style="float: right;">
+                                    <a routerLink="/admin/distributor-add"
+                                        class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Distributor</a></span> -->
+                            </div>
+                        </div>
+                        <h1 style="float: right;">Total Count:{{alllist.length}}</h1>
+                        <table style="font-size: small" class="datatable responsive-table highlight" id="exportTable">
+                            <thead>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th>Distributor Name</th>
+                                    <th>Date</th>
+                                    <th>Meeting Place</th>
+                                    <th>Present Distributor</th>
+                                    <th>Points Discuss</th>
+                                    <th>Photo One</th>
+                                    <th>Photo Two</th>
+                                    <th>Photo Three</th>
+                                    <th>Photo Four</th>
+                                    <th>Photo Five</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <td>{{(10*(p-1))+(i+1)}}</td>
+                                    <td><span style="text-transform:uppercase">{{listdata.dfname}} {{listdata.dmname}}
+                                            {{listdata.dlname}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.date}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.meeting_place}}</span></td>
+                                    <td><span
+                                            style="text-transform:uppercase">{{listdata.presentFarmerFormeeting}}</span>
+                                    </td>
+                                    <td><span style="text-transform:uppercase">{{listdata.points_discuss}}</span></td>
+
+                                     <td><span>
+                                        <a href={{listdata.photopathone}} target="_blank" download>
+
+                                       <img src={{listdata.photopathone}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathtwo}} target="_blank" download>
+
+                                       <img src={{listdata.photopathtwo}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopaththree}} target="_blank" download>
+
+                                       <img src={{listdata.photopaththree}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathfour}} target="_blank" download>
+
+                                       <img src={{listdata.photopathfour}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                    <td><span>
+                                        <a href={{listdata.photopathfive}} target="_blank" download>
+
+                                       <img src={{listdata.photopathfive}} alt="image" height="50px">
+                                     </a>
+                                    </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

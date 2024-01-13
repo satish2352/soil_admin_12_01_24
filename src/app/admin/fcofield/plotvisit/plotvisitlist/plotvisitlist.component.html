@@ -1,0 +1,166 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Plot Visit List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">Plot Visit List</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <span style="float: right;">
+                                    <a routerLink="/admin/plotvisit-add" class="waves-effect waves-light btn"><i
+                                            class="material-icons left">library_add</i>Add Plot Visit</a></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+                                    <form [formGroup]="farmerForm" >
+                                        <div class="col s12 m12 l12">
+                                            <!-- <div class="card white"> -->
+                                                <div class="card-content white-red">
+
+                                                    <div class="row">
+
+                                                        <div class="input-field col s12 m3 l3">
+                                                            <select class="" formControlName="state">
+                                                                <option value="" disabled selected>Choose State</option>
+                                                                <option *ngFor="let state of allstate"
+                                                                    [value]="state.location_id">
+                                                                    {{state.name}}</option>
+                                                            </select>
+                                                            <!-- <div *ngIf="submitted && f.state.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                        </div>
+
+                                                        <div class="input-field col s12 m3 l3">
+
+                                                            <select class="" formControlName="district">
+                                                                <option value="" disabled selected>Choose District
+                                                                </option>
+                                                                <option *ngFor="let dist of alldist"
+                                                                    [value]="dist.location_id">
+                                                                    {{dist.name}}</option>
+                                                            </select>
+                                                            <!-- <div *ngIf="submitted && f.district.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                        </div>
+
+                                                        <div class="input-field col s12 m3 l3">
+
+                                                            <select class="" formControlName="taluka">
+                                                                <option value="" disabled selected>Choose Taluka
+                                                                </option>
+                                                                <option *ngFor="let taluka of alltaluka"
+                                                                    [value]="taluka.location_id">
+                                                                    {{taluka.name}}</option>
+                                                            </select>
+                                                            <!-- <div *ngIf="submitted && f.taluka.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                        </div>
+
+                                                        <div class="input-field col s12 m3 l3">
+
+                                                            <select class="" formControlName="city">
+                                                                <option value="" disabled selected>Choose City</option>
+                                                                <option *ngFor="let city of allcity"
+                                                                    [value]="city.location_id">
+                                                                    {{city.name}}</option>
+                                                            </select>
+                                                            <!-- <div *ngIf="submitted && f.city.errors"
+                                                                class="invalid-input">
+                                                                <span class="red-text"><strong>Required*</strong></span>
+                                                            </div> -->
+                                                        </div>
+
+                                                        <div class="input-field col s12 m3 l3">
+                                                            <!-- <label>Select State</label> -->
+                                                            <select class="" formControlName="created_disctributor_id" (change)="getDataByDist()">
+                                                                <option value="" disabled selected>Choose Distributor</option>
+                                                                <option *ngFor="let distributordetails of distributordetailsall" [value]="distributordetails.user_id">
+                                                                    {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}</option>
+                                                            </select>
+                                                            <!-- <div *ngIf="f.created_disctributor_id.errors && submitted">
+                                                                <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                                            </div> -->
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table style="font-size: small;" class="datatable responsive-table highlight"
+                            id="pagedatatable">
+                            <thead>
+                                <tr>
+                                    <th style="white-space: nowrap">Sr No.</th>
+                                    <th style="white-space: nowrap">Farmer Name</th>
+                                    <th style="white-space: nowrap">Visit Date</th>
+                                    <th>Crop</th>
+                                    <th>Acre</th>
+                                    <th>Description</th>
+                                    <th style="white-space: nowrap">About Visit</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let listdata of alllist | paginate: { itemsPerPage: 5, currentPage: p }; let i=index;">
+                                    <td>{{(5*(p-1))+(i+1)}}</td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata.ffname}} {{listdata.fmname}}
+                                            {{listdata.flname}}</span></td>
+                                    <td>{{listdata.date|date}}</td>
+                                    <td><span style="text-transform:uppercase">{{listdata.crop}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.acer}}</span></td>
+                                    <td><span
+                                            style="text-transform:uppercase">{{listdata.description_about_visit}}</span>
+                                    </td>
+                                    <td><span style="text-transform:uppercase">{{listdata.about_visit}}</span></td>
+                                    <td style="white-space: nowrap">
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Edit Information"
+                                            style="background-color: green;" (click)="getForEdit(listdata.id)"><i
+                                                class="material-icons">edit</i></a>
+                                        &nbsp;
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Delete"
+                                            style="background-color: red;" (click)="delete(listdata.id)"
+                                            onclick="confirm('Are you sure want to delete')"><i
+                                                class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

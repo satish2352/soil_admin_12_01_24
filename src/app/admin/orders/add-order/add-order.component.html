@@ -1,0 +1,151 @@
+<main>
+  <div class="main-content">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <span class="page-title">Add New Order </span>
+        <ul class="breadcrumbs">
+          <li><a routerLink="/admin/dashboard">Home</a></li>
+          <li><a routerLink="/admin/my-orders">My Orders</a></li>
+          <li class="active">Add Order</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card">
+          <div class="card-content">
+            <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col m12">
+                  <label>Order for<span class="red-text">*</span></label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                  <select id="order_created_by" class="validate" formControlName="order_created_by">
+                      <option value="" disabled selected>Choose</option>
+                      <option value="farmer">Farmer</option>
+                      <option value="fsc">FSC</option>
+                      <option value="bsc">BSC</option>
+                      <option value="dsc">DSC</option>
+                  </select>
+                  <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                      <span class="red-text"><strong> Select State</strong></span>
+                  </div> -->
+                </div>
+                <div class="input-field col s12 m6 l6" *ngIf="orderBy && orderBy == 'farmer'">
+                  <select id="created_disctributor_id" class="validate" formControlName="created_disctributor_id">
+                      <option value="" disabled selected>Choose Farmer</option>
+                      <option *ngFor="let farmer of farmers;" [value]="farmer.user_id">
+                        {{farmer.fname}} {{farmer.mname}} {{farmer.lname}}</option>
+                  </select>
+                  <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                      <span class="red-text"><strong> Select State</strong></span>
+                  </div> -->
+                </div>
+                <div class="input-field col s12 m6 l6" *ngIf="orderBy && orderBy == 'fsc'">
+                  <select id="created_disctributor_id" class="validate" formControlName="created_disctributor_id">
+                      <option value="" disabled selected>Choose FSC</option>
+                      <option *ngFor="let fsc of fscs;" [value]="fsc.user_id">
+                        {{fsc.fname}} {{fsc.mname}} {{fsc.lname}}</option>
+                  </select>
+                  <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                      <span class="red-text"><strong> Select State</strong></span>
+                  </div> -->
+                </div>
+                <div class="input-field col s12 m6 l6" *ngIf="orderBy && orderBy == 'bsc'">
+                  <select id="created_disctributor_id" class="validate" formControlName="created_disctributor_id">
+                      <option value="" disabled selected>Choose BSC</option>
+                      <option *ngFor="let bsc of bscs;" [value]="bsc.user_id">
+                        {{bsc.fname}} {{bsc.mname}} {{bsc.lname}}</option>
+                  </select>
+                  <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                      <span class="red-text"><strong> Select State</strong></span>
+                  </div> -->
+                </div>
+                <div class="input-field col s12 m6 l6" *ngIf="orderBy && orderBy == 'dsc'">
+                  <select id="created_disctributor_id" class="validate" formControlName="created_disctributor_id">
+                      <option value="" disabled selected>Choose DSC</option>
+                      <option *ngFor="let dsc of dscs;" [value]="dsc.user_id">
+                        {{dsc.fname}} {{dsc.mname}} {{dsc.lname}}</option>
+                  </select>
+                  <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                      <span class="red-text"><strong> Select State</strong></span>
+                  </div> -->
+                </div>
+              </div>
+              <div class="row" formArrayName="all_product">
+                <div class="col m12">
+                  <label>Add Products<span class="red-text">*</span></label>
+                  <button style="float:right;background-color: grey;" type="button" class="btn btn-save" (click)="addProduct()">Add Product</button>
+                </div>
+                <ng-container *ngFor="let p of prod.controls;let i=index;">
+                  <ng-container [formGroupName]="i">
+                    <div class="input-field col s12 m3 l3">
+                      <select id="prod_id" class="validate" formControlName="prod_id">
+                          <option value="" disabled selected>Choose Product</option>
+                          <option *ngFor="let product of products;" [value]="product.id">
+                            {{product.title}}</option>
+                      </select>
+                      <!-- <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                          <span class="red-text"><strong> Select State</strong></span>
+                      </div> -->
+                    </div>
+                    <div class="input-field col s12 m3 l3">
+                      <!-- <i class="material-icons prefix">globe</i> -->
+                      <input id="rate_of_prod" name="rate_of_prod" type="text" formControlName="rate_of_prod"
+                          class="" readonly/>
+                      <label for="lon">Rate Of Product<span class="red-text">*</span></label>
+                      <!-- <div *ngIf="f.agencyName.errors && submitted">
+                          <span class="red-text"><strong>Agency Name is required/Invalid</strong></span>
+                      </div> -->
+                    </div>
+                    <div class="input-field col s12 m2 l2">
+                      <!-- <i class="material-icons prefix">globe</i> -->
+                      <input id="qty" name="qty" min="0" type="number" formControlName="qty"
+                          class="active validate" required/>
+                      <label for="lon">Quatity<span class="red-text">*</span></label>
+                      <!-- <div *ngIf="f.agencyName.errors && submitted">
+                          <span class="red-text"><strong>Agency Name is required/Invalid</strong></span>
+                      </div> -->
+                    </div>
+                    <div class="input-field col s12 m2 l2">
+                      <!-- <i class="material-icons prefix">globe</i> -->
+                      <input id="amt" name="amt" type="text" formControlName="amt"
+                          class="" readonly/>
+                      <label for="lon">Amount<span class="red-text">*</span></label>
+                      <!-- <div *ngIf="f.agencyName.errors && submitted">
+                          <span class="red-text"><strong>Agency Name is required/Invalid</strong></span>
+                      </div> -->
+                    </div>
+                    <div class="col s12 m2 l2">
+                      <button type="button" class="btn" style="background-color: red; margin-top: 20px;" (click)="deleteProduct(i)">Delete</button>
+                    </div>
+                  </ng-container>
+                </ng-container>
+
+
+              </div>
+
+              <div class="row">
+                <div class="input-field col s6 m6 l6">
+                  <!-- <i class="material-icons prefix">globe</i> -->
+                  <input id="created_disctributor_amount" name="created_disctributor_amount" type="number" formControlName="created_disctributor_amount"
+                      class="" readonly/>
+                  <label for="lon">Final Amount<span class="red-text">*</span></label>
+                  <!-- <div *ngIf="f.agencyName.errors && submitted">
+                      <span class="red-text"><strong>Agency Name is required/Invalid</strong></span>
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="row" style="float:right;">
+                <div class="col s12">
+                    <button type="submit" class="btn btn-save" [disabled]="orderForm.invalid">Place Order</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,70 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    Distributor Target Video
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+
+                        <form [formGroup]="distributortargetvideoForm" (ngSubmit)="onSubmit()">
+
+                            <div id='educatioDetails'>
+                                <div class="col s12">
+                                    <p class="sub-heading"><b>Add Details</b></p>
+                                </div>
+                                <div class='row'>
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="" formControlName="to_whom_show">
+                                            <option value="" disabled selected>Choose To Whom Show</option>
+                                            <option *ngFor="let to_whom_showlist of to_whom_showall" [value]="to_whom_showlist.name">{{to_whom_showlist.name}}</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.to_whom_show.errors" class="invalid-input">
+                                            <span class="red-text"><strong>Required*</strong></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="input-field col s12 m4 l4">
+                                        <select class="browser-default" formControlName="target_vedio_id">
+                                            <option value="" disabled selected>Choose Video</option>
+                                            <option *ngFor="let videodetails of videodetailsall"
+                                                [value]="videodetails.id">
+                                                {{videodetails.title}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-field col s12 m4 l4">
+                                        <input id="date" name="date" class="validate" type="date" value=""
+                                            formControlName="date" />
+                                        <label for="date">Date<span class="red-text">*</span></label>
+                                    </div>
+                                </div>
+
+                                <!-- closed -->
+                            </div>
+                            <!-- closed -->
+                            <input id="datafor" name="datafor" class="validate" type="text" value="0"
+                                formControlName="datafor" hidden />
+                            <input id="video_id" name="video_id" class="validate" type="text" value="0"
+                                formControlName="video_id" hidden />
+
+                            <div class="row">
+                                <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- ./card content -->
+                </div><!-- ./card -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- [disabled]="!f.valid" -->
