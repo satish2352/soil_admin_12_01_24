@@ -160,22 +160,22 @@
                                         <td style="white-space: nowrap;">
                                             <!-- User Pramotion -->
 
-                                            <a *ngIf="listdata.new_user_type !=''" href="JavaScript:void(0)"
+                                            <a *ngIf="listdata.new_user_promote =='y' && listdata.new_user_type !='fsc' " href="JavaScript:void(0)"
                                                 class="btn-floating" title="Pramote" style="background-color: green;"
                                                 (click)="setUserPramotion($event, listdata.user_id,listdata.new_user_type)"><i
                                                     class="material-icons">trending_up</i></a>
                                             &nbsp;
 
-                                            <a *ngIf="listdata.user_type !='fsc'" href="JavaScript:void(0)"
+                                            <a *ngIf="listdata.new_user_demote =='y' && listdata.new_user_promote =='n'" href="JavaScript:void(0)"
                                                 class="btn-floating" title="Demote" style="background-color: green;"
                                                 (click)="demoteDistributor($event, listdata.user_id)"><i
                                                     class="material-icons">trending_down</i></a>
                                             &nbsp;
 
 
-                                            <a *ngIf="listdata.user_type =='fsc' && listdata.new_user_type =='' "
+                                            <!-- <a *ngIf="listdata.user_type =='fsc' && listdata.new_user_type =='' "
                                                 href="JavaScript:void(0)" title="">&nbsp; NA &nbsp; </a>
-                                            &nbsp;
+                                            &nbsp; -->
 
 
                                         </td>

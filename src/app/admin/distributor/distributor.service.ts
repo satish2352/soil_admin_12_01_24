@@ -116,9 +116,9 @@ export class DistributorService {
   }
 
   //Visit List Distributor
-  getVisitList() {
+  getVisitList(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorvisittofarmerlist_distributorweb?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}distributorvisittofarmerlist_distributorweb?token=${this.token}`, data);
   }
 
     //Visit List Distributor
