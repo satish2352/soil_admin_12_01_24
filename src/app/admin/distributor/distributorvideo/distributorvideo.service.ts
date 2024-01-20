@@ -11,7 +11,7 @@ export class DistributorvideoService {
   urlforapi = environment.apiurl;
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token');
-    var tokennew = this.http.post(`${this.urlforapi}companyprofilelist?token=${this.token}`, null).subscribe(res => {
+    var tokennew = this.http.post(`${this.urlforapi}companyprofilelist`, null).subscribe(res => {
     });
   }
   public getToken(): string {
@@ -20,17 +20,17 @@ export class DistributorvideoService {
 
   DistributorVideoList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtargetvideolist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webtargetvideolist`, null);
   }
 
   DistributorVideoForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtargetvideoget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webtargetvideoget`, obj);
   }
 
   DistributorVideoDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtargetvideodelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webtargetvideodelete`, data);
   }
 
   DistributorVideoMissionAdd(formdata) {
@@ -38,11 +38,11 @@ export class DistributorvideoService {
     // let data = new FormData;
     // data.set('dataforinsert', JSON.stringify(formdata));
     // data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webtargetvideoadd?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}webtargetvideoadd`, formdata);
   }
 
   DistributorVideoUpdate(formdata) {
-    return this.http.post(`${this.urlforapi}webtargetvideoupdate?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}webtargetvideoupdate`, formdata);
   }
 
 }

@@ -28,7 +28,7 @@ export class HelperService {
 
   adminLogout() {
     this.token =localStorage.getItem('token');
-    // this.http.post(`${this.urlforapi}logout?token=${this.token}`, null).subscribe(()=>
+    // this.http.post(`${this.urlforapi}logout`, null).subscribe(()=>
     // {   });
 
     localStorage.removeItem('token');

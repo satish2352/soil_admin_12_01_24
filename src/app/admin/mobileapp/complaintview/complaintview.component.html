@@ -18,29 +18,49 @@
                 <div class="card">
                     <div class="card-content">
                         <div class="nowrap">
-                          <table style="font-size: small;" class="datatable responsive-table highlight" id="exportTable">
-                            <thead>
-                                <tr>
-                                    <th style="white-space: nowrap">Sr No.</th>
-                                    <th style="white-space: nowrap">Date</th>
-                                    <th style="white-space: nowrap">Recipient</th>
-                                    <th>Subject</th>
-                                    <th>Message</th>
-                                    <!-- <th style="white-space: nowrap">Document</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let m of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
-                                    <td>{{(10*(p-1))+(i+1)}}</td>
-                                    <td style="white-space: nowrap"><span >{{m.date}}</span></td>
-                                    <td style="white-space: nowrap"><span >{{m.recipient_name}}</span></td>
-                                    <td>{{m.subject}}</td>
-                                    <td>{{m.complaint}}</td>
-                                    <!-- <td style="white-space: nowrap"><a href="javacript:void(0)">{{m.document}}</a></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            <table style="font-size: small;" class="datatable responsive-table highlight"
+                                id="exportTable">
+                                <thead>
+                                    <tr>
+                                        <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Date</th>
+                                        <th style="white-space: nowrap">Recipient</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Action</th>
+                                        <!-- <th style="white-space: nowrap">Document</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        *ngFor="let m of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                        <td>{{(10*(p-1))+(i+1)}}</td>
+                                        <td style="white-space: nowrap"><span>{{m.date}}</span>
+
+
+                                            <span *ngIf="m.msg_status == '0'"
+                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me">New</span>
+
+                                            <span *ngIf="m.msg_status == '1' && m.msg_read == 'y' "
+                                                style="background-color: red; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me">Not Replied</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span>{{m.recipient_name}}</span></td>
+                                        <td>{{m.subject}}</td>
+                                        <td>{{m.complaint}}</td>
+
+                                        <td style="white-space: nowrap">
+                                            <a href="javaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="editMessege(m.id)"><i
+                                                    class="material-icons"
+                                                    >edit</i></a>
+                                            
+                                        </td>
+                                        <!-- <td style="white-space: nowrap"><a href="javacript:void(0)">{{m.document}}</a></td> -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                 </div>

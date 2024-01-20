@@ -21,25 +21,25 @@ export class NotificationService {
   getNotifications() {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}list_notification_web?token=${this.token}`, null);
+    let result= this.http.post(`${this.urlforapi}list_notification_web`, null);
     this.ngxService.stop();
     return result;
   }
 
   getFarmers(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}farmerlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}farmerlist`, null);
   }
 
   getDistributors(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}distributorlist`, null);
   }
 
   sendNotification(formdata: any): Observable<any> {
     this.token = this.getToken();
     let data = new FormData();
     data.set('all_notification', JSON.stringify(formdata));
-    return this.http.post(`${this.urlforapi}send_notification?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}send_notification`, data);
   }
 }

@@ -19,6 +19,8 @@ export class MessageviewComponent implements OnInit {
       this.alllist.sort((a,b)=> b.id - a.id)
     });
 
+   
+
     // $(document).ready(function () {
     //   setTimeout(() => {
     //     let table = $('#pagedatatable').DataTable({
@@ -29,6 +31,11 @@ export class MessageviewComponent implements OnInit {
     //   }, 4000)
     // })
     
+  }
+
+  editMessege(id) {
+    alert(id);
+    this.router.navigate(['/admin', 'mobileapp-messeges-view', id]);
   }
 }
 

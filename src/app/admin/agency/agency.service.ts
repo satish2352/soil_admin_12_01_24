@@ -20,12 +20,12 @@ export class AgencyService {
 
   getAgencyList(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webagencylist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webagencylist`, null);
   }
 
   getDistributors(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}distributorlist`, null);
   }
 
   addAgency(formdata: any, photo: any): Observable<any> {
@@ -33,7 +33,7 @@ export class AgencyService {
     let data = new FormData();
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', photo);
-    return this.http.post(`${this.urlforapi}webagencyadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webagencyadd`, data);
   }
 
   updateAgency(formdata: any, photo: any): Observable<any> {
@@ -41,25 +41,25 @@ export class AgencyService {
     let data = new FormData();
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', photo);
-    return this.http.post(`${this.urlforapi}webagencyupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webagencyupdate`, data);
   }
 
   getAgency(id): Observable<any> {
     this.token = this.getToken();
     let data = new FormData();
     data.set('id', id);
-    return this.http.post(`${this.urlforapi}webagencyget?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webagencyget`, data);
   }
 
   deleteAgency(id): Observable<any> {
     this.token = this.getToken();
     let data = new FormData();
     data.set('id', id);
-    return this.http.post(`${this.urlforapi}webagencydelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webagencydelete`, data);
   }
 
   webagencyby_lat_long_distance(data): Observable<any> {
-    return this.http.post(`${this.urlforapi}webagencyby_lat_long_distance?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webagencyby_lat_long_distance`, data);
   }
   
 }

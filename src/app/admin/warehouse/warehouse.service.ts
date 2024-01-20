@@ -20,7 +20,7 @@ export class WarehouseService {
 
   getOrders(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}weborderlistforwarehouse?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}weborderlistforwarehouse`, null);
   }
 
   getOrder(order_no, distributor_id): Observable<any> {
@@ -28,7 +28,7 @@ export class WarehouseService {
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderget?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderget`, data);
   }
 
   dispatchOrder(order_no, distributor_id): Observable<any> {
@@ -36,6 +36,6 @@ export class WarehouseService {
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderdispatchedfromwarehouse?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderdispatchedfromwarehouse`, data);
   }
 }

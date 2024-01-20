@@ -10,7 +10,7 @@ export class MobileappService {
   constructor(private http: HttpClient) {
     this.token = localStorage.getItem('token')
     var tokennew = this.http
-      .post(`${this.urlforapi}companyprofilelist?token=${this.token}`, null)
+      .post(`${this.urlforapi}companyprofilelist`, null)
       .subscribe((res) => {
         if (res['message'] == 'Token Signature could not be verified') {
           console.log('satish')
@@ -21,46 +21,72 @@ export class MobileappService {
     return localStorage.getItem('token')
   }
 
+  GetMessege(obj) {
+    this.token = this.getToken()
+    return this.http.post(
+      `${this.urlforapi}messageview_perticular`,obj)
+  }
+
+  UpdateMessege(obj) {
+    this.token = this.getToken()
+    return this.http.post(
+      `${this.urlforapi}messageedit`,obj)
+  }
+
+  GetComplaint(obj) {
+    this.token = this.getToken()
+    return this.http.post(
+      `${this.urlforapi}complaintview_perticular`,obj)
+  }
+
+  UpdateComplaint(obj) {
+    this.token = this.getToken()
+    return this.http.post(
+      `${this.urlforapi}complaintedit`,obj)
+  }
+
+
   MobileAddressList(obj) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}address_list?token=${this.token}`,obj)
+      `${this.urlforapi}address_list`,obj)
   }
+
 
   MobileAddressUpdate(data) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}address_update?token=${this.token}`,data)
+      `${this.urlforapi}address_update`,data)
   }
 
   getMobileAppCropAdd(formdata) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}crops_add?token=${this.token}`,formdata)
+      `${this.urlforapi}crops_add`,formdata)
   }
 
   getMobileAppCropList() {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}crops_list?token=${this.token}`,null)
+      `${this.urlforapi}crops_list`,null)
   }
 
   getMobileAppCropEdit(obj) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}crops_get?token=${this.token}`,obj)
+      `${this.urlforapi}crops_get`,obj)
   }
 
   getMobileAppCropDelete(obj) {
    this.token = this.getToken()
    return this.http.post(
-     `${this.urlforapi}cropsdelete?token=${this.token}`,obj)
+     `${this.urlforapi}cropsdelete`,obj)
  }
 
   getMobileAppCropUpdate(formdata) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}crops_update?token=${this.token}`,
+      `${this.urlforapi}crops_update`,
       formdata,
     )
   }
@@ -68,18 +94,18 @@ export class MobileappService {
   getMobileAppHetMessegesList() {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}messageview?token=${this.token}`,null)
+      `${this.urlforapi}messageview`,null)
   }
 
   getMobileAppHetComplaintList() {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}complaintview?token=${this.token}`,null)
+      `${this.urlforapi}complaintview`,null)
   }
 
   getMobileAppYoutubeSuscriberList() {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}suscriberlist_distributorapp?token=${this.token}`,null)
+      `${this.urlforapi}suscriberlist_distributorapp`,null)
   }
 }

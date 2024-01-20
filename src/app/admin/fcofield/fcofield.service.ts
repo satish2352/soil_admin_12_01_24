@@ -27,7 +27,7 @@ export class FcofieldService {
     let data = new FormData;
     data.set('farmerData', JSON.stringify(farmerData));
     data.set('farmerphoto', farmerphoto);
-    let result= this.http.post(`${this.urlforapi}farmerregistration?token=${this.token}`, data);
+    let result= this.http.post(`${this.urlforapi}farmerregistration`, data);
     this.ngxService.stop();
     return result;
   }
@@ -35,7 +35,7 @@ export class FcofieldService {
   updateFarmer(farmerData) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}farmerupdate?token=${this.token}`, farmerData);
+    let result= this.http.post(`${this.urlforapi}farmerupdate`, farmerData);
     this.ngxService.stop();
     return result;
   }
@@ -80,7 +80,7 @@ export class FcofieldService {
   getFarmerList(data) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}farmerlist?token=${this.token}`, data);
+    let result= this.http.post(`${this.urlforapi}farmerlist`, data);
     this.ngxService.stop();
     return result;
   }
@@ -88,7 +88,7 @@ export class FcofieldService {
   deleteFarmer(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result=this.http.post(`${this.urlforapi}farmerdelete?token=${this.token}`, obj);
+    let result=this.http.post(`${this.urlforapi}farmerdelete`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -96,7 +96,7 @@ export class FcofieldService {
   getFarmerForEdit(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result=this.http.post(`${this.urlforapi}farmerget?token=${this.token}`, obj);
+    let result=this.http.post(`${this.urlforapi}farmerget`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -104,7 +104,7 @@ export class FcofieldService {
   getFarmerDetails(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result=this.http.post(`${this.urlforapi}farmergetdetails?token=${this.token}`, obj);
+    let result=this.http.post(`${this.urlforapi}farmergetdetails`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -115,7 +115,7 @@ export class FcofieldService {
   addPlotVisit(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}plotvisitadd_web?token=${this.token}`, obj);
+    let result= this.http.post(`${this.urlforapi}plotvisitadd_web`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -123,7 +123,7 @@ export class FcofieldService {
   getPlotVisitList(data) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result=this.http.post(`${this.urlforapi}plotvisitlist_web?token=${this.token}`, data);
+    let result=this.http.post(`${this.urlforapi}plotvisitlist_web`, data);
     this.ngxService.stop();
     return result;
   }
@@ -131,7 +131,7 @@ export class FcofieldService {
   deletePlotVisit(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}plotvisitdelete_web?token=${this.token}`, obj);
+    let result= this.http.post(`${this.urlforapi}plotvisitdelete_web`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -139,7 +139,7 @@ export class FcofieldService {
   getPlotVisitForEdit(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}plotvisitget_web?token=${this.token}`, obj);
+    let result= this.http.post(`${this.urlforapi}plotvisitget_web`, obj);
     this.ngxService.stop();
     return result;
   }
@@ -147,7 +147,7 @@ export class FcofieldService {
   updatePlotVisit(obj) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result=this.http.post(`${this.urlforapi}plotvisitupdate_web?token=${this.token}`, obj);
+    let result=this.http.post(`${this.urlforapi}plotvisitupdate_web`, obj);
     this.ngxService.stop();
     return result;
   }

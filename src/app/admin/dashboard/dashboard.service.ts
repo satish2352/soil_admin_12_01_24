@@ -19,7 +19,7 @@ export class DashboardService {
 
   getAgency(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webagencylist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webagencylist`, null);
   }
 
   dashboarddata(): Observable<any> {
@@ -33,13 +33,13 @@ export class DashboardService {
     // };
     
     return this.http.post(`${this.urlforapi}webdash_counting`, null);
-    // return this.http.post(`${this.urlforapi}webdash_counting?token=${this.token}`, null);
+    // return this.http.post(`${this.urlforapi}webdash_counting`, null);
   }
 
   getFarmersDashReport(farmerData) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}webdash_farmer_list?token=${this.token}`, farmerData);
+    let result= this.http.post(`${this.urlforapi}webdash_farmer_list`, farmerData);
     this.ngxService.stop();
     return result;
   }
@@ -47,7 +47,7 @@ export class DashboardService {
   webdash_farmer_count(farmerData) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}webdash_farmer_count?token=${this.token}`, farmerData);
+    let result= this.http.post(`${this.urlforapi}webdash_farmer_count`, farmerData);
     this.ngxService.stop();
     return result;
   }
@@ -56,7 +56,7 @@ export class DashboardService {
   webdash_dist_count(farmerData) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}webdash_distributor_count?token=${this.token}`, farmerData);
+    let result= this.http.post(`${this.urlforapi}webdash_distributor_count`, farmerData);
     this.ngxService.stop();
     return result;
   }
@@ -64,7 +64,7 @@ export class DashboardService {
   getDistDashReport(farmerData) {
     this.token = this.getToken();
     this.ngxService.start();
-    let result= this.http.post(`${this.urlforapi}webdash_distributor_list?token=${this.token}`, farmerData);
+    let result= this.http.post(`${this.urlforapi}webdash_distributor_list`, farmerData);
     this.ngxService.stop();
     return result;
   }

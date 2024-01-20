@@ -1,0 +1,92 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    View Distributor
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li><a routerLink="/admin/distributor-list">Distributors</a></li>
+                    <li class="active">View Distributor</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <div class="input-field col s12 m4 l4">
+                                    <input  class="validate" type="text" 
+                                        style="text-transform:uppercase" formControlName="date"  required />
+                                    <label for="first_name">Date<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.date.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+                                <div class="input-field col s12 m4 l4">
+                                    <input id="applicantFirstName" name="message_by"
+                                        class="form-control input_capital  capitalize" type="text" 
+                                        style="text-transform:uppercase" class="validate"
+                                        formControlName="message_by"  required />
+                                    <label for="middle_name">Message By<span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.message_by.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <input id="subject" name="subject" class="validate" type="text" 
+                                        style="text-transform:uppercase" formControlName="subject"  required />
+                                    <label for="subject">Subject <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.subject.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <input id="message" name="message" class="validate" type="text" 
+                                        style="text-transform:uppercase" formControlName="message"  required />
+                                    <label for="message">Message <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.message.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s12 m4 l4">
+                                    <input id="msg" class="validate" type="text" 
+                                        style="text-transform:uppercase" formControlName="msg"  required />
+                                    <label for="msg">Reply Messege <span class="red-text">*</span></label>
+                                    <div *ngIf="submitted && f.msg.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+
+<!-- 
+                            <div><label>Image</label></div>
+                            <div class="input-field col s12 m4 l4">
+                                <a href={{f.document}} target="_blank" download>
+                                    <img src={{f.document}} alt="image" height="50px">
+                                </a>
+                            </div> -->
+
+
+
+
+                            <div class="row" style="float:right;">
+                                <div class="col s12">
+                                    <button type="submit" class="btn btn-save">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -9,7 +9,7 @@ export class WebService {
   urlforapi =environment.apiurl;
   constructor(private http: HttpClient) {
     this.token=localStorage.getItem('token');
-    var tokennew=this.http.post(`${this.urlforapi}companyprofilelist?token=${this.token}`, null).subscribe(res => {
+    var tokennew=this.http.post(`${this.urlforapi}companyprofilelist`, null).subscribe(res => {
 
       if (res['message'] == 'Token Signature could not be verified') {
         console.log("satish");
@@ -26,17 +26,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}companyprofileadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}companyprofileadd`, data);
   }
 
   getCompanyGetList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}companyprofilelist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}companyprofilelist`, null);
   }
 
   getCompanyProfileForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}companyprofileget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}companyprofileget`, obj);
   }
 
   updateCompanyProfile(formdata, imagefile) {
@@ -44,12 +44,12 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}companyprofileupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}companyprofileupdate`, data);
   }
 
   deleteCompanyProfile(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}companyprofiledelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}companyprofiledelete`, data);
   }
 
   //About Us API
@@ -58,17 +58,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webaboutusadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaboutusadd`, data);
   }
 
   getAboutUsList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaboutuslist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webaboutuslist`, null);
   }
 
   getAboutUsForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaboutusget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webaboutusget`, obj);
   }
 
   updateAboutUs(formdata, imagefile) {
@@ -76,12 +76,12 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webaboutusupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaboutusupdate`, data);
   }
 
   deleteAboutUs(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaboutusdelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaboutusdelete`, data);
   }
 
   //Cover Photot API
@@ -90,17 +90,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}coverphotoadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}coverphotoadd`, data);
   }
 
   getCoverPhotoList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}coverphotolist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}coverphotolist`, null);
   }
 
   getCoverPhotoEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}coverphotoget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}coverphotoget`, obj);
   }
 
   updateCoverPhoto(formdata, imagefile) {
@@ -108,12 +108,12 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}coverphotoupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}coverphotoupdate`, data);
   }
 
   deleteCoverPhoto(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}coverphotodelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}coverphotodelete`, data);
   }
 
   //Gallary Photo API
@@ -122,17 +122,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}gallaryphotoadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}gallaryphotoadd`, data);
   }
 
   getGallaryPhotoList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}gallaryphotolist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}gallaryphotolist`, null);
   }
 
   getGallaryPhotoEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}gallaryphotoget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}gallaryphotoget`, obj);
   }
 
   updateGallaryPhoto(formdata, imagefile) {
@@ -140,12 +140,12 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}gallaryphotoupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}gallaryphotoupdate`, data);
   }
 
   deleteGallaryPhoto(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}gallaryphotodelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}gallaryphotodelete`, data);
   }
 
   //Vision Mission API
@@ -154,17 +154,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webvisionmissionadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webvisionmissionadd`, data);
   }
 
   getVisionMissionList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvisionmissionlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webvisionmissionlist`, null);
   }
 
   getVisionMissionEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvisionmissionget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webvisionmissionget`, obj);
   }
 
   updateVisionMission(formdata, imagefile) {
@@ -172,33 +172,33 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webvisionmissionupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webvisionmissionupdate`, data);
   }
 
   deleteVisionMission(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvisionmissiondelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webvisionmissiondelete`, data);
   }
   // Principle API
   getPrincipleList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}principles_list?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}principles_list`, null);
   }
   //webVideo API
 
   webVideoList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvideolist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webvideolist`, null);
   }
 
   WebVideoForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvideoget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webvideoget`, obj);
   }
 
   webVideoDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webvideodelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webvideodelete`, data);
   }
 
   webVideoMissionAdd(formdata) {
@@ -206,11 +206,11 @@ export class WebService {
     // let data = new FormData;
     // data.set('dataforinsert', JSON.stringify(formdata));
     // data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webvideoadd?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}webvideoadd`, formdata);
   }
 
   webVideoUpdate(formdata) {
-    return this.http.post(`${this.urlforapi}webvideoupdate?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}webvideoupdate`, formdata);
   }
 
 
@@ -218,17 +218,17 @@ export class WebService {
 
   webAudioList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaudiolist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webaudiolist`, null);
   }
 
   webAudioForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaudioget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webaudioget`, obj);
   }
 
   webAudioDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webaudiodelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaudiodelete`, data);
   }
 
   webAudioAdd(formdata, imagefile) {
@@ -236,7 +236,7 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webaudioadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaudioadd`, data);
   }
 
   webAudioUpdate(formdata, imagefile) {
@@ -244,34 +244,34 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webaudioupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webaudioupdate`, data);
   }
 
   //Blog Article API
 
   webBlogArticleList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogarticlelist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webblogarticlelist`, null);
   }
 
   webBlogReplyList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}blog_reply_list?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}blog_reply_list`, null);
   }
 
   webEnquiryList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontenquiryget?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}frontenquiryget`, null);
   }
 
   webBlogArticleForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogarticleget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webblogarticleget`, obj);
   }
 
   webBlogArticleDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogarticledelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogarticledelete`, data);
   }
 
   webBlogArticleAdd(formdata, imagefileone, imagefiletwo) {
@@ -280,7 +280,7 @@ export class WebService {
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefileone);
     data.set('photo_two', imagefiletwo);
-    return this.http.post(`${this.urlforapi}webblogarticleadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogarticleadd`, data);
   }
 
   webBlogArticleUpdate(formdata, imagefileone, imagefiletwo) {
@@ -289,7 +289,7 @@ export class WebService {
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefileone);
     data.set('photo_two', imagefiletwo);
-    return this.http.post(`${this.urlforapi}webblogarticleupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogarticleupdate`, data);
   }
 
 
@@ -297,17 +297,17 @@ export class WebService {
 
   webBlogScheduleList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogsschedulelist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webblogsschedulelist`, null);
   }
 
   webBlogScheduleForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogsscheduleget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webblogsscheduleget`, obj);
   }
 
   webBlogScheduleDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webblogsscheduledelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogsscheduledelete`, data);
   }
 
   webBlogScheduleAdd(formdata, imagefileone, imagefiletwo) {
@@ -316,7 +316,7 @@ export class WebService {
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefileone);
     data.set('photo_two', imagefiletwo);
-    return this.http.post(`${this.urlforapi}webblogsscheduleadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogsscheduleadd`, data);
   }
 
   webBlogScheduleUpdate(formdata, imagefileone, imagefiletwo) {
@@ -325,7 +325,7 @@ export class WebService {
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefileone);
     data.set('photo_two', imagefiletwo);
-    return this.http.post(`${this.urlforapi}webblogsscheduleupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webblogsscheduleupdate`, data);
   }
 
 
@@ -335,17 +335,17 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webtestimonialsadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webtestimonialsadd`, data);
   }
 
   webTestimonialsList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtestimonialslist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webtestimonialslist`, null);
   }
 
   webTestimonialsEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtestimonialsget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webtestimonialsget`, obj);
   }
 
   webTestimonialsUpdate(formdata, imagefile) {
@@ -353,12 +353,12 @@ export class WebService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webtestimonialsupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webtestimonialsupdate`, data);
   }
 
   webTestimonialsDelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webtestimonialsdelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webtestimonialsdelete`, data);
   }
 
 
@@ -373,17 +373,17 @@ export class WebService {
     data.append('photo_three',file3);
     data.append('photo_four',file4);
     data.append('photo_five',file5);
-    return this.http.post(`${this.urlforapi}webproductadd?token=${this.token}`,data);
+    return this.http.post(`${this.urlforapi}webproductadd`,data);
   }
 
   webProductList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webproductlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webproductlist`, null);
   }
 
   webProductEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webproductget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webproductget`, obj);
   }
 
 
@@ -393,7 +393,7 @@ export class WebService {
   //   let data=new FormData;
   //   data.append('dataforinsert', JSON.stringify(formdata));
   //   data.append('photo_one',productImage);
-  //   return this.http.post(`${this.urlforapi}webproductupdate?token=${this.token}`,data);
+  //   return this.http.post(`${this.urlforapi}webproductupdate`,data);
   // }
 
 
@@ -407,20 +407,20 @@ export class WebService {
     data.append('photo_three',file3);
     data.append('photo_four',file4);
     data.append('photo_five',file5);
-    return this.http.post(`${this.urlforapi}webproductupdate?token=${this.token}`,data);
+    return this.http.post(`${this.urlforapi}webproductupdate`,data);
   }
 
 
   webProductDelete(data)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webproductdelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webproductdelete`, data);
   }
 
 
   webEntrenshipList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}internship_list?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}internship_list`, null);
   }
 
   webEntrenshipEdit(obj) {
@@ -428,7 +428,7 @@ export class WebService {
       id:obj
     }
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}internship_get?token=${this.token}`, objnew);
+    return this.http.post(`${this.urlforapi}internship_get`, objnew);
   }
 
 
@@ -436,13 +436,13 @@ export class WebService {
   webEntrenshipUpdate(formdata) {
     let data=new FormData;
     data.append('dataforinsert', JSON.stringify(formdata));
-    return this.http.post(`${this.urlforapi}internship_update?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}internship_update`, data);
   }
   
 
   webCareerList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}career_list?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}career_list`, null);
   }
 
   
@@ -451,7 +451,7 @@ export class WebService {
       id:1
     }
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}career_get?token=${this.token}`, objnew);
+    return this.http.post(`${this.urlforapi}career_get`, objnew);
   }
   
 
@@ -465,17 +465,17 @@ addWebProductInfo(formdata,file1)
     let data=new FormData;
     data.append('dataforinsert', JSON.stringify(formdata));
     data.append('photo_one',file1);
-    return this.http.post(`${this.urlforapi}frontproductadd?token=${this.token}`,data);
+    return this.http.post(`${this.urlforapi}frontproductadd`,data);
   }
 
   webProductInfoList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontproductlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}frontproductlist`, null);
   }
 
   webProductInfoEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontproductget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}frontproductget`, obj);
   }
 
 
@@ -486,26 +486,26 @@ addWebProductInfo(formdata,file1)
     let data=new FormData;
     data.append('dataforinsert', JSON.stringify(formdata));
     data.append('photo_one',file1);
-    return this.http.post(`${this.urlforapi}frontproductupdate?token=${this.token}`,data);
+    return this.http.post(`${this.urlforapi}frontproductupdate`,data);
   }
 
 
   webProductInfoDelete(data)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontproductdelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}frontproductdelete`, data);
   }
 
   webCareerDistList(data)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontdistributorlist?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}frontdistributorlist`, data);
   }
 
   webCareerJobList()
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}job_posting_list?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}job_posting_list`, null);
   }
 
   webCareerJobEdit(obj) {
@@ -513,13 +513,13 @@ addWebProductInfo(formdata,file1)
       id:obj
     }
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}job_posting_get?token=${this.token}`, objnew);
+    return this.http.post(`${this.urlforapi}job_posting_get`, objnew);
   }
 
   webCareerJobUpdate(formdata) {
     let data=new FormData;
     data.append('dataforinsert', JSON.stringify(formdata));
-    return this.http.post(`${this.urlforapi}job_posting_update?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}job_posting_update`, data);
   }
 
   updateCareerMenu(formdata,file1,file2,file3,file4)
@@ -531,7 +531,7 @@ addWebProductInfo(formdata,file1)
     data.append('dsitmenuphotoview',file2);
     data.append('jobmenuphotoview',file3);
     data.append('certificatephotoview',file4);
-    return this.http.post(`${this.urlforapi}career_update?token=${this.token}`,data);
+    return this.http.post(`${this.urlforapi}career_update`,data);
   }
 
   WebFrontCounterList()
@@ -540,19 +540,19 @@ addWebProductInfo(formdata,file1)
       id:1
     }
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}front_counter_list?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}front_counter_list`, obj);
   }
 
   WebFrontCounterEditGet(obj)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}front_counter_get?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}front_counter_get`, obj);
   }
 
   WebFrontCounterUpdate(data)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}front_counter_update?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}front_counter_update`, data);
   }
 
 
@@ -562,31 +562,31 @@ addWebProductInfo(formdata,file1)
   getMarqueAdd(formdata) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}website_marquee_add?token=${this.token}`,formdata)
+      `${this.urlforapi}website_marquee_add`,formdata)
   }
 
   getMarqueList() {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}website_marquee_list?token=${this.token}`,null)
+      `${this.urlforapi}website_marquee_list`,null)
   }
 
   getMarqueEdit(obj) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}website_marquee_get?token=${this.token}`,obj)
+      `${this.urlforapi}website_marquee_get`,obj)
   }
 
   getMarqueDelete(obj) {
   this.token = this.getToken()
   return this.http.post(
-    `${this.urlforapi}website_marquee_delete?token=${this.token}`,obj)
+    `${this.urlforapi}website_marquee_delete`,obj)
   }
 
   getMarqueUpdate(formdata) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}website_marquee_update?token=${this.token}`,
+      `${this.urlforapi}website_marquee_update`,
       formdata,
     )
   }

@@ -107,6 +107,8 @@ import { MessageviewComponent } from './mobileapp/messageview/messageview.compon
 import { YoutubesuscriberviewComponent } from './mobileapp/youtubesuscriberview/youtubesuscriberview.component';
 import { DisttocompreportComponent } from './report/disttocompreport/disttocompreport.component';
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
+import { MessageviewperticularComponent } from './mobileapp/messageviewperticular/messageviewperticular.component';
+import { ComplaintviewperticularComponent } from './mobileapp/complaintviewperticular/complaintviewperticular.component';
 const routes: Routes = [
   {
     path: '',
@@ -275,6 +277,17 @@ const routes: Routes = [
         path: 'mobileapp-messeges-list',
         component: MessageviewComponent
       },
+
+      {
+        path:'mobileapp-messeges-view/:id',
+        component:MessageviewperticularComponent
+      },
+
+      {
+        path:'mobileapp-complaint-view/:id',
+        component:ComplaintviewperticularComponent
+      },
+
 
       {
         path: 'mobileapp-complaint-list',

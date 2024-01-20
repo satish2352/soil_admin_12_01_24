@@ -30,6 +30,11 @@ export class ComplaintviewComponent implements OnInit {
       // })
       
     }
+
+    editMessege(id) {
+      alert(id);
+      this.router.navigate(['/admin', 'mobileapp-complaint-view', id]);
+    }
   }
   
   

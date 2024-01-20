@@ -27,41 +27,41 @@ export class MlmService {
   /////////////////////Farmer Operations
   getDistributorList() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}dsc_list_structure?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}dsc_list_structure`, null);
   }
 
 
   getBscUnderDSC(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}bsc_list_structure?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}bsc_list_structure`, obj);
   }
 
 
   getFscUnderBsc(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}fsc_list_structure?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}fsc_list_structure`, obj);
   }
   
 
 
   deleteById(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributordelete?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}distributordelete`, obj);
   }
 
   getByIdForEdit(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorinfo?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}distributorinfo`, obj);
   }
 
   blockDistributor(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}block_distributor?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}block_distributor`, obj);
   }
 
   unblockDistributor(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}unblock_distributor?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}unblock_distributor`, obj);
   }
 
 }

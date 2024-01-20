@@ -10,7 +10,7 @@ export class BannerbrService {
   urlforapi =environment.apiurl;
   constructor(private http: HttpClient) { 
     this.token=localStorage.getItem('token');
-    var tokennew=this.http.post(`${this.urlforapi}companyprofilelist?token=${this.token}`, null).subscribe(res => {
+    var tokennew=this.http.post(`${this.urlforapi}companyprofilelist`, null).subscribe(res => {
   
       if (res['message'] == 'Token Signature could not be verified') {
         console.log("satish");
@@ -28,17 +28,17 @@ export class BannerbrService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webbrochureadd?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webbrochureadd`, data);
   }
 
   webbrochurelist() {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webbrochurelist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webbrochurelist`, null);
   }
 
   webbrochureget(obj) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webbrochureget?token=${this.token}`, obj);
+    return this.http.post(`${this.urlforapi}webbrochureget`, obj);
   }
 
   webbrochureupdate(formdata, imagefile) {
@@ -46,12 +46,12 @@ export class BannerbrService {
     let data = new FormData;
     data.set('dataforinsert', JSON.stringify(formdata));
     data.set('photo_one', imagefile);
-    return this.http.post(`${this.urlforapi}webbrochureupdate?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webbrochureupdate`, data);
   }
 
   webbrochuredelete(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webbrochuredelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}webbrochuredelete`, data);
   }
 
 

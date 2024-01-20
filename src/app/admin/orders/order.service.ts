@@ -19,43 +19,43 @@ export class OrderService {
 
   getFarmers(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}farmerlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}farmerlist`, null);
   }
 
   getProducts(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}webproductlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}webproductlist`, null);
   }
 
   getOrders(): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}weborderlist?token=${this.token}`, null);
+    return this.http.post(`${this.urlforapi}weborderlist`, null);
   }
   getOrder1(order_no, distributor_id): Observable<any> {
     this.token = this.getToken();
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}viewreportsales?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}viewreportsales`, data);
   }
   getOrder(order_no, distributor_id): Observable<any> {
     this.token = this.getToken();
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderget?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderget`, data);
   }
  
 
 
   addOrder(formdata: any): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}weborderadd?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}weborderadd`, formdata);
   }
 
   updateOrder(formdata: any): Observable<any> {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}weborderupdate?token=${this.token}`, formdata);
+    return this.http.post(`${this.urlforapi}weborderupdate`, formdata);
   }
 
   verifyOrder(order_no, distributor_id): Observable<any> {
@@ -63,7 +63,7 @@ export class OrderService {
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderaccountsectionverified?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderaccountsectionverified`, data);
   }
 
   forwardOrder(order_no, distributor_id): Observable<any> {
@@ -71,7 +71,7 @@ export class OrderService {
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderaccountsectionforwardtowarehouse?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderaccountsectionforwardtowarehouse`, data);
   }
 
   deleteOrder(order_no, distributor_id): Observable<any> {
@@ -79,6 +79,6 @@ export class OrderService {
     let data = new FormData();
     data.set('order_no', order_no);
     data.set('created_disctributor_id', distributor_id);
-    return this.http.post(`${this.urlforapi}weborderdelete?token=${this.token}`, data);
+    return this.http.post(`${this.urlforapi}weborderdelete`, data);
   }
 }
