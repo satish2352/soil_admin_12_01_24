@@ -34,7 +34,6 @@ export class MessageviewComponent implements OnInit {
   }
 
   editMessege(id) {
-    alert(id);
     this.router.navigate(['/admin', 'mobileapp-messeges-view', id]);
   }
 }

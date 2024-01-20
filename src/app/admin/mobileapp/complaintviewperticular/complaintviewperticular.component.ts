@@ -22,6 +22,7 @@ export class ComplaintviewperticularComponent implements OnInit {
   alllist: any;
   listdata: any;
   formContent: FormGroup;
+  resNew:any
 
   constructor(
     public http: HttpClient,
@@ -52,17 +53,18 @@ export class ComplaintviewperticularComponent implements OnInit {
       var obj = { messageid: this.editdata };
       this.ngxService.start();
       this.mobileappService.GetComplaint(obj).subscribe(res => {
+        this.resNew = res['data']
         if (res) {
           this.formContent.patchValue({
-            date: res.data.date,
-            subject: res.data.subject,
-            complaint: res.data.complaint,
-            complaint_by: res.data.fname+' '+res.data.mname+' '+res.data.lname,
-            msg_status: res.data.msg_status,
-            msg: res.data.msg,
-            id: res.data.id,
-            msg_read: res.data.msg_read,
-            // document_one: res.data.document_one
+            date: this.resNew.date,
+            subject: this.resNew.subject,
+            complaint: this.resNew.complaint,
+            complaint_by: this.resNew.fname + ' ' + this.resNew.mname + ' ' + this.resNew.lname,
+            msg_status: this.resNew.msg_status,
+            msg: this.resNew.msg,
+            id: this.resNew.id,
+            msg_read: this.resNew.msg_read,
+            // document_one: this.resNew.document_one
           });
           setTimeout(() => {
             M.updateTextFields();
