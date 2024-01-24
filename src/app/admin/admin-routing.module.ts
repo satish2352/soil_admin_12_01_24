@@ -10,6 +10,9 @@ import { PlotvisitlistComponent } from './fcofield/plotvisit/plotvisitlist/plotv
 import { PlotvisitaddComponent } from './fcofield/plotvisit/plotvisitadd/plotvisitadd.component';
 import { DistributoraddComponent } from './distributor/distributoradd/distributoradd.component';
 import { DistributorlistComponent } from './distributor/distributorlist/distributorlist.component';
+import { DistributorlistnewComponent } from './distributor/distributorlistnew/distributorlistnew.component';
+
+
 import { DistributorvisitComponent } from './distributor/distributorvisit/distributorvisit.component';
 //All Target Video
 import { DistributortargetvideoaddComponent } from './distributor/distributortargetvideo/distributortargetvideoadd/distributortargetvideoadd.component';
@@ -185,6 +188,10 @@ const routes: Routes = [
       {
         path: 'distributor-list',
         component: DistributorlistComponent
+      },
+      {
+        path: 'distributor-list-new-arriavl',
+        component: DistributorlistnewComponent
       },
       {
         path: 'distributor-add',

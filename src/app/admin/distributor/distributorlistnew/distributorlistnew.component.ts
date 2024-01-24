@@ -175,7 +175,7 @@ export class DistributorlistnewComponent implements OnInit {
       }
     }
   getDistributors() {
-    this.distributorService.getDistributorList().subscribe(list => {
+    this.distributorService.getDistributorListNewArrival().subscribe(list => {
       if(list['result']==true) {
         this.alllist = list['data'];
         this.alllist.sort((a, b) => b.id - a.id);
@@ -254,7 +254,7 @@ export class DistributorlistnewComponent implements OnInit {
   }
   getdata() {
 
-    this.distributorService.getDistributorList().subscribe(list => {
+    this.distributorService.getDistributorListNewArrival().subscribe(list => {
       if (list['result'] == true) {
         this.alllist = list['data'];
         // console.log(this.alllist);

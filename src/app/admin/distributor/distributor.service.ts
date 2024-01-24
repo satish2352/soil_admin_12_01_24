@@ -81,6 +81,11 @@ export class DistributorService {
     return this.http.post(`${this.urlforapi}distributorlist`, null);
   }
 
+  getDistributorListNewArrival() {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}distributorlist_new_arrival`, null);
+  }
+
   deleteById(obj) {
     this.token = this.getToken();
     return this.http.post(`${this.urlforapi}distributordelete`, obj);
