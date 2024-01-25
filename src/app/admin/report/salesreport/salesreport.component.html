@@ -111,7 +111,8 @@
                                             class="material-icons" style="padding-bottom:10px"
                                             [ngClass]="getArrowClass('created_disctributor_amount')">arrow_upward</i>
                                     </th>
-                                    <th>District</th>
+                                    <!-- <th>District</th> -->
+                                    <th>Payment Mode</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -124,7 +125,8 @@
                                             {{order.lname}}</span></td>
                                     <td><span>{{order.order_date | date: 'dd/MM/yyyy'}}</span></td>
                                     <td><span>{{order.created_disctributor_amount}}</span></td>
-                                    <td><span>{{order.district}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{order.payment_mode}}</span></td>
+                                    <!-- <td><span>{{order.district}}</span></td> -->
 
                                     <td style="white-space: nowrap">
                                         <a href="javaScript:void(0)" class="btn-floating" title="View Details"

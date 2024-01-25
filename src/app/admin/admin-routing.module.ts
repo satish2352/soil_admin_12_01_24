@@ -112,6 +112,7 @@ import { DisttocompreportComponent } from './report/disttocompreport/disttocompr
 import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { MessageviewperticularComponent } from './mobileapp/messageviewperticular/messageviewperticular.component';
 import { ComplaintviewperticularComponent } from './mobileapp/complaintviewperticular/complaintviewperticular.component';
+import { DistributortargetvideoseenbydistComponent } from './distributor/distributortargetvideo/distributortargetvideoseenbydist/distributortargetvideoseenbydist.component';
 const routes: Routes = [
   {
     path: '',
@@ -221,6 +222,12 @@ const routes: Routes = [
         path: 'distributorvideo-list',
         component: DistributortargetvideolistComponent
       },
+
+      {
+        path: 'distributorvideo-seen-list',
+        component: DistributortargetvideoseenbydistComponent
+      },
+
       {
         path: 'distributorvideo-add',
         component: DistributortargetvideoaddComponent

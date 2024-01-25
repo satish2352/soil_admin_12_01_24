@@ -148,6 +148,11 @@ export class DistributorService {
     return this.http.post(`${this.urlforapi}distributortargetvideolist_distributorweb`, null);
   }
 
+  getDistributorVideoSeenList() {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}target_video_watch_record_view_admin`, null);
+  }
+
   getByDistirbutorVideoIdForEdit(obj) {
     this.token = this.getToken();
     return this.http.post(`${this.urlforapi}distributortargetvideoget_distributorweb`, obj);
@@ -192,7 +197,10 @@ export class DistributorService {
 
   getDistributorMessages(id) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}messageview_by_distributor&distributor_id=${id}`, null);
+    var data ={
+      'distributor_id':id
+    }
+    return this.http.post(`${this.urlforapi}messageview_by_distributor`, data);
   }
 
 

@@ -74,6 +74,7 @@
                                     <th>From</th>
                                     <th>Date</th>
                                     <th>Amount</th>
+                                    <th>Pyment Mode</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -87,6 +88,7 @@
                                             {{order.lname}}</span></td>
                                     <td><span>{{order.order_date | date: 'dd/MM/yyyy'}}</span></td>
                                     <td><span>{{order.created_disctributor_amount}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{order.payment_mode}}</span></td>
                                     <td>
                                         <span *ngIf="order.account_approved=='yes'">Order Verified |</span>
                                         <span *ngIf="order.forward_to_warehouse=='yes'">&nbsp;Forwarded to Warehouse |</span>
