@@ -36,6 +36,7 @@
                                   <th>From</th>
                                   <th>Date</th>
                                   <th>Amount</th>
+                                  <td>Payment Mode</td>
                                   <!-- <th>District</th> -->
                                   <th>Status</th>
                                   <th>Action</th>
@@ -48,6 +49,7 @@
                                   <td style="white-space: nowrap"><span>{{order.fname}} {{order.mname}} {{order.lname}}</span></td>
                                   <td><span>{{order.order_date | date: 'dd/MM/yyyy'}}</span></td>
                                   <td><span>{{order.created_disctributor_amount}}</span></td>
+                                  <td><span style="text-transform:uppercase">{{order.payment_mode}}</span></td>
                                   <!-- <td><span>{{order.district}}</span></td> -->
                                   <td>
                                     <span *ngIf="order.account_approved=='no' && order.forward_to_warehouse=='no'">Pending</span>

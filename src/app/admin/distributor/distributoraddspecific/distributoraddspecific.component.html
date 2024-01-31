@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
 
-                                <div class="input-field col s12 m4 l4">
+                                <!-- <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">format_list_numbered</i>
                                     <input id="aadharcard" name="aadharcard" class="validate" type="text" maxlength="12" minlength="12" value=""
                                         formControlName="aadharcard" required/>
@@ -79,7 +79,7 @@
                                           <span class="red-text"><strong>Required/Incorrect*</strong></span>
                             
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 
@@ -159,7 +159,7 @@
                                     <p class="teal lighten-2" style="padding: 10px;"><b>Other Details</b></p>
                                 </div>
                                 <div class='row'>
-                                    <div class="input-field col s12 m4 l4">
+                                    <!-- <div class="input-field col s12 m4 l4">
                                         <input id="occupation" name="occupation" class="validate" type="text" value=""
                                             style="text-transform:uppercase" formControlName="occupation" required/>
                                         <label for="occupation">Business/Occupation/Work <span
@@ -167,7 +167,7 @@
                                         <div *ngIf="submitted && f.occupation.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="input-field col s12 m4 l4">
                                         <input id="education" name="education" class="validate" type="text" value=""
@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="input-field col s12 m4 l4">
+                                    <!-- <div class="input-field col s12 m4 l4">
                                         <input id="exp_in_agricultural" name="exp_in_agricultural" class="validate"
                                             type="number" value="" formControlName="exp_in_agricultural" required/>
                                         <label for="exp_in_agricultural">Experience in Agricultural Field (in years)<span
@@ -186,8 +186,8 @@
                                         <div *ngIf="submitted && f.exp_in_agricultural.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
                                         </div>
-                                    </div>
-
+                                    </div> -->
+<!-- 
                                     <div class="input-field col s12 m4 l4">
                                         <select class="" formControlName="other_distributorship">
                                             <option value="" disabled selected> Any Other Distributorship*</option>
@@ -197,9 +197,9 @@
                                         <div *ngIf="submitted && f.other_distributorship.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="input-field col s12 m4 l4">
+                                    <!-- <div class="input-field col s12 m4 l4">
                                         <input id="reference_from" name="reference_from" class="validate" type="text"
                                             value="" formControlName="reference_from" required/>
                                         <label for="reference_from">Reference From<span
@@ -207,7 +207,19 @@
                                         <div *ngIf="submitted && f.reference_from.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
                                         </div>
-                                    </div>
+                                    </div> -->
+
+                                    <div class="input-field col s12 m3 l3">
+                                        <!-- <label>Select Distributor</label> -->
+                                        <select class="" formControlName="reference_from" >
+                                            <option value="" disabled selected>Reference_from</option>
+                                            <option *ngFor="let distributordetails of data1" [value]="distributordetails.user_id">
+                                                {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}</option>
+                                        </select>
+                                       
+
+                                    </div>  
+
 
                                     <div class="input-field col s12 m4 l4">
                                         <input id="shop_location" name="shop_location" class="validate" type="text"

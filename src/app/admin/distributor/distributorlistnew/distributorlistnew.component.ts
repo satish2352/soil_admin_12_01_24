@@ -9,6 +9,10 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import 'jspdf-autotable';
 import { saveAs } from 'file-saver';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { HelperService } from '../../../helper.service';
+
 @Component({
   selector: 'app-distributorlistnew',
   templateUrl: './distributorlistnew.component.html',
@@ -18,21 +22,31 @@ export class DistributorlistnewComponent implements OnInit {
   p:number=1;
   alllist:any = [];
   formdatanew: any;
-  farmerForm: any;
   id: any;
   id1: any;
   id2: any;
   id3: any;
-  HelperService: any;
   alldist: any;
   allcity: any;
   alltaluka: any;
   allstate: any;
+  farmerForm: FormGroup;
+
   constructor(public distributorService:DistributorService,
+    private HelperService: HelperService,
     public router:Router,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+    this.farmerForm = new FormGroup({
+      state: new FormControl('', [Validators.required]),
+      district: new FormControl('', [Validators.required]),
+      taluka: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+    });
+    this.formControlValueChanges();
+
     this.getDistributors();
 
     // $(document).ready(function () {
@@ -175,13 +189,31 @@ export class DistributorlistnewComponent implements OnInit {
       }
     }
   getDistributors() {
-    this.distributorService.getDistributorListNewArrival().subscribe(list => {
+
+    this.formdatanew = this.farmerForm.value;
+    this.id = this.formdatanew.state;
+    this.id1 = this.formdatanew.district;
+    this.id2 = this.formdatanew.taluka;
+    this.id3 = this.formdatanew.city;
+    // this.id4 = this.formdatanew.dist_id;
+
+    var data = {
+      state: this.id,
+      district: this.id1,
+      taluka: this.id2,
+      city: this.id3,
+      // dist_id: this.id4,
+    }
+
+
+    this.distributorService.getDistributorListNewArrival(data).subscribe(list => {
       if(list['result']==true) {
         this.alllist = list['data'];
         this.alllist.sort((a, b) => b.id - a.id);
       }
     });
   }
+
   formControlValueChanges() {
     this.farmerForm.get('state').valueChanges.subscribe(val => {
       this.HelperService.getDist({ state_id: val }).subscribe((alldist) => {
@@ -218,6 +250,10 @@ export class DistributorlistnewComponent implements OnInit {
         this.getListdata();
       });
     });
+
+    this.farmerForm.get('city').valueChanges.subscribe(val => {
+        this.getListdata();
+    });
   }
 
 
@@ -238,7 +274,7 @@ export class DistributorlistnewComponent implements OnInit {
       // dist_id: this.id4,
     }
 
-    this.distributorService.getDistributorList().subscribe(list => {
+    this.distributorService.getDistributorList(data).subscribe(list => {
       if (list['result'] == true) {
         this.alllist = '';
         this.alllist = list['data'];
@@ -252,50 +288,32 @@ export class DistributorlistnewComponent implements OnInit {
     });
 
   }
-  getdata() {
+ 
+  // getDataByDist() {
+  //   this.formdatanew = this.farmerForm.value;
+  //   this.id = this.formdatanew.state;
+  //   this.id1 = this.formdatanew.district;
+  //   this.id2 = this.formdatanew.taluka;
+  //   this.id3 = this.formdatanew.city;
+  //   // this.id4 = this.formdatanew.dist_id;
 
-    this.distributorService.getDistributorListNewArrival().subscribe(list => {
-      if (list['result'] == true) {
-        this.alllist = list['data'];
-        // console.log(this.alllist);
+  //   var data = {
+  //     state: this.id,
+  //     district: this.id1,
+  //     taluka: this.id2,
+  //     city: this.id3,
+  //     // dist_id: this.id4,
+  //   }
 
-      } else {
-        this.alllist = [];
-      }
-      
-      // this.getFarmerMeetingListdata();
+  //   this.distributorService.getDistributorList(data).subscribe(list => {
+  //     if (list['result'] == true) {
+  //       this.alllist = list['data'];
 
-      // if (list['error'] == true) {
-      //   this.toastr.error("Something went wrong " + list['message']);
-      // }
-    });
-
-  }
-  getDataByDist() {
-    this.formdatanew = this.farmerForm.value;
-    this.id = this.formdatanew.state;
-    this.id1 = this.formdatanew.district;
-    this.id2 = this.formdatanew.taluka;
-    this.id3 = this.formdatanew.city;
-    // this.id4 = this.formdatanew.dist_id;
-
-    var data = {
-      state: this.id,
-      district: this.id1,
-      taluka: this.id2,
-      city: this.id3,
-      // dist_id: this.id4,
-    }
-
-    this.distributorService.getDistributorList().subscribe(list => {
-      if (list['result'] == true) {
-        this.alllist = list['data'];
-
-      } else {
-        this.alllist = [];
-      }
-    });
-  }
+  //     } else {
+  //       this.alllist = [];
+  //     }
+  //   });
+  // }
 
 
   delete(id) {
@@ -337,25 +355,19 @@ export class DistributorlistnewComponent implements OnInit {
 
   setStatus(event, id) {
     var obj = {
-      id: id
+      user_id: id
     };
-    if (event.target.checked) {
-      this.distributorService.unblockDistributor(obj).subscribe(res=>{
+   
+      this.distributorService.web_distributor_approved_to_final_list(obj).subscribe(res=>{
         if (res['result']) {
-          this.toastr.success('Distributor unblocked successfully!');
+          this.toastr.success('Distributor approved successfully!');
+          this.getDistributors();
+
         } else {
           this.toastr.error(res['message']);
         }
       });
-    } else {
-      this.distributorService.blockDistributor(obj).subscribe(res=>{
-        if (res['result']) {
-          this.toastr.success('Distributor blocked successfully!');
-        } else {
-          this.toastr.error(res['message']);
-        }
-      });
-    }
+    
   }
 
 

@@ -30,6 +30,7 @@ export class DistributoraddspecificComponent implements OnInit {
   to_whom_showall: any;
   distributors: any;
   fsc_list_all: any;
+  data1: any;
 
   constructor(public distributorService: DistributorService,
     public http: HttpClient,
@@ -41,6 +42,7 @@ export class DistributoraddspecificComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.getdistributor();
     this.pagetitle='Add Distributor';
     this.editdata = history.state;
     // console.log(this.editdata);
@@ -80,17 +82,20 @@ export class DistributoraddspecificComponent implements OnInit {
       lname: new FormControl('', [Validators.required, Validators.pattern('^[A-Za-z]+$')]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required,Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
-      aadharcard: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]),
+      // aadharcard: new FormControl('', [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]{12}$')]),
+      aadharcard: new FormControl('000000000000', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
+
       state: new FormControl('', [Validators.required]),
       district: new FormControl('', [Validators.required]),
       taluka: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       address: new FormControl('', [Validators.required]),
       pincode: new FormControl('', [Validators.required]),
-      occupation: new FormControl('', [Validators.required]),
+      // occupation: new FormControl('', [Validators.required]),
+      occupation: new FormControl('no', [Validators.required]),
       education: new FormControl('', [Validators.required]),
-      exp_in_agricultural: new FormControl('', [Validators.required]),
-      other_distributorship: new FormControl('', [Validators.required]),
+      exp_in_agricultural: new FormControl('0', [Validators.required]),
+      other_distributorship: new FormControl('0', [Validators.required]),
       reference_from: new FormControl('', [Validators.required]),
       shop_location: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -243,7 +248,18 @@ export class DistributoraddspecificComponent implements OnInit {
       });
     }
   }
-
+  getdistributor(){
+    this.distributorService.getDistributorList().subscribe((data)=>{
+     this.data1= data['data'];
+     console.log(this.data1);
+     setTimeout(() => {
+       let elems = document.querySelectorAll('select');
+       let instances = M.FormSelect.init(elems);
+     }, 1000);
+     
+   
+    })
+   }
   // fsc_list_by_fsc(name: any) {
   //   let state_id;
   //   this.allstate.forEach(state => {

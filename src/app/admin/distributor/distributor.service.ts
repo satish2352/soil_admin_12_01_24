@@ -76,14 +76,14 @@ export class DistributorService {
     return this.http.post(`${this.urlforapi}websctresultget`, obj);
   }
   /////////////////////Farmer Operations
-  getDistributorList() {
+  getDistributorList(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorlist`, null);
+    return this.http.post(`${this.urlforapi}distributorlist`, data);
   }
 
-  getDistributorListNewArrival() {
+  getDistributorListNewArrival(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}distributorlist_new_arrival`, null);
+    return this.http.post(`${this.urlforapi}distributorlist_new_arrival`, data);
   }
 
   deleteById(obj) {
@@ -179,6 +179,13 @@ export class DistributorService {
     this.token = this.getToken();
     return this.http.post(`${this.urlforapi}unblock_distributor`, obj);
   }
+
+  web_distributor_approved_to_final_list(obj) {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}web_distributor_approved_to_final_list`, obj);
+  }
+
+  
 
   promoteDistributor(obj) {
     this.token = this.getToken();

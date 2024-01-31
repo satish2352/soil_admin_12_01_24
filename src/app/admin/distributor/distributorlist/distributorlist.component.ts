@@ -1,39 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { DistributorService } from "../distributor.service";
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-declare var $:any;
+declare var $: any;
 import * as XLSX from 'xlsx';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import 'jspdf-autotable';
 import { saveAs } from 'file-saver';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { HelperService } from '../../../helper.service';
 @Component({
   selector: 'app-distributorlist',
   templateUrl: './distributorlist.component.html',
   styleUrls: ['./distributorlist.component.css']
 })
 export class DistributorlistComponent implements OnInit {
-  p:number=1;
-  alllist:any = [];
+  p: number = 1;
+  alllist: any = [];
   formdatanew: any;
-  farmerForm: any;
+  farmerForm: FormGroup;
   id: any;
   id1: any;
   id2: any;
   id3: any;
-  HelperService: any;
   alldist: any;
   allcity: any;
   alltaluka: any;
   allstate: any;
-  constructor(public distributorService:DistributorService,
-    public router:Router,
+  constructor(public distributorService: DistributorService,
+    private HelperService: HelperService,
+    public router: Router,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+
+    this.farmerForm = new FormGroup({
+      state: new FormControl('', [Validators.required]),
+      district: new FormControl('', [Validators.required]),
+      taluka: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+    });
+    this.formControlValueChanges();
+
     this.getDistributors();
+
 
     // $(document).ready(function () {
     //   setTimeout(() => {
@@ -58,125 +71,141 @@ export class DistributorlistComponent implements OnInit {
 
   searchText: string = '';
 
-    // Create a function to filter the data based on the search criteria
-    applySearchFilter() {
-        // If the search text is empty, return the original data
-        if (!this.searchText.trim()) {
-            return this.alllist;
-        }
-
-        // Use the filter method to match the search criteria
-        return this.alllist.filter(item =>
-            item.fname.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.lname.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.phone.includes(this.searchText)
-            // Add more fields as needed
-        );
+  // Create a function to filter the data based on the search criteria
+  applySearchFilter() {
+    // If the search text is empty, return the original data
+    if (!this.searchText.trim()) {
+      return this.alllist;
     }
 
-    // Use the filtered data in your component
-    get filteredList() {
-        return this.applySearchFilter();
-    }
+    // Use the filter method to match the search criteria
+    return this.alllist.filter(item =>
+      item.fname.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.lname.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.phone.includes(this.searchText)
+      // Add more fields as needed
+    );
+  }
 
-    // ... (your existing component code)
-    exportToExcel(): void {
-      const date = new Date();
-      const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
+  // Use the filtered data in your component
+  get filteredList() {
+    return this.applySearchFilter();
+  }
+
+  // ... (your existing component code)
+  exportToExcel(): void {
+    const date = new Date();
+    const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}-${date
+        .getDate()
         .toString()
-        .padStart(2, '0')}-${date
-          .getDate()
+        .padStart(2, '0')}_${date
+          .getHours()
           .toString()
-          .padStart(2, '0')}_${date
-            .getHours()
+          .padStart(2, '0')}-${date
+            .getMinutes()
             .toString()
             .padStart(2, '0')}-${date
-              .getMinutes()
+              .getSeconds()
               .toString()
-              .padStart(2, '0')}-${date
-                .getSeconds()
-                .toString()
-                .padStart(2, '0')}`;
-      const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.alllist);
-      const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-      const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      // saveAs(data, 'contacts.xlsx');
-  
-      saveAs(data, `dist_${dateString}.xlsx`);
-  
-    }
-    async exportToPdf() {
-      // Get the HTML table element by ID
-      const tableElement = document.getElementById('exportTable');
-    
-      if (tableElement) {
-        // Function to get all rows including those in hidden pages
-        const getAllTableRows = async () => {
-          const allRows = [];
-          const totalRows = tableElement.querySelectorAll('tbody tr');
-    
-          for (let i = 0; i < totalRows.length; i++) {
-            const row = totalRows[i];
-            const rowData = Array.from(row.children).map(cell => cell.textContent);
-            allRows.push(rowData);
-          }
-    
-          return allRows;
-        };
-    
-        const tableHeaders = Object.keys(this.alllist[0]);
-        const tableRows = this.alllist.map(row => Object.values(row));
-    
-        // Calculate dynamic widths based on content length
-        const dynamicWidths = tableHeaders.map(header => ({
-          width: 'auto',
-          height:'auto',
-          minCellWidth: header.length * 8, // Adjust this multiplier as needed
-        }));
-    
-        // Set a specific width for the last column
-        const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-    
-        // Combine the dynamic widths and the specific width
-        console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
-  
-        const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-    
-        // Create the document definition
-        const documentDefinition = {
-          pageSize: 'A4',
-          pageMargins: [20, 20, 20, 20],
-          content: [
-            { text: 'Export Table', style: 'header' },
-            {
-              table: {
-                headerRows: 1,
-                widths: columnWidths,
-                body: [tableHeaders, ...tableRows],
-                layout: 'lightHorizontalLines',
-              },
-            },
-          ],
-          styles: {
-            header: {
-              fontSize: 12,
-              bold: true,
-              margin: [0, 0, 0, 10],
+              .padStart(2, '0')}`;
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.alllist);
+    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    // saveAs(data, 'contacts.xlsx');
+
+    saveAs(data, `dist_${dateString}.xlsx`);
+
+  }
+  async exportToPdf() {
+    // Get the HTML table element by ID
+    const tableElement = document.getElementById('exportTable');
+
+    if (tableElement) {
+      // Function to get all rows including those in hidden pages
+      const getAllTableRows = async () => {
+        const allRows = [];
+        const totalRows = tableElement.querySelectorAll('tbody tr');
+
+        for (let i = 0; i < totalRows.length; i++) {
+          const row = totalRows[i];
+          const rowData = Array.from(row.children).map(cell => cell.textContent);
+          allRows.push(rowData);
+        }
+
+        return allRows;
+      };
+
+      const tableHeaders = Object.keys(this.alllist[0]);
+      const tableRows = this.alllist.map(row => Object.values(row));
+
+      // Calculate dynamic widths based on content length
+      const dynamicWidths = tableHeaders.map(header => ({
+        width: 'auto',
+        height: 'auto',
+        minCellWidth: header.length * 8, // Adjust this multiplier as needed
+      }));
+
+      // Set a specific width for the last column
+      const specificWidth = [20, 20, 20, 20, 20, 20, 20];
+
+      // Combine the dynamic widths and the specific width
+      console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
+
+      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+
+      // Create the document definition
+      const documentDefinition = {
+        pageSize: 'A4',
+        pageMargins: [20, 20, 20, 20],
+        content: [
+          { text: 'Export Table', style: 'header' },
+          {
+            table: {
+              headerRows: 1,
+              widths: columnWidths,
+              body: [tableHeaders, ...tableRows],
+              layout: 'lightHorizontalLines',
             },
           },
-        };
-    
-        // Generate the PDF
-        pdfMake.createPdf(documentDefinition).download('dist.pdf');
-      } else {
-        console.error('Table element not found.');
-      }
+        ],
+        styles: {
+          header: {
+            fontSize: 12,
+            bold: true,
+            margin: [0, 0, 0, 10],
+          },
+        },
+      };
+
+      // Generate the PDF
+      pdfMake.createPdf(documentDefinition).download('dist.pdf');
+    } else {
+      console.error('Table element not found.');
     }
+  }
   getDistributors() {
-    this.distributorService.getDistributorList().subscribe(list => {
-      if(list['result']==true) {
+
+    this.formdatanew = this.farmerForm.value;
+    this.id = this.formdatanew.state;
+    this.id1 = this.formdatanew.district;
+    this.id2 = this.formdatanew.taluka;
+    this.id3 = this.formdatanew.city;
+    // this.id4 = this.formdatanew.dist_id;
+
+    var data = {
+      state: this.id,
+      district: this.id1,
+      taluka: this.id2,
+      city: this.id3,
+      // dist_id: this.id4,
+    }
+
+    this.distributorService.getDistributorList(data).subscribe(list => {
+      if (list['result'] == true) {
         this.alllist = list['data'];
         this.alllist.sort((a, b) => b.id - a.id);
       }
@@ -218,6 +247,10 @@ export class DistributorlistComponent implements OnInit {
         this.getListdata();
       });
     });
+
+    this.farmerForm.get('city').valueChanges.subscribe(val => {
+      this.getListdata();
+    });
   }
 
 
@@ -238,12 +271,12 @@ export class DistributorlistComponent implements OnInit {
       // dist_id: this.id4,
     }
 
-    this.distributorService.getDistributorList().subscribe(list => {
+    this.distributorService.getDistributorList(data).subscribe(list => {
       if (list['result'] == true) {
         this.alllist = '';
         this.alllist = list['data'];
       } else {
-        this.alllist =[];
+        this.alllist = [];
       }
 
       if (list['error'] == true) {
@@ -252,25 +285,9 @@ export class DistributorlistComponent implements OnInit {
     });
 
   }
-  getdata() {
 
-    this.distributorService.getDistributorList().subscribe(list => {
-      if (list['result'] == true) {
-        this.alllist = list['data'];
-        // console.log(this.alllist);
 
-      } else {
-        this.alllist = [];
-      }
-      
-      // this.getFarmerMeetingListdata();
 
-      // if (list['error'] == true) {
-      //   this.toastr.error("Something went wrong " + list['message']);
-      // }
-    });
-
-  }
   getDataByDist() {
     this.formdatanew = this.farmerForm.value;
     this.id = this.formdatanew.state;
@@ -287,7 +304,7 @@ export class DistributorlistComponent implements OnInit {
       // dist_id: this.id4,
     }
 
-    this.distributorService.getDistributorList().subscribe(list => {
+    this.distributorService.getDistributorList(data).subscribe(list => {
       if (list['result'] == true) {
         this.alllist = list['data'];
 
@@ -303,11 +320,11 @@ export class DistributorlistComponent implements OnInit {
       id: id
     };
 
-    this.distributorService.deleteById(obj).subscribe(res=>{
-      if (res['result']== true) {
+    this.distributorService.deleteById(obj).subscribe(res => {
+      if (res['result'] == true) {
         this.getDistributors();
       }
-     });
+    });
   }
 
   getForEdit(event) {
@@ -315,11 +332,11 @@ export class DistributorlistComponent implements OnInit {
       id: event
     };
 
-    this.distributorService.getByIdForEdit(obj).subscribe(res=>{
-      if (res['result']== true) {
-        this.router.navigate(['/admin','distributor-add'], { state: res['data'] });
+    this.distributorService.getByIdForEdit(obj).subscribe(res => {
+      if (res['result'] == true) {
+        this.router.navigate(['/admin', 'distributor-add'], { state: res['data'] });
       }
-     });
+    });
   }
 
   getForView(event) {
@@ -327,11 +344,11 @@ export class DistributorlistComponent implements OnInit {
       id: event
     };
 
-    this.distributorService.getByIdForEdit(obj).subscribe(res=>{
-      if (res['result']== true) {
-        this.router.navigate(['/admin','distributor-view'], { state: res['data'] });
+    this.distributorService.getByIdForEdit(obj).subscribe(res => {
+      if (res['result'] == true) {
+        this.router.navigate(['/admin', 'distributor-view'], { state: res['data'] });
       }
-     });
+    });
   }
 
 
@@ -340,7 +357,7 @@ export class DistributorlistComponent implements OnInit {
       id: id
     };
     if (event.target.checked) {
-      this.distributorService.unblockDistributor(obj).subscribe(res=>{
+      this.distributorService.unblockDistributor(obj).subscribe(res => {
         if (res['result']) {
           this.toastr.success('Distributor unblocked successfully!');
         } else {
@@ -348,7 +365,7 @@ export class DistributorlistComponent implements OnInit {
         }
       });
     } else {
-      this.distributorService.blockDistributor(obj).subscribe(res=>{
+      this.distributorService.blockDistributor(obj).subscribe(res => {
         if (res['result']) {
           this.toastr.success('Distributor blocked successfully!');
         } else {
@@ -359,54 +376,52 @@ export class DistributorlistComponent implements OnInit {
   }
 
 
-  
 
-  setUserPramotion(event, user_id,user_type) {
+
+  setUserPramotion(event, user_id, user_type) {
     var obj = {
       user_id: user_id,
-      user_type:user_type
+      user_type: user_type
     };
-      this.distributorService.promoteDistributor(obj).subscribe(res=>{
-        if (res['result']) {
-          this.toastr.success('Distributor promoted successfully!');
-          if (res['result']==true)
-          {
-            // setInterval(function(){
-              this.getDistributors();
-            // }, 5000);
+    this.distributorService.promoteDistributor(obj).subscribe(res => {
+      if (res['result']) {
+        this.toastr.success('Distributor promoted successfully!');
+        if (res['result'] == true) {
+          // setInterval(function(){
+          this.getDistributors();
+          // }, 5000);
 
-          }
-          
-        } else {
-          this.toastr.error(res['message']);
         }
-      });
 
-      
- 
+      } else {
+        this.toastr.error(res['message']);
+      }
+    });
+
+
+
   }
 
   demoteDistributor(event, user_id) {
     var obj = {
       user_id: user_id
     };
-      this.distributorService.demoteDistributor(obj).subscribe(res=>{
-        if (res['result']) {
-          this.toastr.success('Distributor demoted successfully!');
-          if (res['result']==true)
-          {
-            // setInterval(function(){
-                this.getDistributors();
-            // }, 8000);
-          }
-         
-        } else {
-          this.toastr.error(res['message']);
+    this.distributorService.demoteDistributor(obj).subscribe(res => {
+      if (res['result']) {
+        this.toastr.success('Distributor demoted successfully!');
+        if (res['result'] == true) {
+          // setInterval(function(){
+          this.getDistributors();
+          // }, 8000);
         }
-      });
 
-     
- 
+      } else {
+        this.toastr.error(res['message']);
+      }
+    });
+
+
+
   }
 
   showComplaints(id) {
