@@ -41,6 +41,7 @@ export class FarmerlistComponent implements OnInit {
   id1: any;
   id2: any;
   id3: any;
+  dataNew:any;
 
   distributordetailsall: any;
   id4: any;
@@ -78,8 +79,11 @@ export class FarmerlistComponent implements OnInit {
       created_disctributor_id: new FormControl('', [Validators.required]),
     });
     this.formControlValueChanges();
-
-    this.distributorService.getDistributorList().subscribe(distributordetailsall => {
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe(distributordetailsall => {
       this.distributordetailsall = distributordetailsall['data'];
     });
 

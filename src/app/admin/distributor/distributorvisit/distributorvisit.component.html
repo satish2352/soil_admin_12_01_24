@@ -11,67 +11,93 @@
                 </ul>
             </div>
         </div>
+
         <div class="row">
-            <div class="row">
-                <form [formGroup]="farmerForm">
-                    <div class="input-field col s12 m3 l3">
-                        <select class="" formControlName="state">
-                            <option value="" disabled selected>Choose State</option>
-                            <option *ngFor="let state of allstate" [value]="state.location_id">
-                                {{state.name}}</option>
-                        </select>
-                     
-                    </div>
 
-                    <div class="input-field col s12 m3 l3">
-
-                        <select class="" formControlName="district">
-                            <option value="" disabled selected>Choose District
-                            </option>
-                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
-                                {{dist.name}}</option>
-                        </select>
-                      
-                    </div>
-
-                    <div class="input-field col s12 m3 l3">
-
-                        <select class="" formControlName="taluka">
-                            <option value="" disabled selected>Choose Taluka
-                            </option>
-                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
-                                {{taluka.name}}</option>
-                        </select>
-                       
-                    </div>
-
-                    <!-- <div class="input-field col s12 m3 l3">
-
-                        <select class="" formControlName="city" (change)="getDataByCity()">
-                            <option value="" disabled selected>Choose City</option>
-                            <option *ngFor="let city of allcity" [value]="city.location_id">
-                                {{city.name}}</option>
-                        </select>
-                     
-                    </div> -->
-                   
-
-                    <div class="col s2 m2 l2">
-                        <select class="" (change)="getDataByDist($event.target.value)" >
-                            <option value="" disabled selected>Choose Distributor</option>
-                            <option *ngFor="let distributordetails of alldist" [value]="distributordetails.user_id">
-                                {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}
-                            </option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-        <div class="row">
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
+
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+                                    <form [formGroup]="farmerForm">
+                                        <div class="col s12 m12 l12">
+                                            <!-- <div class="card white"> -->
+                                            <div class="card-content white-red">
+
+                                                <div class="row">
+
+                                                    <div class="input-field col s12 m3 l3">
+                                                        <select class="" id="selectState" formControlName="state">
+                                                            <option value="" disabled selected>Choose State</option>
+                                                            <option *ngFor="let state of allstate"
+                                                                [value]="state.location_id">
+                                                                {{state.name}}</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class=""  id="selectDist" formControlName="district">
+                                                            <option value="" disabled selected>Choose District
+                                                            </option>
+                                                            <option *ngFor="let dist of alldist"
+                                                                [value]="dist.location_id">
+                                                                {{dist.name}}</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class="" id = "selectTal" formControlName="taluka">
+                                                            <option value="" disabled selected>Choose Taluka
+                                                            </option>
+                                                            <option *ngFor="let taluka of alltaluka"
+                                                                [value]="taluka.location_id">
+                                                                {{taluka.name}}</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+
+                                                        <select class="" id="selectCity" formControlName="city">
+                                                            <option value="" disabled selected>Choose City</option>
+                                                            <option *ngFor="let city of allcity"
+                                                                [value]="city.location_id">
+                                                                {{city.name}}</option>
+                                                        </select>
+
+                                                    </div>
+
+                                                    <div class="col s2 m2 l2">
+                                                        <select class="col s2 m2 l2" id="added_by" formControlName="added_by">
+                                                            <option value="" disabled selected>Choose Distributor
+                                                            </option>
+                                                            <option *ngFor="let distributordetails of alldistributor"
+                                                                [value]="distributordetails.user_id">
+                                                                {{distributordetails.fname}}
+                                                                {{distributordetails.mname}}
+                                                                {{distributordetails.lname}}
+                                                            </option>
+                                                        </select>
+
+
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- </div> -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <!-- <span style="float: right;">

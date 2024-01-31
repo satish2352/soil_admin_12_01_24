@@ -26,6 +26,7 @@ export class DistributoraddComponent implements OnInit {
   dummy: any;
   pagetitle: string;
   data1: any;
+  dataNew:any;
 
   constructor(public distributorService: DistributorService,
     public http: HttpClient,
@@ -177,7 +178,11 @@ export class DistributoraddComponent implements OnInit {
     }
   }
   getdistributor(){
-    this.distributorService.getDistributorList().subscribe((data)=>{
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe((data)=>{
      this.data1= data['data'];
      console.log(this.data1);
      setTimeout(() => {

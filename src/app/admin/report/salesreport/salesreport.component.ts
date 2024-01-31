@@ -32,6 +32,8 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
   totalorder: any;
   data: any;
   selectedDistributor: any;
+  dataNew:any;
+
   constructor(private distributorService: DistributorService, private os: ReportService, private router: Router, private toastr: ToastrService, private fb: FormBuilder,) { }
   ngAfterViewInit(): void {
 
@@ -43,7 +45,11 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
       dateto: new FormControl('', [Validators.required]),
       dist_id: new FormControl('',[])
     });
-    this.distributorService.getDistributorList().subscribe(distributordetailsall => {
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe(distributordetailsall => {
       this.distributordetailsall = distributordetailsall['data'];
     });
     this.getOrders();
@@ -56,7 +62,12 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
 
   }
   getdistributor() {
-    this.distributorService.getDistributorList().subscribe((data) => {
+
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe((data) => {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);
     })

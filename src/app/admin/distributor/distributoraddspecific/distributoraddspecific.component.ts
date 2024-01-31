@@ -31,6 +31,7 @@ export class DistributoraddspecificComponent implements OnInit {
   distributors: any;
   fsc_list_all: any;
   data1: any;
+  dataNew:any;
 
   constructor(public distributorService: DistributorService,
     public http: HttpClient,
@@ -249,7 +250,10 @@ export class DistributoraddspecificComponent implements OnInit {
     }
   }
   getdistributor(){
-    this.distributorService.getDistributorList().subscribe((data)=>{
+    var dataNew = {
+   
+    }
+    this.distributorService.getDistributorList(dataNew).subscribe((data)=>{
      this.data1= data['data'];
      console.log(this.data1);
      setTimeout(() => {

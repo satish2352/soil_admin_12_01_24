@@ -42,6 +42,7 @@ export class CareerdistributorlistComponent implements OnInit {
   data: any = '';
   distributor: any;
   filteredDistributor: any;
+  dataNew:any;
   constructor(public webService: WebService,
     public router: Router,
     private toastr: ToastrService,
@@ -399,7 +400,11 @@ export class CareerdistributorlistComponent implements OnInit {
   }
 
   fetchDistributorList(): void {
-    this.distributorService.getDistributorList().subscribe(
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe(
       (response) => {
         this.distributor = response['data'];
         this.filteredDistributor = this.distributor; // Initialize the filtered list

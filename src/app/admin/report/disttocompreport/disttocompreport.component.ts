@@ -28,6 +28,7 @@ export class DisttocompreportComponent implements OnInit {
   dateto: any;
   totalorder: any;
   distributordetailsall: any;
+  dataNew:any;
 
   constructor(private os: ReportService,private distributorService:DistributorService, private router: Router, private toastr: ToastrService, private fb: FormBuilder,) { }
 
@@ -119,7 +120,10 @@ export class DisttocompreportComponent implements OnInit {
     this.router.navigate(['/admin', 'viewreportsales', order_no, created_disctributor_id]);
   }
   getdistributor() {
-    this.distributorService.getDistributorList().subscribe((data) => {
+    var dataNew = {
+     
+    }
+    this.distributorService.getDistributorList(dataNew).subscribe((data) => {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);
     })

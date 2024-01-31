@@ -39,6 +39,8 @@ export class FarmermeetinglistComponent implements OnInit {
   data: any = '';
   data1: any;
   distributordetailsall: any;
+  dataNew:any;
+
   constructor(public distributorService: DistributorService,
     public router: Router,
     private toastr: ToastrService,
@@ -303,7 +305,11 @@ export class FarmermeetinglistComponent implements OnInit {
 
   }
   getdistributor() {
-    this.distributorService.getDistributorList().subscribe((data) => {
+    var dataNew = {
+      
+    }
+    
+    this.distributorService.getDistributorList(dataNew).subscribe((data) => {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);
     })

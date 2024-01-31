@@ -20,6 +20,7 @@ export class PlotvisitlistComponent implements OnInit {
   allcity: any = [];
   alltaluka: any = [];
   formdatanew: any;
+  dataNew:any;
 
   id: any;
   id1: any;
@@ -58,9 +59,12 @@ export class PlotvisitlistComponent implements OnInit {
       created_disctributor_id: new FormControl('', [Validators.required]),
     });
     this.formControlValueChanges();
+    var dataNew = {
+      
+    }
+    
 
-
-    this.distributorService.getDistributorList().subscribe(distributordetailsall => {
+    this.distributorService.getDistributorList(dataNew).subscribe(distributordetailsall => {
       this.distributordetailsall = distributordetailsall['data'];
     });
 

@@ -27,6 +27,8 @@ export class DistsalesreportComponent implements OnInit {
   dateto: any;
   totalorder: any;
   distributordetailsall:any;
+  dataNew:any;
+
   constructor(private distributorService: DistributorService, private os: ReportService, private router: Router, private toastr: ToastrService, private fb: FormBuilder,) { }
 
   ngOnInit(): void {
@@ -36,8 +38,10 @@ export class DistsalesreportComponent implements OnInit {
       datefrom: new FormControl('', [Validators.required]),
       dateto: new FormControl('', [Validators.required])
     });
-
-    this.distributorService.getDistributorList().subscribe(distributordetailsall => {
+    var dataNew = {
+     
+    }
+    this.distributorService.getDistributorList(dataNew).subscribe(distributordetailsall => {
       this.distributordetailsall = distributordetailsall['data'];
     });
   }
