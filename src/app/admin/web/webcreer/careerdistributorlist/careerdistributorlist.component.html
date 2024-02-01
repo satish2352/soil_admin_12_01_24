@@ -98,7 +98,7 @@
                                                         </select>
                                                     </div> -->
                                                     <!-- your-component.component.html -->
-<!-- 
+                                                    <!-- 
                                                     <div class="input-field col s12 m3 l3">
                                                         <select class="" formControlName="created_disctributor_id">
                                                             <option value="" disabled selected>Choose Distributor
@@ -146,6 +146,7 @@
                                         <th style="white-space: nowrap">District</th>
                                         <th style="white-space: nowrap">Taluka</th>
                                         <th style="white-space: nowrap">Village</th>
+                                        <th style="white-space: nowrap">Date</th>
 
 
                                         <th style="white-space: nowrap">Action</th>
@@ -164,6 +165,17 @@
                                             <span *ngIf="listdata.new_user_type"
                                                 style="background-color: green; color:whitesmoke; text-transform: capitalize;"
                                                 class="blink_me"> &nbsp; {{listdata.new_user_type}} &nbsp;</span>
+
+
+                                            <span *ngIf="listdata.list_data_status == '0'"
+                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me">New</span>
+
+                                            <span
+                                                *ngIf="listdata.list_data_status == '1' && listdata.list_data_read == 'y' "
+                                                style="background-color: red; color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me">Seen</span>
+
                                         </td>
                                         <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
                                         <td style="white-space: nowrap"><span
@@ -174,6 +186,9 @@
                                                 style="text-transform:uppercase">{{listdata.taluka}}</span></td>
                                         <td style="white-space: nowrap"><span
                                                 style="text-transform:uppercase">{{listdata.city}}</span></td>
+
+                                        <td style="white-space: nowrap"><span>{{listdata.created_on| date:
+                                                'dd/MM/yyyy'}}</span></td>
 
                                         <td style="white-space: nowrap;">
                                             <a href="JavaScript:void(0)" class="btn-floating" title="Edit"

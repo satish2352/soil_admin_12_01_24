@@ -256,7 +256,7 @@
                                 <div class="input-field col s12 m4 l4">
                                     <select id="agency_under_distributor_id" class="validate" formControlName="created_by">
                                         <option value="" disabled selected>Choose distributor</option>
-                                        <option *ngFor="let dist of fsc_list_all" [value]="dist.id">
+                                        <option *ngFor="let dist of fsc_list_all" [value]="dist.user_id">
                                             {{dist.fname}} {{dist.mname}} {{dist.lname}}</option>
                                     </select> 
                                     <div *ngIf="submitted && f.created_by.errors" class="invalid-input">

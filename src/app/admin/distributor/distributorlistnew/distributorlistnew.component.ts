@@ -84,6 +84,11 @@ export class DistributorlistnewComponent implements OnInit {
             item.fname.toLowerCase().includes(this.searchText.toLowerCase()) ||
             item.lname.toLowerCase().includes(this.searchText.toLowerCase()) ||
             item.email.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            item.state.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            item.district.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            item.taluka.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            item.city.toLowerCase().includes(this.searchText.toLowerCase()) ||
+            item.user_type.toLowerCase().includes(this.searchText.toLowerCase()) ||
             item.phone.includes(this.searchText)
             // Add more fields as needed
         );

@@ -141,6 +141,11 @@ export class AddOrderComponent implements OnInit {
         this.bscs = res['data'];
         this.dscs = res['data'];
       }
+
+      setTimeout(()=>{
+        let elems = document.querySelectorAll('select');
+        let instances = M.FormSelect.init(elems);
+      },500);
     });
   }
 
