@@ -91,10 +91,10 @@ export class MobileappService {
     )
   }
 
-  getMobileAppHetMessegesList() {
+  getMobileAppHetMessegesList(dataNew) {
     this.token = this.getToken()
     return this.http.post(
-      `${this.urlforapi}messageview`,null)
+      `${this.urlforapi}messageview`,dataNew)
   }
 
   getMobileAppHetComplaintList() {

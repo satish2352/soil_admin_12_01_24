@@ -17,6 +17,20 @@
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
+
+                        <div class="row">
+                            <form [formGroup]="farmerForm">
+                                <div class="input-field col s12 m3 l3">
+                                    <select class="" formControlName="msg_status">
+                                        <option value="" disabled selected>Choose State</option>
+                                        <option value="0">Messege Not Replied</option>
+                                        <option value="2">Messege Replied</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+
                         <div class="nowrap">
                             <table style="font-size: small;" class="datatable responsive-table highlight"
                                 id="pagedatatable">
@@ -42,19 +56,23 @@
                                                 style="background-color: green; color:whitesmoke; text-transform: capitalize;"
                                                 class="blink_me">New</span>
 
-                                                <span *ngIf="m.msg_status == '1' && m.msg_read == 'y' "
+                                            <span *ngIf="m.msg_status == '1' && m.msg_read == 'y' "
                                                 style="background-color: red; color:whitesmoke; text-transform: capitalize;"
                                                 class="blink_me">Not Replied</span>
+
+                                            <span *ngIf="m.msg_status == '0' && m.msg_read == 'y' "
+                                                style="background-color: rgb(149, 144, 144); color:whitesmoke; text-transform: capitalize;"
+                                                class="blink_me">Seen Not Replied</span>
                                         </td>
                                         <td style="white-space: nowrap"><span>{{m.recipient_name}}</span></td>
                                         <td>{{m.subject}}</td>
                                         <td>{{m.message}}</td>
                                         <td>{{m.message}}</td>
                                         <td style="white-space: nowrap">
-                                            <a href="javaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="editMessege(m.id)"><i
-                                                    class="material-icons"
-                                                    >edit</i></a>
-                                            
+                                            <a href="javaScript:void(0)" class="btn-floating" title="Edit"
+                                                style="background-color: green;" (click)="editMessege(m.id)"><i
+                                                    class="material-icons">edit</i></a>
+
                                         </td>
                                         <!-- <td style="white-space: nowrap"><a href="javacript:void(0)">{{m.document}}</a></td> -->
                                     </tr>
