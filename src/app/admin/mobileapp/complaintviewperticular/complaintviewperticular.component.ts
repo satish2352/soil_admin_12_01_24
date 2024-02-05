@@ -22,7 +22,13 @@ export class ComplaintviewperticularComponent implements OnInit {
   alllist: any;
   listdata: any;
   formContent: FormGroup;
-  resNew:any
+  resNew: any
+
+  photoviewone = '';
+  photoviewtwo = '';
+  photoviewthree = '';
+  photoviewfour = '';
+  photoviewfive = '';
 
   constructor(
     public http: HttpClient,
@@ -55,7 +61,14 @@ export class ComplaintviewperticularComponent implements OnInit {
       this.mobileappService.GetComplaint(obj).subscribe(res => {
         this.resNew = res['data']
         if (res) {
+
+          this.photoviewone = this.resNew.document_one
+          this.photoviewtwo = this.resNew.document_two
+          this.photoviewthree = this.resNew.document_three
+          this.photoviewfour = this.resNew.document_four
+          this.photoviewfive = this.resNew.document_five
           this.formContent.patchValue({
+
             date: this.resNew.date,
             subject: this.resNew.subject,
             complaint: this.resNew.complaint,
@@ -64,6 +77,8 @@ export class ComplaintviewperticularComponent implements OnInit {
             msg: this.resNew.msg,
             id: this.resNew.id,
             msg_read: this.resNew.msg_read,
+
+
             // document_one: this.resNew.document_one
           });
           setTimeout(() => {

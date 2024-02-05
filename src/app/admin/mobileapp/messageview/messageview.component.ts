@@ -34,6 +34,11 @@ export class MessageviewComponent implements OnInit {
       msg_status: new FormControl('', [Validators.required]),
     });
     this.formControlValueChanges();
+
+    setTimeout(() => {
+      let elems = document.querySelectorAll('#msg_status');
+      let instances = M.FormSelect.init(elems);
+    }, 1000);
     
   }
 
