@@ -213,6 +213,7 @@
                                         <!-- <label>Select Distributor</label> -->
                                         <select class="" formControlName="reference_from" >
                                             <option value="" disabled selected>Reference_from</option>
+                                            <option value="0" selected>Admin</option>
                                             <option *ngFor="let distributordetails of data1" [value]="distributordetails.user_id">
                                                 {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}</option>
                                         </select>

@@ -16,6 +16,33 @@
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
+
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                                <div class="row">
+                                    <form [formGroup]="farmerForm">
+                                        <div class="col s12 m12 l12">
+                                            <div class="card-content white-red">
+                                                    <div class="col s2 m2 l2">
+                                                        <select class="col s2 m2 l2" id="created_by" formControlName="created_by">
+                                                            <option value="" disabled selected>Choose Distributor
+                                                            </option>
+                                                            <option *ngFor="let distributordetails of alldistributor"
+                                                                [value]="distributordetails.user_id">
+                                                                {{distributordetails.fname}}
+                                                                {{distributordetails.mname}}
+                                                                {{distributordetails.lname}}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col s12 m12 l12">
                                 <!-- <span style="float: right;">

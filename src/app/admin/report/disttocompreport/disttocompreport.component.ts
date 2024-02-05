@@ -38,7 +38,7 @@ export class DisttocompreportComponent implements OnInit {
     this.formContent = new FormGroup({
       datefrom: new FormControl('', [Validators.required]),
       dateto: new FormControl('', [Validators.required]),
-      dist_id:new FormControl('', [Validators.required])
+      dist_id:new FormControl('', [])
     });
     setTimeout(() => {
       let elems = document.querySelectorAll('select');

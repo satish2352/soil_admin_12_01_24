@@ -54,6 +54,7 @@ export class MessageviewComponent implements OnInit {
 
   getListdata(data) {
     this.mobileappService.getMobileAppHetMessegesList(data).subscribe(list => {
+      this.alllist = [];
       this.alllist = list['data'];
       // this.alllist.sort((a,b)=> b.id - a.id)
     });
