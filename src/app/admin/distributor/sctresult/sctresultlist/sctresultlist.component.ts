@@ -26,7 +26,9 @@ export class SctresultlistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let newval = {}
+    let newval = {
+      'dist_id':''
+    }
     this.getSctresultslist(newval);
     this.getDistributorList()
 

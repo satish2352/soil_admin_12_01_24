@@ -147,9 +147,9 @@ export class DistributorService {
     return this.http.post(`${this.urlforapi}distributortargetvideolist_distributorweb`, null);
   }
 
-  getDistributorVideoSeenList() {
+  getDistributorVideoSeenList(datanew) {
     
-    return this.http.post(`${this.urlforapi}target_video_watch_record_view_admin`, null);
+    return this.http.post(`${this.urlforapi}target_video_watch_record_view_admin`, datanew);
   }
 
   getByDistirbutorVideoIdForEdit(obj) {
