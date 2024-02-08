@@ -44,6 +44,9 @@ export class MlmlistComponent implements OnInit {
     this.mlmService.getBscUnderDSC(obj).subscribe(list => {
       if(list['result']==true) {
         this.alllist_bsc = list['data'];
+
+        $('#collapsible-body_'+id).show()
+        $('#collapsible-header_'+id).show()
       }
     });
   }
@@ -55,6 +58,8 @@ export class MlmlistComponent implements OnInit {
     this.mlmService.getFscUnderBsc(obj).subscribe(list => {
       if(list['result']==true) {
         this.alllist_fsc = list['data'];
+        $('#collapsible-body_'+id).show()
+        $('#id-body_'+id).show()
       }
     });
   }

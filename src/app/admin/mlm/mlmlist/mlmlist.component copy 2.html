@@ -1,0 +1,387 @@
+<main>
+    <div class="main-content">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <span class="page-title">
+                    SCT Structure List
+                </span>
+                <ul class="breadcrumbs">
+                    <li><a routerLink="/admin/dashboard">Home</a></li>
+                    <li class="active">SCT Structure List</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col s12 m12 l12">
+                             
+                            </div>
+                        </div>
+                        <div class="nowrap">
+                            <table style="font-size: small" class="datatable responsive-table highlight"
+                                id="pagedatatable">
+                                <thead>
+                                    <tr>
+                                        <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">DSC Name</th>
+                                        <th style="white-space: nowrap">Contact Number</th>
+                                        <th style="white-space: nowrap">State</th>
+                                        <th style="white-space: nowrap">District</th>
+                                        <th style="white-space: nowrap">Taluka</th>
+                                        <th style="white-space: nowrap">Village</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 5, currentPage: p };let i=index;"
+                                        (click)="getBscUnderDSC(listdata.user_id)">
+                                        <td>{{(5*(p-1))+(i+1)}}</td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.fname}} {{listdata.mname}}
+                                                {{listdata.lname}}</span></td>
+                                        <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.state}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.district}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.taluka}}</span></td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{listdata.city}}</span></td>
+
+
+
+
+
+
+                                    </tr>
+
+                                    <tr *ngIf="alllist_bsc!=''">
+                                        <td></td>
+                                        <td colspan="6">
+
+                                            <table style="font-size: small" class="datatable responsive-table highlight"
+                                                id="pagedatatable">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="white-space: nowrap">Sr No.</th>
+                                                        <th style="white-space: nowrap">BSC Name</th>
+                                                        <th style="white-space: nowrap">Contact Number</th>
+                                                        <th style="white-space: nowrap">State</th>
+                                                        <th style="white-space: nowrap">District</th>
+                                                        <th style="white-space: nowrap">Taluka</th>
+                                                        <th style="white-space: nowrap">Village</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor="let listdata_bsc of alllist_bsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;"
+                                                        (click)="getFscUnderBsc(listdata_bsc.user_id)">
+                                                        <td>{{(5*(p-1))+(i+1)}}</td>
+                                                        <td style="white-space: nowrap"><span
+                                                                style="text-transform:uppercase">{{listdata_bsc.fname}}
+                                                                {{listdata_bsc.mname}}
+                                                                {{listdata_bsc.lname}}</span></td>
+                                                        <td style="white-space: nowrap">
+                                                            <span>{{listdata_bsc.phone}}</span>
+                                                        </td>
+                                                        <td style="white-space: nowrap"><span
+                                                                style="text-transform:uppercase">{{listdata_bsc.state}}</span>
+                                                        </td>
+                                                        <td style="white-space: nowrap"><span
+                                                                style="text-transform:uppercase">{{listdata_bsc.district}}</span>
+                                                        </td>
+                                                        <td style="white-space: nowrap"><span
+                                                                style="text-transform:uppercase">{{listdata_bsc.taluka}}</span>
+                                                        </td>
+                                                        <td style="white-space: nowrap"><span
+                                                                style="text-transform:uppercase">{{listdata_bsc.city}}</span>
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr *ngIf="alllist_fsc!=''">
+                                                        <td></td>
+                                                        <td colspan="6">
+
+                                                            <table style="font-size: small"
+                                                                class="datatable responsive-table highlight"
+                                                                id="pagedatatable">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="white-space: nowrap">Sr No.</th>
+                                                                        <th style="white-space: nowrap">FSC Name</th>
+                                                                        <th style="white-space: nowrap">Contact Number
+                                                                        </th>
+                                                                        <th style="white-space: nowrap">State</th>
+                                                                        <th style="white-space: nowrap">District</th>
+                                                                        <th style="white-space: nowrap">Taluka</th>
+                                                                        <th style="white-space: nowrap">Village</th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                    <tr
+                                                                        *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                                                                        <td>{{(5*(p-1))+(i+1)}}</td>
+                                                                        <td style="white-space: nowrap"><span
+                                                                                style="text-transform:uppercase">{{listdata_fsc.fname}}
+                                                                                {{listdata_fsc.mname}}
+                                                                                {{listdata_fsc.lname}}</span></td>
+                                                                        <td style="white-space: nowrap">
+                                                                            <span>{{listdata_fsc.phone}}</span>
+                                                                        </td>
+                                                                        <td style="white-space: nowrap"><span
+                                                                                style="text-transform:uppercase">{{listdata_fsc.state}}</span>
+                                                                        </td>
+                                                                        <td style="white-space: nowrap"><span
+                                                                                style="text-transform:uppercase">{{listdata_fsc.district}}</span>
+                                                                        </td>
+                                                                        <td style="white-space: nowrap"><span
+                                                                                style="text-transform:uppercase">{{listdata_fsc.taluka}}</span>
+                                                                        </td>
+                                                                        <td style="white-space: nowrap"><span
+                                                                                style="text-transform:uppercase">{{listdata_fsc.city}}</span>
+                                                                        </td>
+                                                                        <td>
+
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                            <pagination-controls (pageChange)="p = $event">
+                                                            </pagination-controls>
+
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+    <ul class="collapsible"
+    *ngFor="let listdata of alllist | paginate: { itemsPerPage: 5, currentPage: p };let i=index;"
+    (click)="getBscUnderDSC(listdata.user_id)" >
+    
+    
+    <li>
+        <div class="collapsible-header"><i class="material-icons">people</i>
+
+            <table style="font-size: small" class="datatable responsive-table highlight"
+                id="pagedatatable">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap">Sr No.</th>
+                        <th style="white-space: nowrap">DSC Name</th>
+                        <th style="white-space: nowrap">Contact Number</th>
+                        <th style="white-space: nowrap">State</th>
+                        <th style="white-space: nowrap">District</th>
+                        <th style="white-space: nowrap">Taluka</th>
+                        <th style="white-space: nowrap">Village</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{(5*(p-1))+(i+1)}}</td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata.fname}}
+                                {{listdata.mname}}
+                                {{listdata.lname}}</span></td>
+                        <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata.state}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata.district}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata.taluka}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata.city}}</span>
+                        </td>
+
+
+
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
+
+
+        </div>
+        <div class="collapsible-body">
+            <ul class="collapsible popout"
+                *ngFor="let listdata_bsc of alllist_bsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;"
+                (click)="getFscUnderBsc(listdata_bsc.user_id)">
+                
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">people</i>
+
+                        <table style="font-size: small"
+                            class="datatable responsive-table highlight" id="pagedatatable">
+                            <thead>
+                                <tr>
+                                    <th style="white-space: nowrap">Sr No.</th>
+                                    <th style="white-space: nowrap">BSC Name</th>
+                                    <th style="white-space: nowrap">Contact Number</th>
+                                    <th style="white-space: nowrap">State</th>
+                                    <th style="white-space: nowrap">District</th>
+                                    <th style="white-space: nowrap">Taluka</th>
+                                    <th style="white-space: nowrap">Village</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr
+                                    *ngFor="let listdata_bsc of alllist_bsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                                    <td>{{(5*(p-1))+(i+1)}}</td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata_bsc.fname}}
+                                            {{listdata_bsc.mname}}
+                                            {{listdata_bsc.lname}}</span></td>
+                                    <td style="white-space: nowrap">
+                                        <span>{{listdata_bsc.phone}}</span>
+                                    </td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata_bsc.state}}</span>
+                                    </td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata_bsc.district}}</span>
+                                    </td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata_bsc.taluka}}</span>
+                                    </td>
+                                    <td style="white-space: nowrap"><span
+                                            style="text-transform:uppercase">{{listdata_bsc.city}}</span>
+                                    </td>
+                                    <td>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <!-- <pagination-controls (pageChange)="p = $event">
+                        </pagination-controls> -->
+
+
+
+
+                    </div>
+                    <div class="collapsible-body">
+                        <ul class="collapsible popout"
+                            *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                            <li>
+                                <div class="collapsible-header"><i
+                                        class="material-icons">people</i>
+                                    <table style="font-size: small"
+                                        class="datatable responsive-table highlight"
+                                        id="pagedatatable">
+                                        <thead>
+                                            <tr>
+                                                <th style="white-space: nowrap">Sr No.</th>
+                                                <th style="white-space: nowrap">FSC Name
+                                                </th>
+                                                <th style="white-space: nowrap">Contact
+                                                    Number
+                                                </th>
+                                                <th style="white-space: nowrap">State</th>
+                                                <th style="white-space: nowrap">District
+                                                </th>
+                                                <th style="white-space: nowrap">Taluka</th>
+                                                <th style="white-space: nowrap">Village</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                                                <td>{{(5*(p-1))+(i+1)}}</td>
+                                                <td style="white-space: nowrap"><span
+                                                        style="text-transform:uppercase">{{listdata_fsc.fname}}
+                                                        {{listdata_fsc.mname}}
+                                                        {{listdata_fsc.lname}}</span></td>
+                                                <td style="white-space: nowrap">
+                                                    <span>{{listdata_fsc.phone}}</span>
+                                                </td>
+                                                <td style="white-space: nowrap"><span
+                                                        style="text-transform:uppercase">{{listdata_fsc.state}}</span>
+                                                </td>
+                                                <td style="white-space: nowrap"><span
+                                                        style="text-transform:uppercase">{{listdata_fsc.district}}</span>
+                                                </td>
+                                                <td style="white-space: nowrap"><span
+                                                        style="text-transform:uppercase">{{listdata_fsc.taluka}}</span>
+                                                </td>
+                                                <td style="white-space: nowrap"><span
+                                                        style="text-transform:uppercase">{{listdata_fsc.city}}</span>
+                                                </td>
+                                                <td>
+
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- <pagination-controls (pageChange)="p = $event">
+                                    </pagination-controls> -->
+
+                                </div>
+                                <div class="collapsible-body"><span>Lorem ipsum dolor sit
+                                        amet.</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
