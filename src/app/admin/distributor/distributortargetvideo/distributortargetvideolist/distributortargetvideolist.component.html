@@ -38,8 +38,8 @@
                             <tbody>
                                 <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
                                     <td>{{(10*(p-1))+(i+1)}}</td>
-                                    <td><span style="text-transform:uppercase">{{listdata.dfname}} {{listdata.dmname}}
-                                            {{listdata.dlname}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.fname}} {{listdata.mname}}
+                                            {{listdata.lname}}</span></td>
                                     <td><span style="text-transform:uppercase">{{listdata.date}}</span></td>
                                     <td><span style="text-transform:uppercase">{{listdata.title}}</span></td>
                                     <!-- <td><span style="text-transform:uppercase">{{listdata.description}}</span></td> -->

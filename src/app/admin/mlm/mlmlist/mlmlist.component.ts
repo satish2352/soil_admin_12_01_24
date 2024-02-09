@@ -20,6 +20,11 @@ export class MlmlistComponent implements OnInit {
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
+    // $('.collapsible').collapsible();
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('.collapsible');
+      var instances = M.Collapsible.init(elems);
+    });
     this.getDistributors();
 
 
@@ -37,29 +42,33 @@ export class MlmlistComponent implements OnInit {
     });
   }
 
-  getBscUnderDSC(id) {
+  getBscUnderDSC(id,user_id) {
+alert(id)
     var obj={
-      'added_by':id
+      'added_by':user_id
     }
     this.mlmService.getBscUnderDSC(obj).subscribe(list => {
       if(list['result']==true) {
         this.alllist_bsc = list['data'];
+       
+        // $('#collapsible_header_dsc_'+id).show()
+        $('.collapsible_body_bsc_'+id).show()
+        $('.collapsible_body_bsc_'+id).show()
 
-        $('#collapsible-body_'+id).show()
-        $('#collapsible-header_'+id).show()
+        
       }
     });
   }
 
-  getFscUnderBsc(id) {
+  getFscUnderBsc(id,user_id) {
     var obj={
-      'added_by':id
+      'added_by':user_id
     }
     this.mlmService.getFscUnderBsc(obj).subscribe(list => {
       if(list['result']==true) {
         this.alllist_fsc = list['data'];
-        $('#collapsible-body_'+id).show()
-        $('#id-body_'+id).show()
+        // $('#collapsible_header_bsc_'+id).show()
+        $('#collapsible_body_fsc_'+id).show()
       }
     });
   }
