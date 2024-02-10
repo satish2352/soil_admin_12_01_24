@@ -2,26 +2,20 @@
     <div class="main-content">
         <div class="row">
             <div class="col s12 m12 l12">
-                <span class="page-title">
-                    SCT Structure List
-                </span>
+                <span class="page-title">SCT Structure List</span>
                 <ul class="breadcrumbs">
                     <li><a routerLink="/admin/dashboard">Home</a></li>
-                    <li class="active">SCT Structure List</li>
+                    <li class="active">SCT Structure List (Click to view details)</li>
                 </ul>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row card">
             <div class="col s12 m12 l12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-
-                            </div>
-                        </div>
-                        <div class="nowrap">
+                <ul class="collapsible">
+                    <li
+                        *ngFor="let lisspanata of alllist  | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                        <div class="collapsible-header" (click)="getBscUnderDSC(lisspanata.user_id)">
                             <table style="font-size: small" class="datatable responsive-table highlight"
                                 id="pagedatatable">
                                 <thead>
@@ -33,119 +27,144 @@
                                         <th style="white-space: nowrap">District</th>
                                         <th style="white-space: nowrap">Taluka</th>
                                         <th style="white-space: nowrap">Village</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let list_all_dsc of alllist | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
-
-                                        <ul class="collapsible" data-collapsible="accordion">
-                                            <li id="collapsible_header_dsc_{{list_all_dsc.id}}"
-                                                (click)="getBscUnderDSC(list_all_dsc.id,list_all_dsc.user_id)">
-                                                <div class="collapsible-header">
-                                                    <span
-                                                        style="background-color: rgb(9, 233, 9); color:whitesmoke; text-transform: capitalize;"
-                                                        class="blink_me">DSC</span>
-                                                    <span>{{(5*(p-1))+(i+1)}}</span>
-                                                    <span style="white-space: nowrap"><span
-                                                            style="text-transform:uppercase">{{list_all_dsc.fname}}
-                                                            {{list_all_dsc.mname}}
-                                                            {{list_all_dsc.lname}}</span></span>
-                                                    <span
-                                                        style="white-space: nowrap"><span>{{list_all_dsc.phone}}</span></span>
-                                                    <span style="white-space: nowrap"><span
-                                                            style="text-transform:uppercase">{{list_all_dsc.state}}</span>
-                                                    </span>
-                                                    <span style="white-space: nowrap"><span
-                                                            style="text-transform:uppercase">{{list_all_dsc.district}}</span>
-                                                    </span>
-                                                    <span style="white-space: nowrap"><span
-                                                            style="text-transform:uppercase">{{list_all_dsc.taluka}}</span>
-                                                    </span>
-                                                    <span style="white-space: nowrap"><span
-                                                            style="text-transform:uppercase">{{list_all_dsc.city}}</span>
-                                                    </span>
-                                                </div>
-                                                <div class="collapsible-body"
-                                                    >
-                                                    <ul class="collapsible collapsible_body_bsc_{{list_all_dsc.id}}" id="">
-                                                        <li
-                                                            *ngFor="let lisspanata_bsc of alllist_bsc" class="collapsible_body_bsc_{{list_all_dsc.id}}">
-
-                                                            <div class="collapsible-header"
-                                                                
-                                                                (click)="getFscUnderBsc(lisspanata_bsc.id,lisspanata_bsc.user_id)">
-                                                                <span
-                                                                    style="background-color: rgb(131, 158, 131); color:whitesmoke; text-transform: capitalize;"
-                                                                    class="blink_me">BSC</span>
-                                                                <span>{{(5*(p-1))+(i+1)}}</span>
-                                                                <span style="white-space: nowrap"><span
-                                                                        style="text-transform:uppercase">{{lisspanata_bsc.fname}}
-                                                                        {{lisspanata_bsc.mname}}
-                                                                        {{lisspanata_bsc.lname}}</span></span>
-                                                                <span style="white-space: nowrap">
-                                                                    <span>{{lisspanata_bsc.phone}}</span>
-                                                                </span>
-                                                                <span style="white-space: nowrap"><span
-                                                                        style="text-transform:uppercase">{{lisspanata_bsc.state}}</span>
-                                                                </span>
-                                                                <span style="white-space: nowrap"><span
-                                                                        style="text-transform:uppercase">{{lisspanata_bsc.district}}</span>
-                                                                </span>
-                                                                <span style="white-space: nowrap"><span
-                                                                        style="text-transform:uppercase">{{lisspanata_bsc.taluka}}</span>
-                                                                </span>
-                                                                <span style="white-space: nowrap"><span
-                                                                        style="text-transform:uppercase">{{lisspanata_bsc.city}}</span>
-                                                                </span>
-                                                            </div>
-                                                            <div class="collapsible-body"
-                                                                id="collapsible_body_fsc_{{lisspanata_bsc.user_id}}">
-                                                                <ul class="collapsible">
-                                                                    <li
-                                                                        *ngFor="let lisspanata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
-                                                                        <div class="collapsible-header">
-                                                                            <span
-                                                                                style="background-color: rgb(38, 45, 38); color:whitesmoke; text-transform: capitalize;"
-                                                                                class="blink_me">FSC</span>
-                                                                            <span>{{(5*(p-1))+(i+1)}}</span>
-                                                                            <span style="white-space: nowrap"><span
-                                                                                    style="text-transform:uppercase">{{lisspanata_fsc.fname}}
-                                                                                    {{lisspanata_fsc.mname}}
-                                                                                    {{lisspanata_fsc.lname}}</span></span>
-                                                                            <span style="white-space: nowrap">
-                                                                                <span>{{lisspanata_fsc.phone}}</span>
-                                                                            </span>
-                                                                            <span style="white-space: nowrap"><span
-                                                                                    style="text-transform:uppercase">{{lisspanata_fsc.state}}</span>
-                                                                            </span>
-                                                                            <span style="white-space: nowrap"><span
-                                                                                    style="text-transform:uppercase">{{lisspanata_fsc.district}}</span>
-                                                                            </span>
-                                                                            <span style="white-space: nowrap"><span
-                                                                                    style="text-transform:uppercase">{{lisspanata_fsc.taluka}}</span>
-                                                                            </span>
-                                                                            <span style="white-space: nowrap"><span
-                                                                                    style="text-transform:uppercase">{{lisspanata_fsc.city}}</span>
-                                                                            </span>
-
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                    <tr>
+                                        <td>{{(5*(p-1))+(i+1)}}</td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{lisspanata.fname}}
+                                                {{lisspanata.mname}}
+                                                {{lisspanata.lname}}</span></td>
+                                        <td style="white-space: nowrap">
+                                            <span>{{lisspanata.phone}}</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{lisspanata.state}}</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{lisspanata.district}}</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{lisspanata.taluka}}</span>
+                                        </td>
+                                        <td style="white-space: nowrap"><span
+                                                style="text-transform:uppercase">{{lisspanata.city}}</span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
                         </div>
-                    </div>
-                </div>
+                        <div class="collapsible-body">
+                            <ul class="collapsible">
+                                <li
+                                   >
+                                    <div class="collapsible-header modal-trigger" data-target="modal1"
+                                        >
+                                        <table style="font-size: small" class="datatable responsive-table highlight"
+                                            id="pagedatatable">
+                                            <thead>
+                                                <tr>
+                                                    <th style="white-space: nowrap">Sr No.</th>
+                                                    <th style="white-space: nowrap">BSC Name</th>
+                                                    <th style="white-space: nowrap">Contact Number
+                                                    </th>
+                                                    <th style="white-space: nowrap">State</th>
+                                                    <th style="white-space: nowrap">District</th>
+                                                    <th style="white-space: nowrap">Taluka</th>
+                                                    <th style="white-space: nowrap">Village</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr  *ngFor="let lisspanata_bsc of alllist_bsc  | paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="getFscUnderBsc(lisspanata_bsc.user_id)">
+                                                    <td>{{(5*(p-1))+(i+1)}}</td>
+                                                    <td style="white-space: nowrap"><span
+                                                            style="text-transform:uppercase">{{lisspanata_bsc.fname}}
+                                                            {{lisspanata_bsc.mname}}
+                                                            {{lisspanata_bsc.lname}}</span></td>
+                                                    <td style="white-space: nowrap">
+                                                        <span>{{lisspanata_bsc.phone}}</span>
+                                                    </td>
+                                                    <td style="white-space: nowrap"><span
+                                                            style="text-transform:uppercase">{{lisspanata_bsc.state}}</span>
+                                                    </td>
+                                                    <td style="white-space: nowrap"><span
+                                                            style="text-transform:uppercase">{{lisspanata_bsc.district}}</span>
+                                                    </td>
+                                                    <td style="white-space: nowrap"><span
+                                                            style="text-transform:uppercase">{{lisspanata_bsc.taluka}}</span>
+                                                    </td>
+                                                    <td style="white-space: nowrap"><span
+                                                            style="text-transform:uppercase">{{lisspanata_bsc.city}}</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="collapsible-body">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <pagination-controls (pageChange)="p = $event">
+                    </pagination-controls>
+                </ul>
             </div>
         </div>
     </div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>FSC List</h4>
+            <table style="font-size: small" class="datatable responsive-table highlight" id="pagedatatable">
+                <thead>
+                    <tr>
+                        <th style="white-space: nowrap">Sr No.</th>
+                        <th style="white-space: nowrap">DSC Name</th>
+                        <th style="white-space: nowrap">Contact Number</th>
+                        <th style="white-space: nowrap">State</th>
+                        <th style="white-space: nowrap">District</th>
+                        <th style="white-space: nowrap">Taluka</th>
+                        <th style="white-space: nowrap">Village</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
+                        <td>{{(5*(p-1))+(i+1)}}</td>
+                        <td style="white-space: nowrap"><span style="text-transform:uppercase">{{listdata_fsc.fname}}
+                                {{listdata_fsc.mname}}
+                                {{listdata_fsc.lname}}</span></td>
+                        <td style="white-space: nowrap">
+                            <span>{{listdata_fsc.phone}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata_fsc.state}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata_fsc.district}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata_fsc.taluka}}</span>
+                        </td>
+                        <td style="white-space: nowrap"><span
+                                style="text-transform:uppercase">{{listdata_fsc.city}}</span>
+                        </td>
+                        <td>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <pagination-controls (pageChange)="paginationfsc = $event">
+            </pagination-controls>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-light btn">ok</a>
+        </div>
+    </div>
+
 </main>
