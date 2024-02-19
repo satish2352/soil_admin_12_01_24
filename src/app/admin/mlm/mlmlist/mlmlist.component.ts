@@ -102,6 +102,22 @@ export class MlmlistComponent implements OnInit {
     });
   }
 
+
+  getExcelReport() {
+    var obj = {
+      id: event
+    };
+
+    this.mlmService.getExcelSCTStrucutr().subscribe(res => {
+      if (res['result'] == true) {
+        const fileUrl = res['data'];
+        var preview = document.getElementById("hiddenLink"); //getElementById instead of querySelectorAll
+        preview.setAttribute("href", fileUrl);
+        document.getElementById("hiddenLink").click();
+      }
+    });
+  }
+
   getForView(event) {
     var obj = {
       id: event

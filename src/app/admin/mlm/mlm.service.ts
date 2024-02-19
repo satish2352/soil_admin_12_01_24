@@ -64,4 +64,9 @@ export class MlmService {
     return this.http.post(`${this.urlforapi}unblock_distributor`, obj);
   }
 
+  getExcelSCTStrucutr() {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}getSctStructure`, null);
+  }
+
 }
