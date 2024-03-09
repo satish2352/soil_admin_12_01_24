@@ -309,6 +309,24 @@ export class FarmerlistComponent implements OnInit {
     const tableElement = document.getElementById('exportTable');
   
     if (tableElement) {
+
+      const tableHeaders = [  
+      "Farm Name",
+      "Dist First Name",
+      // "Dist Middle Name",
+      // "Dist Last  Name",
+      "Aadhar Card",
+      "Email",
+      "Phone",
+      "State",
+      "District",
+      "Taluka",
+      "City",
+      // "Address",
+      // "Pincode",
+      // "Crop",
+      ];
+
       // Function to get all rows including those in hidden pages
       const getAllTableRows = async () => {
         const allRows = [];
@@ -317,15 +335,18 @@ export class FarmerlistComponent implements OnInit {
         for (let i = 0; i < totalRows.length; i++) {
           const row = totalRows[i];
           const rowData = Array.from(row.children).map(cell => cell.textContent);
+        
           allRows.push(rowData);
         }
-  
+        
         return allRows;
       };
   
-      const tableHeaders = Object.keys(this.allfarmerlist[0]);
+      // const tableHeaders = Object.keys(this.allfarmerlist[0]);
       const tableRows = this.allfarmerlist.map(row => Object.values(row));
-  
+      const specificData = tableRows.map(row => [row[1], row[4]+" "+row[5]+" "+row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13]]);
+        // , row[15]]); // For example, extracting data from columns 1, 3, and 6
+      console.log(tableRows);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
@@ -338,19 +359,22 @@ export class FarmerlistComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      // Adjust width for specific columns
+      const columnWidths = ['auto', 'auto' ,'auto', 100, 'auto', 'auto', 'auto', 'auto', 'auto']; // Adjust width for column 3 (index 2) as 100
+  
   
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
         pageMargins: [20, 20, 20, 20],
+        pageOrientation: 'landscape', // Set layout to landscape
         content: [
           { text: 'Export Table', style: 'header' },
           {
             table: {
               headerRows: 1,
-              widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              widths: columnWidths, // Set width for each column
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },
@@ -370,5 +394,7 @@ export class FarmerlistComponent implements OnInit {
       console.error('Table element not found.');
     }
   }
+
+
 
 }
