@@ -369,7 +369,7 @@ export class FarmerlistComponent implements OnInit {
         pageMargins: [20, 20, 20, 20],
         pageOrientation: 'landscape', // Set layout to landscape
         content: [
-          { text: 'Export Table', style: 'header' },
+          { text: 'Farmer List', style: 'header' },
           {
             table: {
               headerRows: 1,
