@@ -100,7 +100,7 @@ export class DistributorviewComponent implements OnInit {
         // exp_in_agricultural: this.editdata.exp_in_agricultural,
         other_distributorship: '0',
         // other_distributorship: this.editdata.other_distributorship,
-        reference_from: this.editdata.reference_from,
+        reference_from:    this.editdata.refname+" "+this.editdata.remname+" "+this.editdata.relname,
         shop_location: this.editdata.shop_location,
         password: this.editdata.password,
         user_id: this.editdata.user_id,

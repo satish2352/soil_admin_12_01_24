@@ -210,7 +210,19 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
         return allRows;
       };
 
-      const tableHeaders = Object.keys(this.orders[0]);
+      const tableHeaders = [  
+        "Distributor Name",
+        "Order No",
+        "Order Date",
+        "Order Created By",
+        "Amount",
+        "Diaptch to Dist",
+        "Forward To Warehouse",
+        "Order Dispatched",
+        "Payment Mode",
+        "District",
+      
+        ];
       const tableRows = this.orders.map(row => Object.values(row));
 
       // Calculate dynamic widths based on content length
@@ -221,23 +233,27 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
 
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-
+      const specificData = tableRows.map(row => [row[23].toUpperCase()+" "+row[24].toUpperCase()+" "+row[25].toUpperCase(),row[1], row[2], row[3], row[4], row[5], row[13], row[15].toUpperCase(), row[21].toUpperCase(), row[22]]);
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+     // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+     const columnWidths = ['auto','auto', 'auto' ,'auto', 'auto', 'auto', 'auto', 'auto', 'auto' , 'auto']; // Adjust width for column 3 (index 2) as 100
+  
+  
 
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
         pageMargins: [20, 20, 20, 20],
+        pageOrientation: 'landscape', // Set layout to landscape
         content: [
           { text: 'Export Table', style: 'header' },
           {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },

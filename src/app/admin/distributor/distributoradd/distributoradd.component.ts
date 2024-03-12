@@ -179,7 +179,6 @@ export class DistributoraddComponent implements OnInit {
   }
   getdistributor(){
     var dataNew = {
-      
     }
     
     this.distributorService.getDistributorList(dataNew).subscribe((data)=>{
