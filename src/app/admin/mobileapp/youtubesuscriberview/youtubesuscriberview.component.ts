@@ -68,6 +68,8 @@ export class YoutubesuscriberviewComponent implements OnInit {
     saveAs(data, `Youtube_${dateString}.xlsx`);
 
   }
+  
+
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
@@ -86,10 +88,17 @@ export class YoutubesuscriberviewComponent implements OnInit {
   
         return allRows;
       };
+      const tableHeaders = [
+        "Name",
+        "Email",
+        "Mobile",
+        "Address",
+        
+      ];
   
-      const tableHeaders = Object.keys(this.alllist[0]);
+      // const tableHeaders = Object.keys(this.alllist[0]);
       const tableRows = this.alllist.map(row => Object.values(row));
-  
+      const specificData = tableRows.map(row => [row[1], row[2], row[3], row[4]]);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
@@ -102,11 +111,12 @@ export class YoutubesuscriberviewComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-  
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -114,7 +124,7 @@ export class YoutubesuscriberviewComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },

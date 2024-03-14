@@ -311,8 +311,8 @@ export class FarmerlistComponent implements OnInit {
     if (tableElement) {
 
       const tableHeaders = [  
-      "Farm Name",
-      "Dist First Name",
+      "Farmer  Name",
+      "Distributor Name",
       // "Dist Middle Name",
       // "Dist Last  Name",
       "Aadhar Card",

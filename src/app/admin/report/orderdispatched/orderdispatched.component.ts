@@ -117,8 +117,67 @@ async exportToPdf() {
       return allRows;
     };
 
-    const tableHeaders = Object.keys(this.orders[0]);
+    
+
+
+    // "id": 1,
+    // "order_no": "202402201708419317",
+    // "order_date": "2024-02-20",
+    // "order_created_by": "bsc",
+    // "created_disctributor_id": 73,
+    // "order_cerated_for": "distributor",
+    // "order_cerated_for_id": 78,
+    // "created_disctributor_amount": "595.0",
+    // "dispatched_to_created_disctributor_by_warehouse": "no",
+    // "forwarded_fsc_amount": null,
+    // "forwarded_bsc_id": 0,
+    // "forwarded_bsc_amount": "105",
+    // "dispatched_to_forwarded_bsc_by_warehouse": "no",
+    // "forwarded_dsc_id": 70,
+    // "forwarded_dsc_amount": null,
+    // "dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
+    // "account_approved": "yes",
+    // "forward_to_warehouse": "yes",
+    // "remark": null,
+    // "entry_by": "distributor",
+    // "order_dispatched": "yes",
+    // "order_dispatched_date": "2024-02-20",
+    // "is_order_confirm_from_bsc": "yes",
+    // "date_confirm_from_bsc": "2024-02-20 08:56:09",
+    // "is_order_confirm_from_dsc": "yes",
+    // "date_confirm_from_dsc": "0000-00-00 00:00:00",
+    // "is_order_confirm_from_dist": "no",
+    // "date_confirm_from_dist": "0000-00-00 00:00:00",
+    // "is_order_final_confirm": "yes",
+    // "payment_mode": "online",
+    // "address_one": "adress 1",
+    // "address_two": "address teo",
+    // "is_deleted": "no",
+    // "created_at": "2024-02-20 08:55:17",
+    // "updated_at": "2024-02-20 08:56:09",
+    // "fname": "sarangi",
+    // "mname": "manohar",
+    // "lname": "mane"
+
+      const tableHeaders = [  
+      "Farm Name",
+      "Dist First Name",
+      // "Dist Middle Name",
+      // "Dist Last  Name",
+      "Aadhar Card",
+      "Email",
+      "Phone",
+      "State",
+      "District",
+      "Taluka",
+      "City",
+      // "Address",
+      // "Pincode",
+      // "Crop",
+      ];
     const tableRows = this.orders.map(row => Object.values(row));
+    const specificData = tableRows.map(row => [row[1], row[4]+" "+row[5]+" "+row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13]]);
+        
 
     // Calculate dynamic widths based on content length
     const dynamicWidths = tableHeaders.map(header => ({
@@ -138,13 +197,14 @@ async exportToPdf() {
     const documentDefinition = {
       pageSize: 'A4',
       pageMargins: [20, 20, 20, 20],
+      pageOrientation: 'landscape', // Set layout to landscape
       content: [
         { text: 'Export Table', style: 'header' },
         {
           table: {
             headerRows: 1,
             widths: columnWidths,
-            body: [tableHeaders, ...tableRows],
+            body: [tableHeaders, ...specificData],
             layout: 'lightHorizontalLines',
           },
         },

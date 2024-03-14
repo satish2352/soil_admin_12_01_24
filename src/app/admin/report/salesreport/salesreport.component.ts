@@ -191,6 +191,32 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
     saveAs(data, `sales_${dateString}.xlsx`);
 
   }
+//   0"id": 4,
+//   1"order_no": "202402201708419635",
+//   2"order_date": "2024-02-20",
+// 3 "order_created_by": "dsc",
+//  4"created_disctributor_id": 70,
+//   5"created_disctributor_amount": "1722.0",
+//  6 "dispatched_to_created_disctributor_by_warehouse": "no",
+//  7 "forwarded_bsc_id": 0,
+//  8 "forwarded_bsc_amount": null,
+//  9 "dispatched_to_forwarded_bsc_by_warehouse": "no",
+//  10 "forwarded_dsc_id": 0,
+//  11 "forwarded_dsc_amount": "126",
+//  12 "dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
+//13"account_approved": "yes",
+//  14 "forward_to_warehouse": "no",
+//  15 "entry_by": "distributor",
+//   16"order_dispatched": "no",
+//   17"order_dispatched_date": null,
+//  18 "is_deleted": "no",
+//  19 "created_at": "2024-02-20 09:00:35",
+//   20"updated_at": "2024-02-20 09:00:46",
+//   21"payment_mode": "cod",
+//   22"district": "Nendwan bk",
+//   23"fname": "rohini",
+//   24"mname": "Mahesh",
+//   25"lname": "gaikwad"
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
@@ -209,22 +235,19 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
 
         return allRows;
       };
-
       const tableHeaders = [  
-        "Distributor Name",
         "Order No",
-        "Order Date",
-        "Order Created By",
+        "From",
+  
+        "Date",
         "Amount",
-        "Diaptch to Dist",
-        "Forward To Warehouse",
-        "Order Dispatched",
-        "Payment Mode",
-        "District",
-      
-        ];
-      const tableRows = this.orders.map(row => Object.values(row));
 
+        "Payment Mode",
+   
+        ];
+
+      const tableRows = this.orders.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[1], row[23]+" "+row[24]+" "+row[25], row[2], row[5], row[21]]);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
@@ -233,12 +256,12 @@ export class SalesreportComponent implements OnInit,AfterViewInit {
 
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-      const specificData = tableRows.map(row => [row[23].toUpperCase()+" "+row[24].toUpperCase()+" "+row[25].toUpperCase(),row[1], row[2], row[3], row[4], row[5], row[13], row[15].toUpperCase(), row[21].toUpperCase(), row[22]]);
+      // const specificData = tableRows.map(row => [row[23].toUpperCase()+" "+row[24].toUpperCase()+" "+row[25].toUpperCase(),row[1], row[2], row[3], row[4], row[5], row[13], row[15].toUpperCase(), row[21].toUpperCase(), row[22]]);
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-     const columnWidths = ['auto','auto', 'auto' ,'auto', 'auto', 'auto', 'auto', 'auto', 'auto' , 'auto']; // Adjust width for column 3 (index 2) as 100
+     const columnWidths = ['auto','auto', 'auto' ,'auto', 'auto']; // Adjust width for column 3 (index 2) as 100
   
   
 
