@@ -39,7 +39,7 @@ export class FarmermeetinglistComponent implements OnInit {
   data: any = '';
   data1: any;
   distributordetailsall: any;
-  dataNew:any;
+  dataNew: any;
 
   constructor(public distributorService: DistributorService,
     public router: Router,
@@ -49,11 +49,11 @@ export class FarmermeetinglistComponent implements OnInit {
   ngOnInit(): void {
 
     this.getdistributor();
-      setTimeout(() => {
-        let elems = document.querySelectorAll('select');
-        let instances = M.FormSelect.init(elems);
-      }, 1000);
-      
+    setTimeout(() => {
+      let elems = document.querySelectorAll('select');
+      let instances = M.FormSelect.init(elems);
+    }, 1000);
+
     this.getdata();
 
 
@@ -126,7 +126,7 @@ export class FarmermeetinglistComponent implements OnInit {
       } else {
         this.alllist = [];
       }
-      
+
       // this.getFarmerMeetingListdata();
 
       // if (list['error'] == true) {
@@ -223,9 +223,55 @@ export class FarmermeetinglistComponent implements OnInit {
 
         return allRows;
       };
-
-      const tableHeaders = Object.keys(this.alllist[0]);
+      //   "id": 6,
+      //  1 "tbl_farmer_meeting_id": 6,
+      //  2 "date": "2024-03-04",
+      //  3 "meeting_place": "akole",
+      //  4 "farmer_id": "241,241,241",
+      //  5 "meeting_title": "testing going",
+      //  6 "meeting_description": "meeting",
+      //   "created_by": 240,
+      //  8 "photo_one": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
+      //  9 "photo_one_lat": null,
+      //  10 "photo_one_long": null,
+      //  11 "photo_two": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
+      //   "photo_two_lat": null,
+      //   "photo_two_long": null,
+      //   14"photo_three": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
+      //   "photo_three_lat": null,
+      //   "photo_three_long": null,
+      //  17 "photo_four": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
+      //   "photo_four_lat": null,
+      //   "photo_four_long": null,
+      //  20 "photo_five": null,
+      //   "photo_five_lat": null,
+      //   "photo_five_long": null,
+      //   "latitude": null,
+      //   "longitude": null,
+      //   "is_deleted": "no",
+      //  26 "created_at": "2024-03-04 09:04:46",
+      //  27 "updated_at": "2024-03-04 09:04:46",
+      //   28"dfname": "ANIKET",
+      //   29"dmname": "BALKRISHNA",
+      //   30"dlname": "KASAR",
+      //   31"presentFarmerFormeeting": "1)anil Manoj ghule"
+      const tableHeaders = [
+        "Dist Name",  //789
+        "Date",  //2
+        "Present Farmer",  //31
+        "	Meeting Title", //5
+        "Points  Discuss",//6
+        "	Meeting Photo 1", //8
+        "	Meeting Photo 2",//11
+        "	Meeting Photo 3",//14
+        "	Meeting Photo 4",//17
+      ];
       const tableRows = this.alllist.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[28] + " " + row[29] + " " + row[30], row[2], row[31], , row[5], row[6], row[8], row[11], , row[17], row[17],]);
+
+
+      // const tableHeaders = Object.keys(this.alllist[0]);
+      // const tableRows = this.alllist.map(row => Object.values(row));
 
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
@@ -239,11 +285,12 @@ export class FarmermeetinglistComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', , 'auto', 'auto',];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape',
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -251,7 +298,7 @@ export class FarmermeetinglistComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },
@@ -295,7 +342,7 @@ export class FarmermeetinglistComponent implements OnInit {
         this.alllist = '';
         this.alllist = list['data'];
       } else {
-        this.alllist =[];
+        this.alllist = [];
       }
 
       if (list['error'] == true) {
@@ -306,9 +353,9 @@ export class FarmermeetinglistComponent implements OnInit {
   }
   getdistributor() {
     var dataNew = {
-      
+
     }
-    
+
     this.distributorService.getDistributorList(dataNew).subscribe((data) => {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);

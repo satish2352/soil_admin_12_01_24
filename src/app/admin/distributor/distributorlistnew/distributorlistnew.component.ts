@@ -144,9 +144,24 @@ export class DistributorlistnewComponent implements OnInit {
     
           return allRows;
         };
-    
-        const tableHeaders = Object.keys(this.alllist[0]);
+
+        const tableHeaders = [
+          "Name",
+          "User Name / Password",
+          "Contact Number",
+          "Date", 
+          "State",
+          "District",
+          "Taluka",
+          "Village",
+          "User Type"   
+  
+        ];
         const tableRows = this.alllist.map(row => Object.values(row));
+        const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + " " + row[17], row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
+    
+        // const tableHeaders = Object.keys(this.alllist[0]);
+        // const tableRows = this.alllist.map(row => Object.values(row));
     
         // Calculate dynamic widths based on content length
         const dynamicWidths = tableHeaders.map(header => ({
@@ -161,11 +176,12 @@ export class DistributorlistnewComponent implements OnInit {
         // Combine the dynamic widths and the specific width
         console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
   
-        const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-    
+        // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+        const columnWidths = ['auto', 'auto', 'auto', 'auto'];
         // Create the document definition
         const documentDefinition = {
           pageSize: 'A4',
+          pageOrientation: 'landscape', 
           pageMargins: [20, 20, 20, 20],
           content: [
             { text: 'Export Table', style: 'header' },
@@ -173,7 +189,7 @@ export class DistributorlistnewComponent implements OnInit {
               table: {
                 headerRows: 1,
                 widths: columnWidths,
-                body: [tableHeaders, ...tableRows],
+                body: [tableHeaders, ...specificData],
                 layout: 'lightHorizontalLines',
               },
             },

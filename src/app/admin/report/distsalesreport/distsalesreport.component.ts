@@ -127,9 +127,22 @@ async exportToPdf() {
 
       return allRows;
     };
+  
+    const tableHeaders = [
+      "Order No",
+      "From",
+      "Date",
+      "Amount",
+      // "Payment Mode",
+      // "Status",
+      // "Dispatched Date"
 
-    const tableHeaders = Object.keys(this.orders[0]);
+    ];
     const tableRows = this.orders.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[1], row[35] + " " + row[36] + " " + row[37] ,   row[2],row[7]]);
+
+    // const tableHeaders = Object.keys(this.orders[0]);
+    // const tableRows = this.orders.map(row => Object.values(row));
 
     // Calculate dynamic widths based on content length
     const dynamicWidths = tableHeaders.map(header => ({
@@ -142,12 +155,13 @@ async exportToPdf() {
 
     // Combine the dynamic widths and the specific width
     console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
-
-    const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+    const columnWidths = ['auto', 'auto', 'auto', 'auto'];
+    // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
 
     // Create the document definition
     const documentDefinition = {
       pageSize: 'A4',
+      pageOrientation: 'landscape',
       pageMargins: [20, 20, 20, 20],
       content: [
         { text: 'Export Table', style: 'header' },
@@ -155,7 +169,7 @@ async exportToPdf() {
           table: {
             headerRows: 1,
             widths: columnWidths,
-            body: [tableHeaders, ...tableRows],
+            body: [tableHeaders, ...specificData],
             layout: 'lightHorizontalLines',
           },
         },

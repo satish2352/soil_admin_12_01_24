@@ -115,9 +115,60 @@ export class OrdernotdispatchedComponent implements OnInit {
   
         return allRows;
       };
+
+    //  0 "id": 4,
+    //   1"order_no": "202402201708419635",
+    //   2"order_date": "2024-02-20",
+    //   3"order_created_by": "dsc",
+    //   4"created_disctributor_id": 70,
+    //   5"order_cerated_for": "distributor",
+    //   6"order_cerated_for_id": 0,
+    //   7"created_disctributor_amount": "1722.0",
+    //   8"dispatched_to_created_disctributor_by_warehouse": "no",
+    //   9"forwarded_fsc_amount": null,
+    //   10"forwarded_bsc_id": 0,
+    //   "11forwarded_bsc_amount": null,
+    //   12"dispatched_to_forwarded_bsc_by_warehouse": "no",
+    //   13"forwarded_dsc_id": 0,
+    //  14 "forwarded_dsc_amount": "126",
+    //   15"dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
+    //   "account_approved": "yes",
+    //   "forward_to_warehouse": "no",
+    //   "remark": null,
+    //   "entry_by": "distributor",
+    //   20"order_dispatched": "no",
+    //   "order_dispatched_date": null,
+    //   "is_order_confirm_from_bsc": "no",
+    //   23"date_confirm_from_bsc": "2024-02-20 09:00:46",
+    //   "is_order_confirm_from_dsc": "yes",
+    //   "date_confirm_from_dsc": "0000-00-00 00:00:00",
+    //   "is_order_confirm_from_dist": "yes",
+    //   "date_confirm_from_dist": "0000-00-00 00:00:00",
+    //   "is_order_final_confirm": "yes",
+    //   29"payment_mode": "cod",
+    //  30 "address_one": null,
+    //   "address_two": null,
+    //   "is_deleted": "no",
+    //   "created_at": "2024-02-20 09:00:35",
+    //   "updated_at": "2024-02-20 09:00:46",
+    //  35 "fname": "rohini",
+    //   36"mname": "Mahesh",
+    //  37 "lname": "gaikwad"
+      const tableHeaders = [
+        "Order No",
+        "From",
+        "Date",
+        "Amount",
+        // "Payment Mode",
+        // "Status",
+        // "Dispatched Date"
   
-      const tableHeaders = Object.keys(this.orders[0]);
+      ];
       const tableRows = this.orders.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[1], row[35]+" "+row[36]+" "+row[37], row[2], row[7]]);
+  
+      // const tableHeaders = Object.keys(this.orders[0]);
+      // const tableRows = this.orders.map(row => Object.values(row));
   
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
@@ -131,11 +182,12 @@ export class OrdernotdispatchedComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-  
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -143,7 +195,7 @@ export class OrdernotdispatchedComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },

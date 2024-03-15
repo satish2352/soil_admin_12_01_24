@@ -143,9 +143,79 @@ export class DistributorlistComponent implements OnInit {
 
         return allRows;
       };
+      //   1"state": "Goa",
+      //   2"district": "North goa",
+      //  3 "taluka": "Satari",
+      //  4 "city": "Birondem",
+      //   "id": 150,
+      //   5"user_id": 245,
+      //   6"name": null,
+      //  7 "fname": "testing",
+      //  8 "mname": "testing",
+      //  9 "lname": "testing",
+      //   10"email": "testingfast@gmail.com",
+      //   11"phone": "9835428458",
+      //   "aadharcard": null,
+      //   "address": "yyyy",
+      //   "pincode": "422101",
+      //   "crop": null,
+      //   "acre": null,
+      //   17"password": "12345678",
+      //   "visible_password": null,
+      //   "photo": null,
+      //   "is_sms_send": "0",
+      //   "notification": "0",
+      //   "user_type": "fsc",
+      // 23  "shop_name": null,
+      //   "total_area": null,
+      //   "other_bussiness": null,
+      //   "is_deleted": "no",
+      //   27"active": "yes",
+      //   "remember_token": null,
+      //   "otp": 0,
+      //   "is_verified": "0",
+      //   "occupation": "temp",
+      //   "education": "hhhs",
+      //   "exp_in_agricultural": "temp",
+      //   "other_distributorship": "0",
+      //   "reference_from": "74",
+      //   36"shop_location": "jhdh",
+      //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_front.jpg",
+      //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_back.jpg",
+      //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_pan_card.jpg",
+      //   "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_light_bill.jpg",
+      //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_shop_act_image.jpg",
+      //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_product_purchase_bill.jpg",
+      //   "geolocation": null,
+      //   "added_by": "74",
+      //   "devicetoken": null,
+      //   "devicetype": null,
+      //   "devicename": null,
+      //   "deviceid": null,
+      //   "logintime": null,
+      //   "created_by": null,
+      //   "created_on": "2024-03-09 11:11:53",
+      //   "is_block": "no",
+      //   "is_approved": "yes",
+      //   "new_user_type": "",
+      //  55 "new_user_promote": ""
+      const tableHeaders = [
+        "Name",
+        "User Name / Password",
+        "Contact Number",//11
+        "Date", //51
+        "State",//1
+        "District",//2
+        "Taluka",//3
+        "Village",//4
+        "User Type"   //54
 
-      const tableHeaders = Object.keys(this.alllist[0]);
+      ];
+      // const tableRows = this.orders.map(row => Object.values(row));
+
+      // const tableHeaders = Object.keys(this.alllist[0]);
       const tableRows = this.alllist.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + " " + row[17], row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
 
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
@@ -160,11 +230,12 @@ export class DistributorlistComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -172,7 +243,7 @@ export class DistributorlistComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },

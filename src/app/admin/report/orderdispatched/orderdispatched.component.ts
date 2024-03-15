@@ -120,63 +120,56 @@ async exportToPdf() {
     
 
 
-    // "id": 1,
-    // "order_no": "202402201708419317",
-    // "order_date": "2024-02-20",
-    // "order_created_by": "bsc",
-    // "created_disctributor_id": 73,
-    // "order_cerated_for": "distributor",
-    // "order_cerated_for_id": 78,
-    // "created_disctributor_amount": "595.0",
-    // "dispatched_to_created_disctributor_by_warehouse": "no",
-    // "forwarded_fsc_amount": null,
-    // "forwarded_bsc_id": 0,
-    // "forwarded_bsc_amount": "105",
-    // "dispatched_to_forwarded_bsc_by_warehouse": "no",
-    // "forwarded_dsc_id": 70,
-    // "forwarded_dsc_amount": null,
-    // "dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
-    // "account_approved": "yes",
-    // "forward_to_warehouse": "yes",
-    // "remark": null,
-    // "entry_by": "distributor",
-    // "order_dispatched": "yes",
-    // "order_dispatched_date": "2024-02-20",
-    // "is_order_confirm_from_bsc": "yes",
-    // "date_confirm_from_bsc": "2024-02-20 08:56:09",
-    // "is_order_confirm_from_dsc": "yes",
-    // "date_confirm_from_dsc": "0000-00-00 00:00:00",
-    // "is_order_confirm_from_dist": "no",
-    // "date_confirm_from_dist": "0000-00-00 00:00:00",
-    // "is_order_final_confirm": "yes",
-    // "payment_mode": "online",
-    // "address_one": "adress 1",
-    // "address_two": "address teo",
-    // "is_deleted": "no",
-    // "created_at": "2024-02-20 08:55:17",
-    // "updated_at": "2024-02-20 08:56:09",
-    // "fname": "sarangi",
-    // "mname": "manohar",
-    // "lname": "mane"
+  //  0 "id": 1,
+  //   1"order_no": "202402201708419317",
+  //  2 "order_date": "2024-02-20",
+  //  3 "order_created_by": "bsc",
+  //   4"created_disctributor_id": 73,
+  //  5 "order_cerated_for_id": 78,
+  //   6"created_disctributor_amount": "595.0",
+  //   7"dispatched_to_created_disctributor_by_warehouse": "no",
+  //   8"forwarded_fsc_amount": null,
+  //  9 "forwarded_bsc_id": 0,
+  //   10"forwarded_bsc_amount": "105",
+  //  11 "dispatched_to_forwarded_bsc_by_warehouse": "no",
+  //  12 "forwarded_dsc_id": 70,
+  //  13 "forwarded_dsc_amount": null,
+  //  14 "dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
+  //  15 "account_approved": "yes",
+  //   16"forward_to_warehouse": "yes",
+  //  17 "remark": null,
+  //  18 "entry_by": "distributor",
+  //  19 "order_dispatched": "yes",
+  //  20 "order_dispatched_date": "2024-02-20",
+  //  21 "is_order_confirm_from_bsc": "yes",
+  //  22 "date_confirm_from_bsc": "2024-02-20 08:56:09",
+  //   23"is_order_confirm_from_dsc": "yes",
+  //  24 "date_confirm_from_dsc": "0000-00-00 00:00:00",
+  //  25 "is_order_confirm_from_dist": "no",
+  //  26 "date_confirm_from_dist": "0000-00-00 00:00:00",
+  //   27"is_order_final_confirm": "yes",
+  //   28"payment_mode": "online",
+  //   29 "address_one": "adress 1",
+  //  30 "address_two": "address teo",
+  //  31 "is_deleted": "no",
+  //   32"created_at": "2024-02-20 08:55:17",
+  //  33 "updated_at": "2024-02-20 08:56:09",
+  // 34  "fname": "sarangi",
+  //  35 "mname": "manohar",
+  //  36 "lname": "mane"
 
-      const tableHeaders = [  
-      "Farm Name",
-      "Dist First Name",
-      // "Dist Middle Name",
-      // "Dist Last  Name",
-      "Aadhar Card",
-      "Email",
-      "Phone",
-      "State",
-      "District",
-      "Taluka",
-      "City",
-      // "Address",
-      // "Pincode",
-      // "Crop",
-      ];
+    const tableHeaders = [
+      "Order No",
+      "From",
+      "Date",
+      "Amount",
+      // "Payment Mode",
+      // "Status",
+      // "Dispatched Date"
+
+    ];
     const tableRows = this.orders.map(row => Object.values(row));
-    const specificData = tableRows.map(row => [row[1], row[4]+" "+row[5]+" "+row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13]]);
+    const specificData = tableRows.map(row => [row[1], row[34]+" "+row[35]+" "+row[36], row[2], row[6]]);
         
 
     // Calculate dynamic widths based on content length
@@ -191,8 +184,8 @@ async exportToPdf() {
     // Combine the dynamic widths and the specific width
     console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-    const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-
+    // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+    const columnWidths = ['auto', 'auto', 'auto', 'auto'];
     // Create the document definition
     const documentDefinition = {
       pageSize: 'A4',

@@ -25,7 +25,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   getOrders() {
-    this.os.getOrders().subscribe(res=>{
+    this.os.getOrders().subscribe(res => {
       if (res['result']) {
         this.orders = res['data'];
       }
@@ -37,7 +37,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   verifyOrder(order_no, created_disctributor_id) {
-    this.os.verifyOrder(order_no, created_disctributor_id).subscribe(res=>{
+    this.os.verifyOrder(order_no, created_disctributor_id).subscribe(res => {
       if (res['result']) {
         this.toastr.success('Order verified successfully!');
         this.getOrders();
@@ -48,7 +48,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   forwardOrder(order_no, created_disctributor_id) {
-    this.os.forwardOrder(order_no, created_disctributor_id).subscribe(res=>{
+    this.os.forwardOrder(order_no, created_disctributor_id).subscribe(res => {
       if (res['result']) {
         this.toastr.success('Order forwared successfully!');
         this.getOrders();
@@ -59,7 +59,7 @@ export class MyOrdersComponent implements OnInit {
   }
 
   deleteOrder(order_no, created_disctributor_id) {
-    this.os.deleteOrder(order_no, created_disctributor_id).subscribe(res=>{
+    this.os.deleteOrder(order_no, created_disctributor_id).subscribe(res => {
       if (res['result']) {
         this.toastr.success('Order deleted successfully!');
         this.getOrders();
@@ -98,42 +98,58 @@ export class MyOrdersComponent implements OnInit {
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
-  
+
     if (tableElement) {
+
+
       // Function to get all rows including those in hidden pages
       const getAllTableRows = async () => {
         const allRows = [];
         const totalRows = tableElement.querySelectorAll('tbody tr');
-  
+
         for (let i = 0; i < totalRows.length; i++) {
           const row = totalRows[i];
           const rowData = Array.from(row.children).map(cell => cell.textContent);
           allRows.push(rowData);
         }
-  
+
         return allRows;
       };
-  
-      const tableHeaders = Object.keys(this.orders[0]);
+
+
+      const tableHeaders = [
+        "Order No",
+        "From",
+        "Date",
+        "Amount",
+        "	Payment Mode",
+        "Status"
+
+      ];
+      // const tableRows = this.allfarmerlist.map(row => Object.values(row));
       const tableRows = this.orders.map(row => Object.values(row));
-  
+      const specificData = tableRows.map(row => [row[1], row[35] + " " + row[36] + " " + row[37], row[2], row[7], row[29], row[20],]);
+
+      // const tableHeaders = Object.keys(this.orders[0]);
+
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
         minCellWidth: header.length * 10, // Adjust this multiplier as needed
       }));
-  
+
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-  
+      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto']; // Adjust width for column 3 (index 2) as 100
+
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-  
+
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -141,7 +157,7 @@ export class MyOrdersComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },
@@ -154,7 +170,7 @@ export class MyOrdersComponent implements OnInit {
           },
         },
       };
-  
+
       // Generate the PDF
       pdfMake.createPdf(documentDefinition).download('allorder_.pdf');
     } else {

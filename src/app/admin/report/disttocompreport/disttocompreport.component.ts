@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ReportService } from '../../report/report.service';
-import {FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import * as XLSX from 'xlsx';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -11,6 +11,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 import 'jspdf-autotable';
 import { saveAs } from 'file-saver';
 import { DistributorService } from '../../distributor/distributor.service';
+import { Console } from 'console';
 
 
 @Component({
@@ -28,9 +29,10 @@ export class DisttocompreportComponent implements OnInit {
   dateto: any;
   totalorder: any;
   distributordetailsall: any;
-  dataNew:any;
+  dataNew: any;
+  allfarmerlist: any;
 
-  constructor(private os: ReportService,private distributorService:DistributorService, private router: Router, private toastr: ToastrService, private fb: FormBuilder,) { }
+  constructor(private os: ReportService, private distributorService: DistributorService, private router: Router, private toastr: ToastrService, private fb: FormBuilder,) { }
 
   ngOnInit(): void {
     this.getOrders();
@@ -38,7 +40,7 @@ export class DisttocompreportComponent implements OnInit {
     this.formContent = new FormGroup({
       datefrom: new FormControl('', [Validators.required]),
       dateto: new FormControl('', [Validators.required]),
-      dist_id:new FormControl('', [])
+      dist_id: new FormControl('', [])
     });
     setTimeout(() => {
       let elems = document.querySelectorAll('select');
@@ -121,20 +123,20 @@ export class DisttocompreportComponent implements OnInit {
   }
   getdistributor() {
     var dataNew = {
-     
+
     }
     this.distributorService.getDistributorList(dataNew).subscribe((data) => {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);
     })
   }
-  
+
   getDataByDist() {
     // Assuming you have a form group named 'yourForm' and a form control named 'dist_id'
     const selectedUserId = this.formContent.get('dist_id').value;
     console.log('Selected Distributor:', selectedUserId);
 
-    
+
     this.os.getOrders(this.formContent.value).subscribe(res => {
       if (res['result']) {
         this.orders = res['data'];
@@ -175,42 +177,84 @@ export class DisttocompreportComponent implements OnInit {
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
-  
+
     if (tableElement) {
+
+      const tableHeaders = [
+        "Order No",
+        "From",
+        "Date",
+        "Amount",
+        "District",
+
+      ];
       // Function to get all rows including those in hidden pages
       const getAllTableRows = async () => {
         const allRows = [];
         const totalRows = tableElement.querySelectorAll('tbody tr');
-  
+
         for (let i = 0; i < totalRows.length; i++) {
           const row = totalRows[i];
           const rowData = Array.from(row.children).map(cell => cell.textContent);
           allRows.push(rowData);
         }
-  
+
         return allRows;
+        //   0"id": 21,
+        //  1 "order_no": "202402201708412094",
+        //   2"order_date": "2024-02-20",
+        //  3 "order_created_by": "dsc",
+        //   4"created_disctributor_id": 70,
+        //   5"created_disctributor_amount": "2800.0",
+        //  6 "dispatched_to_created_disctributor_by_warehouse": "no",
+        //   7"forwarded_bsc_id": 0,
+        //   8"forwarded_bsc_amount": null,
+        //   9"dispatched_to_forwarded_bsc_by_warehouse": "no",
+        //   10"forwarded_dsc_id": 0,
+        //   11"forwarded_dsc_amount": null,
+        //  12 "dispatched_to_forwarded_dsc_amount_by_warehouse": "no",
+        //   13"account_approved": "no",
+        //   14"forward_to_warehouse": "no",
+        //   15"entry_by": "distributor",
+        //   16"order_dispatched": "no",
+        //   17"order_dispatched_date": null,
+        //   18"is_deleted": "no",
+        //  19 "created_at": "2024-02-20 06:54:54",
+        //  20 "updated_at": "2024-02-20 06:54:54",
+        //  21 "district": "Nendwan bk",
+        //   22"fname": "rohini",
+        //   23"mname": "Mahesh",
+        //  24 "lname": "gaikwad"
       };
-  
-      const tableHeaders = Object.keys(this.orders[0]);
+
+
+
+      // const tableHeaders = Object.keys(this.orders[0]);
+      // const tableRows = this.allfarmerlist.map(row => Object.values(row));
       const tableRows = this.orders.map(row => Object.values(row));
-  
+      console.log('this.orders')
+      console.log(this.orders)
+      const specificData = tableRows.map(row => [row[1]
+        , row[22] + " " + row[23] + " " + row[24], row[19], row[5], row[21]]);
+      console.log(specificData);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
         minCellWidth: header.length * 10, // Adjust this multiplier as needed
       }));
-  
+
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-  
+
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-  
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto','auto','auto','auto','auto']; // Adjust width for column 3 (index 2) as 100
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Export Table', style: 'header' },
@@ -218,7 +262,7 @@ export class DisttocompreportComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },
@@ -231,7 +275,7 @@ export class DisttocompreportComponent implements OnInit {
           },
         },
       };
-  
+
       // Generate the PDF
       pdfMake.createPdf(documentDefinition).download('dist.pdf');
     } else {
