@@ -30,6 +30,7 @@ export class DistributorlistComponent implements OnInit {
   allcity: any;
   alltaluka: any;
   allstate: any;
+  // paginationActive: boolean;
   constructor(public distributorService: DistributorService,
     private HelperService: HelperService,
     public router: Router,
@@ -68,6 +69,9 @@ export class DistributorlistComponent implements OnInit {
 
 
   }
+  // onPageChange(){
+  //   this.paginationActive=false;
+  // }
 
   searchText: string = '';
 
@@ -143,79 +147,88 @@ export class DistributorlistComponent implements OnInit {
 
         return allRows;
       };
-      //   1"state": "Goa",
-      //   2"district": "North goa",
-      //  3 "taluka": "Satari",
-      //  4 "city": "Birondem",
-      //   "id": 150,
-      //   5"user_id": 245,
-      //   6"name": null,
-      //  7 "fname": "testing",
-      //  8 "mname": "testing",
-      //  9 "lname": "testing",
-      //   10"email": "testingfast@gmail.com",
-      //   11"phone": "9835428458",
-      //   "aadharcard": null,
-      //   "address": "yyyy",
-      //   "pincode": "422101",
-      //   "crop": null,
-      //   "acre": null,
-      //   17"password": "12345678",
-      //   "visible_password": null,
-      //   "photo": null,
-      //   "is_sms_send": "0",
-      //   "notification": "0",
-      //   "user_type": "fsc",
-      // 23  "shop_name": null,
-      //   "total_area": null,
-      //   "other_bussiness": null,
-      //   "is_deleted": "no",
-      //   27"active": "yes",
-      //   "remember_token": null,
-      //   "otp": 0,
-      //   "is_verified": "0",
-      //   "occupation": "temp",
-      //   "education": "hhhs",
-      //   "exp_in_agricultural": "temp",
-      //   "other_distributorship": "0",
-      //   "reference_from": "74",
-      //   36"shop_location": "jhdh",
-      //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_front.jpg",
-      //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_back.jpg",
-      //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_pan_card.jpg",
-      //   "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_light_bill.jpg",
-      //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_shop_act_image.jpg",
-      //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_product_purchase_bill.jpg",
-      //   "geolocation": null,
-      //   "added_by": "74",
-      //   "devicetoken": null,
-      //   "devicetype": null,
-      //   "devicename": null,
-      //   "deviceid": null,
-      //   "logintime": null,
-      //   "created_by": null,
-      //   "created_on": "2024-03-09 11:11:53",
-      //   "is_block": "no",
-      //   "is_approved": "yes",
-      //   "new_user_type": "",
-      //  55 "new_user_promote": ""
+
+
+
+      //  1 // "state": "Goa",
+      //   2// "district": "North goa",
+      //   3// "taluka": "Satari",
+      //   4// "city": "Birondem",
+      //   5// "id": 150,
+      //   5// "user_id": 245,
+      //   6// "name": null,
+      //   7// "fname": "testing",
+      //   8// "mname": "testing",
+      //   9// "lname": "testing", 9
+      // 10// "email": "testingfast@gmail.com",
+      //   10// "phone": "9835428458",
+      //  11 // "aadharcard": null,
+      //   // "address": "yyyy",
+      //   // "pincode": "422101",
+      //   // "crop": null,
+      //   // "acre": null,
+      //   // "password": "12345678", 17
+      //   // "visible_password": null,
+      //   // "photo": null,
+      //   // "is_sms_send": "0",
+      //   // "notification": "0",
+      //  21 // "user_type": "fsc",
+      //  22 // "shop_name": null,
+      //   // "total_area": null,
+      //   // "other_bussiness": null,
+      //   // "is_deleted": "no",
+      //   // "active": "yes",
+      //  27 // "remember_token": null,
+      //   // "otp": 0,
+      //   // "is_verified": "0",
+      //30   // "occupation": "temp",
+      //   // "education": "hhhs",
+      //   // "exp_in_agricultural": "temp",
+      //   // "other_distributorship": "0",
+      //   // "reference_from": "74",
+      //   // "shop_location": "jhdh",
+      //   // "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_front.jpg",
+      //   // "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_back.jpg",
+      //   // "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_pan_card.jpg",
+      //   // "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_light_bill.jpg",
+      //   // "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_shop_act_image.jpg",
+      //   // "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_product_purchase_bill.jpg",
+      //   // "geolocation": null,
+      //  43 // "added_by": "74",
+      //   // "devicetoken": null,
+      //   // "devicetype": null,
+      //   // "devicename": null,
+      //   // "deviceid": null,
+      //   // "logintime": null,
+      //   // "created_by": null,
+      //   // "created_on": "2024-03-09 11:11:53",
+      //   // "is_block": "no",
+      //   // "is_approved": "yes",
+      //  53 // "new_user_type": "",
+      //   // "new_user_promote": ""
+
+
+
+
       const tableHeaders = [
         "Name",
         "User Name / Password",
         "Contact Number",//11
-        "Date", //51
         "State",//1
         "District",//2
         "Taluka",//3
-        "Village",//4
-        "User Type"   //54
+         "Village",//4
+         "User Type"   //54
+        //"Date", //51
+
 
       ];
       // const tableRows = this.orders.map(row => Object.values(row));
 
       // const tableHeaders = Object.keys(this.alllist[0]);
       const tableRows = this.alllist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + " " + row[17], row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
+      const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + "/" + row[17], row[11], row[0], row[1], row[2], row[3], row[22]]);
+      // , row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
 
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
@@ -231,14 +244,14 @@ export class DistributorlistComponent implements OnInit {
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
       // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto','auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
         pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
-          { text: 'Export Table', style: 'header' },
+          { text: 'Distributor List', style: 'header' },
           {
             table: {
               headerRows: 1,
@@ -258,7 +271,7 @@ export class DistributorlistComponent implements OnInit {
       };
 
       // Generate the PDF
-      pdfMake.createPdf(documentDefinition).download('dist.pdf');
+      pdfMake.createPdf(documentDefinition).download('Distributor List.pdf');
     } else {
       console.error('Table element not found.');
     }
@@ -506,6 +519,27 @@ export class DistributorlistComponent implements OnInit {
 
   showMessages(id) {
     this.router.navigate(['/admin', 'distributor-messages', id]);
+  }
+
+
+  pramoteDemoteMannually(user_type, user_id) {
+    var obj = {
+      user_type: user_type.target.value,
+      user_id: user_id,
+    };
+
+    if (obj) {
+      this.distributorService.pramoteDemoteMannually(obj).subscribe(list => {
+        if (list['result'] == true) {
+          this.getDistributors();
+          setTimeout(() => {
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 2000);
+        }
+      });
+    }
+
   }
 
 

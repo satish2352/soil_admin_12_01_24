@@ -88,17 +88,18 @@ export class YoutubesuscriberviewComponent implements OnInit {
   
         return allRows;
       };
+
       const tableHeaders = [
         "Name",
-        "Email",
         "Mobile",
         "Address",
+        "Join Date"
         
       ];
   
       // const tableHeaders = Object.keys(this.alllist[0]);
       const tableRows = this.alllist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[1], row[2], row[3], row[4]]);
+      const specificData = tableRows.map(row => [row[1], row[3], row[4], row[7]]);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',

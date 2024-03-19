@@ -168,6 +168,7 @@
                                         <th style="white-space: nowrap">Village</th>
                                         <th style="white-space: nowrap">User Type</th>
                                         <!-- <th style="white-space: nowrap">Adhar Card</th> -->
+                                        <th style="white-space: nowrap">Pramotion/Demotion Mannually</th>
                                         <th style="white-space: nowrap">Pramotion/Demotion</th>
                                         <th style="white-space: nowrap">Status</th>
 
@@ -209,6 +210,18 @@
                                        
                                      </a>
                                     </span></td> -->
+                                            <td>
+                                                <select (change)="pramoteDemoteMannually($event,listdata.user_id)">
+                                                    <option value="" disabled selected>Which Level</option>
+                                                    <option value="fsc" ng-reflect-value="FSC">FSC
+                                                    </option>
+                                                    <option value="bsc" ng-reflect-value="BSC">BSC
+                                                    </option>
+                                                    <option value="dsc" ng-reflect-value="DSC">DSC
+                                                    </option>
+                                                </select>
+
+                                            </td>
                                             <td style="white-space: nowrap;">
                                                 <!-- User Pramotion -->
 
@@ -310,6 +323,22 @@
                                        
                                      </a>
                                     </span></td> -->
+
+                                            <td>
+                                                <!-- <div *ngIf="!paginationActive"> -->
+                                                <select (change)="pramoteDemoteMannually($event,listdata.user_id)">
+                                                    <option value="" disabled selected>Which Level</option>
+                                                    <option value="fsc" ng-reflect-value="fsc">FSC
+                                                    </option>
+                                                    <option value="bsc" ng-reflect-value="bsc">BSC
+                                                    </option>
+                                                    <option value="dsc" ng-reflect-value="dsc">DSC
+                                                    </option>
+                                                </select>
+                                                <!-- </div> -->
+
+
+                                            </td>
                                             <td style="white-space: nowrap;">
                                                 <!-- User Pramotion -->
 

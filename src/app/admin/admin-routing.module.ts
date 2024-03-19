@@ -277,7 +277,7 @@ const routes: Routes = [
         component: PlotvisitaddComponent
       },
 
-      //Mobile App Address
+      //Mobile App Address                                     
       {
         path: 'mobileapp-adress-list',
         component: ListaddressComponent

@@ -247,64 +247,62 @@ export class CareerdistributorlistComponent implements OnInit {
   
         return allRows;
       };
-    //  1 "state": "Goa",
-    //  2 "district": "North goa",
-    //   3"taluka": "Satari",
-    //   4"city": "Birondem",
-    //   "id": 150,
-    //   5"user_id": 245,
-    //  6 "name": null,
-    //   7"fname": "testing",
-    //   8"mname": "testing",
-    //  9 "lname": "testing",
-    //  10 "email": "testingfast@gmail.com",
-    // 11  "phone": "9835428458",
-    //   "aadharcard": null,
-    //   "address": "yyyy",
-    //   "pincode": "422101",
-    //   "crop": null,
-    //   "acre": null,
-    //  17 "password": "12345678",
+    
+
+
+    //   "id": 16,
+    //   "list_data_status": "0",
+    //   "list_data_read": "n",
+    //   3"fname": "Nand",
+    //   "mname": "Sh",
+    //  5 "lname": "Wagh",
+    //   6"email": "nandonlinework8954@gmail.com",
+    //   7"phone": "7840904957",
+    //   8"alternate_mobile": "9898989899",
+    //   "state": "Bihar",
+    //   "district": "Begusarai",
+    //   "taluka": "Chandragiri",
+    //   "city": "Dungra",
+    //   "password": "434343",
     //   "visible_password": null,
-    //   "photo": null,
-    //   20"is_sms_send": "0",
-    //   "notification": "0",
-    //  22 "user_type": "fsc",
-    //   "shop_name": null,
-    //   "total_area": null,
-    //   "other_bussiness": null,
+    //   "user_type": "fsc",
     //   "is_deleted": "no",
-    //   27"active": "yes",
+    //   "active": "no",
     //   "remember_token": null,
-    //   "otp": 0,
     //   "is_verified": "0",
-    //   "occupation": "temp",
-    //   "education": "hhhs",
-    //   "exp_in_agricultural": "temp",
-    //   "other_distributorship": "0",
-    //  35 "reference_from": "74",
-    //   "shop_location": "jhdh",
-    //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_front.jpg",
-    //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_back.jpg",
-    //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_pan_card.jpg",
-    //  40 "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_light_bill.jpg",
-    //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_shop_act_image.jpg",
-    //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_product_purchase_bill.jpg",
+    //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_front.PNG",
+    //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_back.PNG",
+    //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_pan_card.PNG",
+    //   "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_light_bill.PNG",
+    //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_shop_act_image.PNG",
+    //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_product_purchase_bill.PNG",
+    //   "business_address": "Shree niwas, plot no 41\nsuyog colony, sakora road",
+    //   "business_state": "109502",
+    //   "business_district": "137301",
+    //   "business_tuluka": "137737",
+    //   "business_village": "62298",
+    //   "where_open_shop": "3",
+    //   "used_sct": "no",
+    //   "why_want_take_distributorship": "gghh",
+    //   "distributorship_exerience": "hghb",
+    //   "experience_farm_garder": "hgj",
+    //   "goal": "bbj",
     //   "geolocation": null,
-    //   "added_by": "74",
+    //   "added_by": "superadmin",
     //   "devicetoken": null,
     //   "devicetype": null,
-    //  47 "devicename": null,
+    //   "devicename": null,
     //   "deviceid": null,
     //   "logintime": null,
     //   "created_by": null,
-    //   51"created_on": "2024-03-09 11:11:53",
-    //   "is_block": "no",
-    //   "is_approved": "yes",
-    //   54"new_user_type": "",
-    //  55 "new_user_promote": ""
+    //   "created_on": "2021-11-27 13:09:44",
+    //   "updated_on": null
+
+
       const tableHeaders = [
         "Name",  //789
+        'Email',
+        'Phone',
         "Contact Number",  //11
         "State", //1
         "District",//2
@@ -314,7 +312,8 @@ export class CareerdistributorlistComponent implements OnInit {
 
       ];
       const tableRows = this.alllist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[11], row[1],, row[2], row[3], row[4], row[51],]);
+      const specificData = tableRows.map(row => [row[3] + " " + row[4] + " " + row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[45]]);
+      // , row[0], row[1], row[2], row[3], row[4], row[52]]);
   
   
       // const tableHeaders = Object.keys(this.alllist[0]);
@@ -333,7 +332,7 @@ export class CareerdistributorlistComponent implements OnInit {
   
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
-      const columnWidths = ['auto', 'auto', 'auto', 'auto','auto', 'auto', 'auto', ];
+      const columnWidths = ['auto','auto','auto','auto',45,45,45,45,'auto'];//, 'auto', 'auto', 'auto','auto', 'auto', 'auto'
       // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
   
       // Create the document definition
@@ -342,7 +341,7 @@ export class CareerdistributorlistComponent implements OnInit {
         pageOrientation: 'landscape', 
         pageMargins: [20, 20, 20, 20],
         content: [
-          { text: 'Table Export Example', style: 'header' },
+          { text: 'Career Distributor', style: 'header' },
           {
             table: {
               headerRows: 1,

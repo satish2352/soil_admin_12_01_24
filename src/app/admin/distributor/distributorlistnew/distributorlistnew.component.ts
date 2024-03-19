@@ -126,65 +126,212 @@ export class DistributorlistnewComponent implements OnInit {
       saveAs(data, `dist_${dateString}.xlsx`);
   
     }
+    // async exportToPdf() {
+    //   // Get the HTML table element by ID
+    //   const tableElement = document.getElementById('exportTable');
+    
+    //   if (tableElement) {
+    //     // Function to get all rows including those in hidden pages
+    //     const getAllTableRows = async () => {
+    //       const allRows = [];
+    //       const totalRows = tableElement.querySelectorAll('tbody tr');
+    
+    //       for (let i = 0; i < totalRows.length; i++) {
+    //         const row = totalRows[i];
+    //         const rowData = Array.from(row.children).map(cell => cell.textContent);
+    //         allRows.push(rowData);
+    //       }
+    
+    //       return allRows;
+    //     };
+
+    //     const tableHeaders = [
+    //       "Name",
+    //       "User Name / Password",
+    //       "Contact Number",
+    //       "Date", 
+    //       "State",
+    //       "District",
+    //       "Taluka",
+    //       "Village",
+    //       "User Type"   
+  
+    //     ];
+    //     const tableRows = this.alllist.map(row => Object.values(row));
+    //     const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + " " + row[17], row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
+    
+    //     // const tableHeaders = Object.keys(this.alllist[0]);
+    //     // const tableRows = this.alllist.map(row => Object.values(row));
+    
+    //     // Calculate dynamic widths based on content length
+    //     const dynamicWidths = tableHeaders.map(header => ({
+    //       width: 'auto',
+    //       height:'auto',
+    //       minCellWidth: header.length * 8, // Adjust this multiplier as needed
+    //     }));
+    
+    //     // Set a specific width for the last column
+    //     const specificWidth = [20, 20, 20, 20, 20, 20, 20];
+    
+    //     // Combine the dynamic widths and the specific width
+    //     console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
+  
+    //     // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+    //     const columnWidths = ['auto', 'auto', 'auto', 'auto'];
+    //     // Create the document definition
+    //     const documentDefinition = {
+    //       pageSize: 'A4',
+    //       pageOrientation: 'landscape', 
+    //       pageMargins: [20, 20, 20, 20],
+    //       content: [
+    //         { text: 'Export Table', style: 'header' },
+    //         {
+    //           table: {
+    //             headerRows: 1,
+    //             widths: columnWidths,
+    //             body: [tableHeaders, ...specificData],
+    //             layout: 'lightHorizontalLines',
+    //           },
+    //         },
+    //       ],
+    //       styles: {
+    //         header: {
+    //           fontSize: 12,
+    //           bold: true,
+    //           margin: [0, 0, 0, 10],
+    //         },
+    //       },
+    //     };
+    
+    //     // Generate the PDF
+    //     pdfMake.createPdf(documentDefinition).download('dist.pdf');
+    //   } else {
+    //     console.error('Table element not found.');
+    //   }
+    // }
+
     async exportToPdf() {
       // Get the HTML table element by ID
       const tableElement = document.getElementById('exportTable');
-    
+  
       if (tableElement) {
         // Function to get all rows including those in hidden pages
         const getAllTableRows = async () => {
           const allRows = [];
           const totalRows = tableElement.querySelectorAll('tbody tr');
-    
+  
           for (let i = 0; i < totalRows.length; i++) {
             const row = totalRows[i];
             const rowData = Array.from(row.children).map(cell => cell.textContent);
             allRows.push(rowData);
           }
-    
+  
           return allRows;
         };
-
+  
+  
+  
+        // "state": "Goa",
+        // "district": "North goa",
+        // "taluka": "Satari",
+        // "city": "Birondem",
+        // "id": 150,
+        // "user_id": 245,
+        // "name": null,
+        // "fname": "testing",
+        // "mname": "testing",
+        // "lname": "testing", 9
+        // "email": "testingfast@gmail.com",
+        // "phone": "9835428458",
+        // "aadharcard": null,
+        // "address": "yyyy",
+        // "pincode": "422101",
+        // "crop": null,
+        // "acre": null,
+        // "password": "12345678", 17
+        // "visible_password": null,
+        // "photo": null,
+        // "is_sms_send": "0",
+        // "notification": "0",
+        // "user_type": "fsc",
+        // "shop_name": null,
+        // "total_area": null,
+        // "other_bussiness": null,
+        // "is_deleted": "no",
+        // "active": "yes",
+        // "remember_token": null,
+        // "otp": 0,
+        // "is_verified": "0",
+        // "occupation": "temp",
+        // "education": "hhhs",
+        // "exp_in_agricultural": "temp",
+        // "other_distributorship": "0",
+        // "reference_from": "74",
+        // "shop_location": "jhdh",
+        // "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_front.jpg",
+        // "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_aadhar_card_image_back.jpg",
+        // "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_pan_card.jpg",
+        // "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_light_bill.jpg",
+        // "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_shop_act_image.jpg",
+        // "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/245_product_purchase_bill.jpg",
+        // "geolocation": null,
+        // "added_by": "74",
+        // "devicetoken": null,
+        // "devicetype": null,
+        // "devicename": null,
+        // "deviceid": null,
+        // "logintime": null,
+        // "created_by": null,
+        // "created_on": "2024-03-09 11:11:53",
+        // "is_block": "no",
+        // "is_approved": "yes",
+        // "new_user_type": "",
+        // "new_user_promote": ""
+  
+     
+        
+  
         const tableHeaders = [
           "Name",
           "User Name / Password",
-          "Contact Number",
-          "Date", 
-          "State",
-          "District",
-          "Taluka",
-          "Village",
-          "User Type"   
+          "Contact Number",//11
+          // "Date", //51
+          "State",//1
+          "District",//2
+          "Taluka",//3
+          // "Village",//4
+          // "User Type"   //54
   
         ];
-        const tableRows = this.alllist.map(row => Object.values(row));
-        const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10] + " " + row[17], row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
-    
+        // const tableRows = this.orders.map(row => Object.values(row));
+  
         // const tableHeaders = Object.keys(this.alllist[0]);
-        // const tableRows = this.alllist.map(row => Object.values(row));
-    
+        const tableRows = this.alllist.map(row => Object.values(row));
+        const specificData = tableRows.map(row => [row[7] + " " + row[8] + " " + row[9], row[10]+ "/" + row[17],row[11],row[0],row[1],row[2]]);
+        // , row[11], row[51], row[1], , row[2], , row[3], , row[4], row[54],]);
+  
         // Calculate dynamic widths based on content length
         const dynamicWidths = tableHeaders.map(header => ({
           width: 'auto',
-          height:'auto',
+          height: 'auto',
           minCellWidth: header.length * 8, // Adjust this multiplier as needed
         }));
-    
+  
         // Set a specific width for the last column
         const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-    
+  
         // Combine the dynamic widths and the specific width
         console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
   
         // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-        const columnWidths = ['auto', 'auto', 'auto', 'auto'];
+        const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto'];
         // Create the document definition
         const documentDefinition = {
           pageSize: 'A4',
-          pageOrientation: 'landscape', 
+          pageOrientation: 'landscape', // Set layout to landscape
           pageMargins: [20, 20, 20, 20],
           content: [
-            { text: 'Export Table', style: 'header' },
+            { text: 'New Distributor List', style: 'header' },
             {
               table: {
                 headerRows: 1,
@@ -202,9 +349,9 @@ export class DistributorlistnewComponent implements OnInit {
             },
           },
         };
-    
+  
         // Generate the PDF
-        pdfMake.createPdf(documentDefinition).download('dist.pdf');
+        pdfMake.createPdf(documentDefinition).download('New Distributor List.pdf');
       } else {
         console.error('Table element not found.');
       }

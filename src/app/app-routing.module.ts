@@ -49,8 +49,8 @@ export const routes: Routes = [
     ],
   },
   {
-    path:'forbidden',
-    component:ForbiddenComponent
+    path: 'forbidden',
+    component: ForbiddenComponent
   },
   {
     path: '**',

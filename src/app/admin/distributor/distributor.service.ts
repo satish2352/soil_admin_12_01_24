@@ -80,6 +80,11 @@ export class DistributorService {
     return this.http.post(`${this.urlforapi}distributorlist`, data);
   }
 
+  pramoteDemoteMannually(data) {
+    
+    return this.http.post(`${this.urlforapi}web_distributor_promotion_demotion_own`, data);
+  }
+
   getDistributorListNewArrival(data) {
     
     return this.http.post(`${this.urlforapi}distributorlist_new_arrival`, data);
