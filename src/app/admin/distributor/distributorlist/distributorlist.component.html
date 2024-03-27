@@ -177,10 +177,14 @@
                                 </thead>
 
                                 <ng-container *ngIf="filteredList">
+                                
                                     <tbody>
+                                        
                                         <tr
                                             *ngFor="let listdata of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;">
                                             <td>{{(10*(p-1))+(i+1)}}</td>
+                                        
+
                                             <td style="white-space: nowrap;text-transform:uppercase">
                                                 <span>{{listdata.fname}} {{listdata.mname}}
                                                     {{listdata.lname}}</span>&nbsp; &nbsp;
@@ -220,8 +224,8 @@
                                                     <option value="dsc" ng-reflect-value="DSC">DSC
                                                     </option>
                                                 </select>
-
                                             </td>
+                                          
                                             <td style="white-space: nowrap;">
                                                 <!-- User Pramotion -->
 
@@ -323,9 +327,9 @@
                                        
                                      </a>
                                     </span></td> -->
-
+<!-- 
                                             <td>
-                                                <!-- <div *ngIf="!paginationActive"> -->
+                                                <div *ngIf="!paginationActive">
                                                 <select (change)="pramoteDemoteMannually($event,listdata.user_id)">
                                                     <option value="" disabled selected>Which Level</option>
                                                     <option value="fsc" ng-reflect-value="fsc">FSC
@@ -335,10 +339,10 @@
                                                     <option value="dsc" ng-reflect-value="dsc">DSC
                                                     </option>
                                                 </select>
-                                                <!-- </div> -->
+                                                </div>
 
 
-                                            </td>
+                                            </td> -->
                                             <td style="white-space: nowrap;">
                                                 <!-- User Pramotion -->
 
@@ -407,7 +411,7 @@
                                 </ng-container>
 
                             </table>
-                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                            <pagination-controls (pageChange)="initializeDropDown($event)"></pagination-controls>
                         </div>
                     </div>
                 </div>

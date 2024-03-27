@@ -40,7 +40,7 @@
 
                                                     <div class="input-field col s12 m3 l3">
 
-                                                        <select class=""  id="selectDist" formControlName="district">
+                                                        <select class="" id="selectDist" formControlName="district">
                                                             <option value="" disabled selected>Choose District
                                                             </option>
                                                             <option *ngFor="let dist of alldist"
@@ -52,7 +52,7 @@
 
                                                     <div class="input-field col s12 m3 l3">
 
-                                                        <select class="" id = "selectTal" formControlName="taluka">
+                                                        <select class="" id="selectTal" formControlName="taluka">
                                                             <option value="" disabled selected>Choose Taluka
                                                             </option>
                                                             <option *ngFor="let taluka of alltaluka"
@@ -74,7 +74,8 @@
                                                     </div>
 
                                                     <div class="col s2 m2 l2">
-                                                        <select class="col s2 m2 l2" id="added_by" formControlName="added_by">
+                                                        <select class="col s2 m2 l2" id="added_by"
+                                                            formControlName="added_by">
                                                             <option value="" disabled selected>Choose Distributor
                                                             </option>
                                                             <option *ngFor="let distributordetails of alldistributor"
@@ -140,37 +141,50 @@
                                     </td>
                                     <td><span style="text-transform:uppercase">{{listdata.about_visit}}</span></td>
                                     <td><span>{{listdata.created_at | date: 'dd/MM/yyyy'}}</span></td>
-                                    <td><span>
+                                    <td>
+                                        <!-- <span>
                                             <a href={{listdata.photopathone}} target="_blank" download>
-
                                                 <img src={{listdata.photopathone}} alt="image" height="50px">
-
                                             </a>
-                                        </span></td>
-                                    <td><span>
+                                        </span> -->
+                                        <img src={{listdata.photopathone}} target="_blank" alt="image" height="50px" download>
+                                    </td>
+                                    <td>
+                                        <!-- <span>
                                             <a href={{listdata.photopathtwo}} target="_blank" download>
 
                                                 <img src={{listdata.photopathtwo}} alt="image" height="50px">
                                             </a>
-                                        </span></td>
-                                    <td><span>
+                                        </span> -->
+                                        <img src={{listdata.photopathtwo}} target="_blank" alt="image" height="50px" download>
+                                    </td>
+                                    <td>
+                                        <!-- <span>
                                             <a href={{listdata.photopaththree}} target="_blank" download>
 
                                                 <img src={{listdata.photopaththree}} alt="image" height="50px">
                                             </a>
-                                        </span></td>
-                                    <td><span>
+                                        </span> -->
+                                        <img src={{listdata.photopaththree}} target="_blank" alt="image" height="50px" download>
+                                    </td>
+                                    <td>
+                                        <!-- <span>
                                             <a href={{listdata.photopathfour}} target="_blank" download>
 
                                                 <img src={{listdata.photopathfour}} alt="image" height="50px">
                                             </a>
-                                        </span></td>
-                                    <td><span>
+                                        </span> -->
+                                        <img src={{listdata.photopathfour}} target="_blank" alt="image" height="50px" download>
+                                    </td>
+                                    <td>
+                                        <!-- <span>
                                             <a href={{listdata.photopathfive}} target="_blank" download>
 
                                                 <img src={{listdata.photopathfive}} alt="image" height="50px">
                                             </a>
-                                        </span></td>
+                                        </span> -->
+                                        <img src={{listdata.photopathfive}}  target="_blank" alt="image" height="50px" download>
+                                    </td>
                                     <!-- <td>
                                         <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;"><i
                                                 class="material-icons"(click)="getForEdit(listdata.id)" 

@@ -217,8 +217,8 @@ export class DistributorlistComponent implements OnInit {
         "State",//1
         "District",//2
         "Taluka",//3
-         "Village",//4
-         "User Type"   //54
+        "Village",//4
+        "User Type"   //54
         //"Date", //51
 
 
@@ -244,7 +244,7 @@ export class DistributorlistComponent implements OnInit {
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
       // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto','auto','auto'];
+      const columnWidths = ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
@@ -541,6 +541,16 @@ export class DistributorlistComponent implements OnInit {
     }
 
   }
+
+  initializeDropDown(event) {
+    this.p = event;
+    setTimeout(() => {
+      let elems = document.querySelectorAll('select');
+      let instances = M.FormSelect.init(elems);
+    }, 500);
+
+  }
+  
 
 
 }
