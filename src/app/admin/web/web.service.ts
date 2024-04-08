@@ -418,9 +418,9 @@ export class WebService {
   }
 
 
-  webEntrenshipList() {
+  webEntrenshipList(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}internship_list`, null);
+    return this.http.post(`${this.urlforapi}internship_list`, data);
   }
 
   webEntrenshipEdit(obj) {

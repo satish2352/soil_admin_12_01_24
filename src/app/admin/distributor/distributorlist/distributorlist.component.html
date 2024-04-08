@@ -158,6 +158,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Under distributor.</th>
                                         <th style="white-space: nowrap">Name</th>
                                         <th style="white-space: nowrap">User Name / Password</th>
                                         <th style="white-space: nowrap">Contact Number</th>
@@ -183,7 +184,8 @@
                                         <tr
                                             *ngFor="let listdata of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;">
                                             <td>{{(10*(p-1))+(i+1)}}</td>
-                                        
+                                            <td> <span style="text-transform: capitalize;">{{listdata.under_user_fname}} {{listdata.under_user_mname}}
+                                                {{listdata.under_user_lname}}</span></td>
 
                                             <td style="white-space: nowrap;text-transform:uppercase">
                                                 <span>{{listdata.fname}} {{listdata.mname}}
@@ -298,6 +300,8 @@
                                         <tr
                                             *ngFor="let listdata of alllist  | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
                                             <td>{{(10*(p-1))+(i+1)}}</td>
+                                            <td> <span>{{listdata.under_user_fname}} {{listdata.under_user_mname}}
+                                                {{listdata.under_user_lname}}</span></td>
                                             <td style="white-space: nowrap;text-transform:uppercase">
                                                 <span>{{listdata.fname}} {{listdata.mname}}
                                                     {{listdata.lname}}</span>&nbsp; &nbsp;

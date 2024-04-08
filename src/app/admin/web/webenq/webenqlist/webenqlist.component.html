@@ -13,18 +13,42 @@
             </div>
         </div>
         <!-- <button onclick="exportToExcelAndPDF()">Export Data</button> -->
-        <button  style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToExcel()">Export to Excel</button>
-        &nbsp;&nbsp;<button  class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to PDF</button>
+        <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
+            (click)="exportToExcel()">Export to Excel</button>
+        &nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to
+            PDF</button>
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
                         <div class="row">
                             <div class="col s12 m12 l12">
-                                
+                                <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                                    <div class="col s2 m2 l2">From Date</div>
+                                    <div class="col s2 m2 l2">
+                                        <input id="datefrom" name="datefrom" type="date" formControlName="datefrom"
+                                            class="active validate" required />
+                                        <label for="datefrom">From Date<span class="red-text">*</span></label>
+                                        <div *ngIf="f.datefrom.errors && submitted">
+                                            <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="col s2 m2 l2">To Date</div>
+                                    <div class="col s2 m2 l2">
+                                        <input id="dateto" name="dateto" type="date" formControlName="dateto"
+                                            class="active validate" required />
+                                        <label for="dateto">To Date<span class="red-text">*</span></label>
+                                        <div *ngIf="f.dateto.errors && submitted">
+                                            <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="col s2 m2 l2">
+                                        <button type="submit" class="btn btn-save">Get Report</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <table style="font-weight:small;"  class="datatable responsive-table highlight" id="exportTable">
+                        <table style="font-weight:small;" class="datatable responsive-table highlight" id="exportTable">
                             <thead>
                                 <tr>
                                     <th style="white-space: nowrap">Sr No.</th>
@@ -37,13 +61,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                <tr
+                                    *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
                                     <td>{{(10*(p-1))+(i+1)}}</td>
-                                    <td><span >{{datalist.name}}</span></td>
-                                    <td><span >{{datalist.email}}</span></td>
-                                    <td><span >{{datalist.mobile}}</span></td>
-                                    <td><span >{{datalist.details}}</span></td>
-                                    <td><span >{{datalist.comment}}</span></td>
+                                    <td><span>{{datalist.name}}</span></td>
+                                    <td><span>{{datalist.email}}</span></td>
+                                    <td><span>{{datalist.mobile}}</span></td>
+                                    <td><span>{{datalist.details}}</span></td>
+                                    <td><span>{{datalist.comment}}</span></td>
                                     <!-- <td style="white-space: nowrap">
                                         <a href="JavaScript:void(0)" class="btn-floating" title="View" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
                                                 class="material-icons"

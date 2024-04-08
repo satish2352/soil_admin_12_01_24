@@ -113,6 +113,7 @@ import { ViewOrderComponent } from './orders/view-order/view-order.component';
 import { MessageviewperticularComponent } from './mobileapp/messageviewperticular/messageviewperticular.component';
 import { ComplaintviewperticularComponent } from './mobileapp/complaintviewperticular/complaintviewperticular.component';
 import { DistributortargetvideoseenbydistComponent } from './distributor/distributortargetvideo/distributortargetvideoseenbydist/distributortargetvideoseenbydist.component';
+import { BSCStructureComponent } from './mlm/bscstructure/bscstructure.component';
 const routes: Routes = [
   {
     path: '',
@@ -267,7 +268,10 @@ const routes: Routes = [
         path:'mlm-list',
         component:MlmlistComponent
       },
-
+      {
+        path:'bscstructure',
+        component:BSCStructureComponent
+      },
       {
         path: 'plotvisit-list',
         component: PlotvisitlistComponent

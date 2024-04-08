@@ -12,8 +12,10 @@
       </div>
     </div>
 
-    <button  style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToExcel()">Export to Excel</button>
-        &nbsp;&nbsp;<button  class="btn btn-info text-white font-weight-normal text-xs header" (click)="exportToPdf()">Export to PDF</button>
+    <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
+      (click)="exportToExcel()">Export to Excel</button>
+    &nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs header" (click)="exportToPdf()">Export
+      to PDF</button>
 
 
     <div class="row">
@@ -22,7 +24,35 @@
           <div class="card-content">
             <div class="row">
               <div class="col s12 m12 l12">
+                <div class="row">
 
+
+                  <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
+                    <div class="col s2 m2 l2">From Date</div>
+                    <div class="col s2 m2 l2">
+                      <input id="datefrom" name="datefrom" type="date" formControlName="datefrom"
+                        class="active validate" required />
+                      <label for="datefrom">From Date<span class="red-text">*</span></label>
+                      <div *ngIf="f.datefrom.errors && submitted">
+                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                      </div>
+                    </div>
+                    <div class="col s2 m2 l2">To Date</div>
+                    <div class="col s2 m2 l2">
+                      <input id="dateto" name="dateto" type="date" formControlName="dateto" class="active validate"
+                        required />
+                      <label for="dateto">To Date<span class="red-text">*</span></label>
+                      <div *ngIf="f.dateto.errors && submitted">
+                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                      </div>
+                    </div>
+                    <div class="col s2 m2 l2">
+                      <button type="submit" class="btn btn-save">Get Report</button>
+                    </div>
+                  </form>
+
+
+                </div>
               </div>
             </div>
             <table style="font-weight:small;" class="datatable responsive-table highlight" id="exportTable">
@@ -51,18 +81,15 @@
 
                   <td style="white-space: nowrap">
 
-                      <a href="JavaScript:void(0)" class="btn-floating" title="Download" style="background-color: violet;" target="_blank" href="{{datalist.photopath}}" ><i
-                        class="material-icons"
-                        >feedback</i></a>
-                  &nbsp;
-
-                    <a href="JavaScript:void(0)" class="btn-floating" title="View" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
-                          class="material-icons"
-                          >remove_red_eye</i></a>
+                    <a href="JavaScript:void(0)" class="btn-floating" title="Download" style="background-color: violet;"
+                      target="_blank" href="{{datalist.photopath}}"><i class="material-icons">feedback</i></a>
                     &nbsp;
-                    <a href="JavaScript:void(0)" class="btn-floating" title="Update" style="background-color: green;" (click)="getForUpdate(datalist.id)"
-                    ><i
-                          class="material-icons">edit</i></a>
+
+                    <a href="JavaScript:void(0)" class="btn-floating" title="View" style="background-color: green;"
+                      (click)="getForEdit(datalist.id)"><i class="material-icons">remove_red_eye</i></a>
+                    &nbsp;
+                    <a href="JavaScript:void(0)" class="btn-floating" title="Update" style="background-color: green;"
+                      (click)="getForUpdate(datalist.id)"><i class="material-icons">edit</i></a>
                   </td>
 
                 </tr>
