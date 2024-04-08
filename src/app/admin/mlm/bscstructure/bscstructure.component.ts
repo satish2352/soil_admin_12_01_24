@@ -34,7 +34,7 @@ import { MlmService } from '../mlm.service';
   
       try {
         const list =
-          this.mlmService.getDistributorList().subscribe(list => {
+          this.mlmService.getDistributorListForManual().subscribe(list => {
             if (list['result'] == true) {
               this.alllist = list['data'];
               $('.collapsible').collapsible();

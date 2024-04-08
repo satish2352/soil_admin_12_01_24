@@ -30,6 +30,13 @@ export class MlmService {
     return this.http.post(`${this.urlforapi}dsc_list_structure`, null);
   }
 
+  //New Manuual Changes
+  getDistributorListForManual() {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}bsc_list_structure_for_mannual_change`, null);
+  }
+
+
 
   getBscUnderDSC(obj) {
     this.token = this.getToken();
