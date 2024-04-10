@@ -503,7 +503,7 @@ export class WebenqlistComponent implements OnInit {
       };
 
       // Generate the PDF
-      pdfMake.createPdf(documentDefinition).download('farmerlist.pdf');
+      pdfMake.createPdf(documentDefinition).download('Website Enq.pdf');
     } else {
       console.error('Table element not found.');
     }

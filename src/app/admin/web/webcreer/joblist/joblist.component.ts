@@ -132,9 +132,19 @@ export class JoblistComponent implements OnInit {
 
         return allRows;
       };
-
-      const tableHeaders = Object.keys(this.alllist[0]);
+      const tableHeaders = [
+        "Name",
+        "Email",
+        "Contact Number",
+        "Qualification",
+        "Resume",
+        "Address"
+      ];
       const tableRows = this.alllist.map(row => Object.values(row));
+      const specificData = tableRows.map(row => [row[1], row[2], row[3], row[4], row[10], row[5]]);
+
+      // const tableHeaders = Object.keys(this.alllist[0]);
+      // const tableRows = this.alllist.map(row => Object.values(row));
 
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
@@ -148,11 +158,12 @@ export class JoblistComponent implements OnInit {
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
-      const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-
+      // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
+      const columnWidths = ['auto', 150, 70, 'auto', 'auto', 'auto'];
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
+        pageOrientation: 'landscape', // Set layout to landscape
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Table Export Example', style: 'header' },
@@ -160,7 +171,7 @@ export class JoblistComponent implements OnInit {
             table: {
               headerRows: 1,
               widths: columnWidths,
-              body: [tableHeaders, ...tableRows],
+              body: [tableHeaders, ...specificData],
               layout: 'lightHorizontalLines',
             },
           },
@@ -175,7 +186,7 @@ export class JoblistComponent implements OnInit {
       };
 
       // Generate the PDF
-      pdfMake.createPdf(documentDefinition).download('job.pdf');
+      pdfMake.createPdf(documentDefinition).download('Career Job.pdf');
     } else {
       console.error('Table element not found.');
     }

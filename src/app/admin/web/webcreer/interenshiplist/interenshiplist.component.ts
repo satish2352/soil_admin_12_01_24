@@ -126,7 +126,7 @@ export class InterenshiplistComponent implements OnInit {
         "Address"
       ];
       const tableRows = this.alllist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[1], row[2], row[3], row[4], row[6], row[5]]);
+      const specificData = tableRows.map(row => [row[1], row[2], row[3], row[4], row[10], row[5]]);
 
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
@@ -134,7 +134,7 @@ export class InterenshiplistComponent implements OnInit {
       }));
 
       // const columnWidths = ['auto'];
-      const columnWidths = ['auto', 'auto', 70, 'auto', 'auto', 'auto'];
+      const columnWidths = ['auto', 150, 70, 'auto', 'auto', 'auto'];
 
       // Create the document definition
       const documentDefinition = {
@@ -162,7 +162,7 @@ export class InterenshiplistComponent implements OnInit {
       };
 
       // Generate the PDF
-      pdfMake.createPdf(documentDefinition).download('WebEnq.pdf');
+      pdfMake.createPdf(documentDefinition).download('Career Internship.pdf');
     } else {
       console.error('Table element not found.');
     }
