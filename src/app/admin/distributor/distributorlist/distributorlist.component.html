@@ -178,19 +178,21 @@
                                 </thead>
 
                                 <ng-container *ngIf="filteredList">
-                                
+
                                     <tbody>
-                                        
+
                                         <tr
                                             *ngFor="let listdata of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;">
                                             <td>{{(10*(p-1))+(i+1)}}</td>
-                                            <td> <span style="text-transform: capitalize;">{{listdata.under_user_fname}} {{listdata.under_user_mname}}
-                                                {{listdata.under_user_lname}}</span></td>
+                                            <td> <span style="text-transform: capitalize;">{{listdata.under_user_fname}}
+                                                    {{listdata.under_user_mname}}
+                                                    {{listdata.under_user_lname}}</span></td>
 
                                             <td style="white-space: nowrap;text-transform:uppercase">
                                                 <span>{{listdata.fname}} {{listdata.mname}}
                                                     {{listdata.lname}}</span>&nbsp; &nbsp;
-                                                <span *ngIf="listdata.new_user_type"
+                                                <span
+                                                    *ngIf="listdata.new_user_type && listdata.new_user_type !=  listdata.user_type"
                                                     style="background-color: green; color:whitesmoke; text-transform: capitalize;"
                                                     class="blink_me"> &nbsp; {{listdata.new_user_type}} &nbsp;</span>
                                             </td>
@@ -227,24 +229,25 @@
                                                     </option>
                                                 </select>
                                             </td>
-                                          
+
                                             <td style="white-space: nowrap;">
                                                 <!-- User Pramotion -->
-
-                                                <a *ngIf="listdata.new_user_promote =='y' && listdata.new_user_type !='fsc' "
-                                                    href="JavaScript:void(0)" class="btn-floating" title="Pramote"
-                                                    style="background-color: green;"
-                                                    (click)="setUserPramotion($event, listdata.user_id,listdata.new_user_type)"><i
-                                                        class="material-icons">trending_up</i></a>
-                                                &nbsp;
-
-                                                <a *ngIf="listdata.new_user_demote =='y' && listdata.new_user_promote =='n'"
-                                                    href="JavaScript:void(0)" class="btn-floating" title="Demote"
-                                                    style="background-color: green;"
-                                                    (click)="demoteDistributor($event, listdata.user_id)"><i
-                                                        class="material-icons">trending_down</i></a>
-                                                &nbsp;
-
+                                                <span *ngIf="listdata.new_user_type !=  'dsc'">
+                                                    <a *ngIf="listdata.new_user_promote =='y' && listdata.new_user_type !='fsc' "
+                                                        href="JavaScript:void(0)" class="btn-floating" title="Pramote"
+                                                        style="background-color: green;"
+                                                        (click)="setUserPramotion($event, listdata.user_id,listdata.new_user_type)"><i
+                                                            class="material-icons">trending_up</i></a>
+                                                    &nbsp;
+                                                </span>
+                                                <span *ngIf="listdata.new_user_type !=  'fsc'">
+                                                    <a *ngIf="listdata.new_user_demote =='y' && listdata.new_user_promote =='n'"
+                                                        href="JavaScript:void(0)" class="btn-floating" title="Demote"
+                                                        style="background-color: green;"
+                                                        (click)="demoteDistributor($event, listdata.user_id)"><i
+                                                            class="material-icons">trending_down</i></a>
+                                                    &nbsp;
+                                                </span>
 
                                                 <!-- <a *ngIf="listdata.user_type =='fsc' && listdata.new_user_type =='' "
                                                 href="JavaScript:void(0)" title="">&nbsp; NA &nbsp; </a>
@@ -301,7 +304,7 @@
                                             *ngFor="let listdata of alllist  | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
                                             <td>{{(10*(p-1))+(i+1)}}</td>
                                             <td> <span>{{listdata.under_user_fname}} {{listdata.under_user_mname}}
-                                                {{listdata.under_user_lname}}</span></td>
+                                                    {{listdata.under_user_lname}}</span></td>
                                             <td style="white-space: nowrap;text-transform:uppercase">
                                                 <span>{{listdata.fname}} {{listdata.mname}}
                                                     {{listdata.lname}}</span>&nbsp; &nbsp;
@@ -331,7 +334,7 @@
                                        
                                      </a>
                                     </span></td> -->
-<!-- 
+                                            <!-- 
                                             <td>
                                                 <div *ngIf="!paginationActive">
                                                 <select (change)="pramoteDemoteMannually($event,listdata.user_id)">

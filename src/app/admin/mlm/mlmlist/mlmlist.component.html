@@ -140,8 +140,8 @@
                 </thead>
                 <tbody>
                     <tr
-                        *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: p };let i=index;">
-                        <td>{{(5*(p-1))+(i+1)}}</td>
+                        *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: pf };let iff=index;">
+                        <td>{{(5*(pf-1))+(iff+1)}}</td>
                         <td style="white-space: nowrap"><span style="text-transform:uppercase">{{listdata_fsc.fname}}
                                 {{listdata_fsc.mname}}
                                 {{listdata_fsc.lname}}</span></td>
@@ -167,7 +167,7 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls (pageChange)="p = $event">
+            <pagination-controls (pageChange)="pf = $event">
             </pagination-controls>
         </div>
         <div class="modal-footer">

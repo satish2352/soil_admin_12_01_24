@@ -168,13 +168,13 @@ export class BannerbraddComponent implements OnInit {
 
     if (this.formContent.value.datafor == 0) {
       if (!this.fileupone) {
-        this.toastr.warning("Please choose testimonial photo!");
+        this.toastr.warning("Please choose photo!");
         return;
       }
       this.ngxService.start();
       this.BannerbrService.webbrochureadd(this.formContent.value, this.fileupone).subscribe(res => {
         if (res['result'] == true) {
-          this.toastr.success("Testimonial added successfully!");
+          this.toastr.success("Information added successfully!");
           this.router.navigate(['/admin', 'bannerbr-list']);
         }
         else {
@@ -189,7 +189,7 @@ export class BannerbraddComponent implements OnInit {
       this.ngxService.start();
       this.BannerbrService.webbrochureupdate(this.formContent.value, this.fileupone).subscribe(res => {
         if (res['result'] == true) {
-          this.toastr.success("Testimonial updated successfully!");
+          this.toastr.success("Information updated successfully!");
           this.router.navigate(['/admin', 'bannerbr-list']);
         }
         else {
