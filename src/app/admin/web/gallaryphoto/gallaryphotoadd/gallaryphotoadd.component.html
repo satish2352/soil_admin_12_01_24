@@ -30,15 +30,15 @@
                                 </div>
 
                                 <div class="input-field col s12 m4 l4">
-                                  <select class="" formControlName="gallaryfor">
-                                      <option value="" disabled selected>Choose Gallary For</option>
-                                      <option *ngFor="let languagelist of gallaryforall" [value]="languagelist.id">
-                                          {{languagelist.name}}</option>
-                                  </select>
-                                  <div *ngIf="submitted && f.language.errors" class="invalid-input">
-                                      <span class="red-text"><strong>Required*</strong></span>
-                                  </div>
-                              </div>
+                                    <select class="" formControlName="gallaryfor">
+                                        <option value="" disabled selected>Choose Gallary For</option>
+                                        <option *ngFor="let languagelist of gallaryforall" [value]="languagelist.id">
+                                            {{languagelist.name}}</option>
+                                    </select>
+                                    <div *ngIf="submitted && f.language.errors" class="invalid-input">
+                                        <span class="red-text"><strong>Required*</strong></span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div id='educatioDetails'>
@@ -55,22 +55,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 m8 l8">
-                                      <label>Upload Photo<span class="red-text">*</span></label>
-                                      <div class="file-field input-field">
-                                          <div class="btn">
-                                              <span>Browse</span>
-                                              <input type="file" (change)="onFileSelect($event)"/>
-                                          </div>
-                                          <div class="file-path-wrapper">
-                                              <input class="file-path validate" type="text" placeholder="Upload file" />
-                                          </div>
-                                          <div *ngIf="submitted && !fileup" class="invalid-input">
-                                              <span class="red-text"><strong>Required*</strong></span>
-                                          </div>
-                                      </div>
+                                        <label>Upload Photo<span class="red-text">*</span></label>
+                                        <div class="file-field input-field">
+                                            <div class="btn">
+                                                <span>Browse</span>
+                                                <input type="file" (change)="onFileSelect($event)" />
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text"
+                                                    placeholder="Upload file" />
+                                            </div>
+                                            <div *ngIf="submitted && !fileup" class="invalid-input">
+                                                <span class="red-text"><strong>Required*</strong></span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col s12 m4 l4">
-                                      <img src={{farmerphotoview}} alt="image" height="100px"/>
+                                        <a href={{farmerphotoview}} target="_blank" download>
+                                            <img src={{farmerphotoview}} alt="image" height="100px" />
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -47,7 +47,7 @@ export class DisttocompreportComponent implements OnInit {
       let instances = M.FormSelect.init(elems);
     }, 1000);
   }
-  sortColumn: string = '';
+  sortColumn: string = ''; 
   sortDirection: string = 'asc'; // or 'desc'
 
   // Function to handle sorting

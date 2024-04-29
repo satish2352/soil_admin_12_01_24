@@ -45,7 +45,7 @@ export class JoblistComponent implements OnInit {
       this.toastr.warning("Select Date");
       return;
     }
-    this.webService.webEntrenshipList(this.formContent.value).subscribe(datalist => {
+    this.webService.webCareerJobList(this.formContent.value).subscribe(datalist => {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
       }
@@ -58,7 +58,7 @@ export class JoblistComponent implements OnInit {
       dateto: new FormControl('', [Validators.required]),
     });
     this.ngxService.start();
-    this.webService.webEntrenshipList(null).subscribe(datalist => {
+    this.webService.webCareerJobList(null).subscribe(datalist => {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
         // this.alllist.sort((a,b)=>b.id - a.id)

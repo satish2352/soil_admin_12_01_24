@@ -46,6 +46,10 @@ export class FarmerlistComponent implements OnInit {
   distributordetailsall: any;
   id4: any;
   id5: any;
+  datefrom: any;
+  dateto: any;
+  added_by: any;
+  
 
   constructor(
     public fcofieldService: FcofieldService,
@@ -77,6 +81,10 @@ export class FarmerlistComponent implements OnInit {
       taluka: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
       created_disctributor_id: new FormControl('', [Validators.required]),
+      datefrom: new FormControl('', [Validators.required]),
+      dateto: new FormControl('', [Validators.required]),
+      added_by: new FormControl('', [Validators.required]),
+      
     });
     this.formControlValueChanges();
     var dataNew = {
@@ -237,13 +245,21 @@ export class FarmerlistComponent implements OnInit {
     this.id2 = this.formdatanew.taluka;
     this.id3 = this.formdatanew.city;
     this.id4 = this.formdatanew.created_disctributor_id;
+    this.datefrom = this.formdatanew.datefrom;
+    this.dateto = this.formdatanew.dateto;
+    this.added_by = this.formdatanew.added_by;
+    
 
     var data = {
       state: this.id,
       district: this.id1,
       taluka: this.id2,
       city: this.id3,
-      added_by: this.id4
+      id4: this.id4,
+      datefrom: this.datefrom,
+      dateto: this.dateto,
+      added_by: this.added_by,
+      
 
     }
     this.fcofieldService.getFarmerList(data).subscribe(res => {

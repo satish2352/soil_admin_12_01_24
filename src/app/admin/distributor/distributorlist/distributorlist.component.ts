@@ -291,7 +291,7 @@ export class DistributorlistComponent implements OnInit {
       taluka: this.id2,
       city: this.id3,
       // dist_id: this.id4,
-    }
+    } 
 
     this.distributorService.getDistributorList(data).subscribe(list => {
       if (list['result'] == true) {

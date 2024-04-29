@@ -259,9 +259,9 @@ export class WebService {
     return this.http.post(`${this.urlforapi}blog_reply_list`, null);
   }
 
-  webEnquiryList() {
+  webEnquiryList(data) {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}frontenquiryget`, null);
+    return this.http.post(`${this.urlforapi}frontenquiryget`, data);
   }
 
   webBlogArticleForEdit(obj) {
@@ -502,10 +502,10 @@ addWebProductInfo(formdata,file1)
     return this.http.post(`${this.urlforapi}frontdistributorlist`, data);
   }
 
-  webCareerJobList()
+  webCareerJobList(data)
   {
     this.token = this.getToken();
-    return this.http.post(`${this.urlforapi}job_posting_list`, null);
+    return this.http.post(`${this.urlforapi}job_posting_list`, data);
   }
 
   webCareerJobEdit(obj) {

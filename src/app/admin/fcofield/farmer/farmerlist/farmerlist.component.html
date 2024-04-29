@@ -122,6 +122,40 @@
 
                                                     </div>
 
+                                                    <div class="col s2 m2 l2">From Date</div>
+                                                    <div class="col s2 m2 l2">
+                                                      <input id="datefrom" name="datefrom" type="date" formControlName="datefrom"
+                                                        class="active validate" required  (change)="getDataByDist()"/>
+                                                      <label for="datefrom">From Date<span class="red-text">*</span></label>
+                                                      <div *ngIf="f.datefrom.errors && submitted">
+                                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                                      </div>
+                                                    </div>
+                                                    <div class="col s2 m2 l2">To Date</div>
+                                                    <div class="col s2 m2 l2">
+                                                      <input id="dateto" name="dateto" type="date" formControlName="dateto" class="active validate"
+                                                        required (change)="getDataByDist()"/>
+                                                      <label for="dateto">To Date<span class="red-text">*</span></label>
+                                                      <div *ngIf="f.dateto.errors && submitted">
+                                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                                      </div>
+                                                    </div>
+
+                                                    <div class="input-field col s12 m3 l3">
+                                                        <!-- <label>Select State</label> -->
+                                                        <select class="" formControlName="added_by"
+                                                            (change)="getDataByDist()">
+                                                            <option value="" disabled selected>Choose Added By
+                                                            </option>
+                                                            <option value="superadmin"> Admin</option>
+                                                            <option value="dist">Distributor</option>
+                                                        </select>
+                                                        <!-- <div *ngIf="f.created_disctributor_id.errors && submitted">
+                                                                <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                                            </div> -->
+
+                                                    </div>
+
 
                                                 </div>
 

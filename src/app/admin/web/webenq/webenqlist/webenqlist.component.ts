@@ -53,6 +53,7 @@ export class WebenqlistComponent implements OnInit {
   }
 
 
+
   ngOnInit(): void {
     this.formContent = new FormGroup({
       datefrom: new FormControl('', [Validators.required]),
@@ -61,7 +62,7 @@ export class WebenqlistComponent implements OnInit {
 
     this.ngxService.start();
     
-    this.webService.webEntrenshipList(null).subscribe(datalist => {
+    this.webService.webEnquiryList(null).subscribe(datalist => {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
         // this.alllist.sort((a,b)=>b.id - a.id)
