@@ -14,11 +14,12 @@
 
             <span style="float: right;">
                 &nbsp;&nbsp;&nbsp;
-                <button type="submit" (click)="getExcelReport()" class="btn btn-save" class="waves-effect waves-light btn">Get Excel</button></span>
-                <a id="hiddenLink" target="_blank" style="display: none;"  download>Test</a>
+                <button type="submit" (click)="getExcelReport()" class="btn btn-save"
+                    class="waves-effect waves-light btn">Get Excel</button></span>
+            <a id="hiddenLink" target="_blank" style="display: none;" download>Test</a>
 
 
-                        
+
             <div class="col s12 m12 l12">
                 <ul class="collapsible">
                     <li
@@ -65,15 +66,12 @@
                         </div>
                         <div class="collapsible-body">
                             <ul class="collapsible">
-                                <li
-                                   >
-                                    <div class="collapsible-header modal-trigger" data-target="modal1"
-                                        >
-                                        <table style="font-size: small" class="datatable responsive-table highlight"
-                                            id="pagedatatable">
+                                <li>
+                                    <div class="collapsible-header modal-trigger" data-target="modal1">
+                                        <table style="font-size: small" class="datatable responsive-table highlight">
                                             <thead>
                                                 <tr>
-                                                    <th style="white-space: nowrap">Sr No.</th>
+                                                    <!-- <th style="white-space: nowrap">Sr No.</th> -->
                                                     <th style="white-space: nowrap">BSC Name</th>
                                                     <th style="white-space: nowrap">Contact Number
                                                     </th>
@@ -84,8 +82,9 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr  *ngFor="let lisspanata_bsc of alllist_bsc  | paginate: { itemsPerPage: 5, currentPage: p };let i=index;" (click)="getFscUnderBsc(lisspanata_bsc.user_id)">
-                                                    <td>{{(5*(p-1))+(i+1)}}</td>
+                                                <tr *ngFor="let lisspanata_bsc of alllist_bsc  | paginate: { itemsPerPage: 5, currentPage: p };let i=index;"
+                                                    (click)="getFscUnderBsc(lisspanata_bsc.user_id)">
+                                                    <!-- <td>{{(5*(p-1))+(i+1)}}</td> -->
                                                     <td style="white-space: nowrap"><span
                                                             style="text-transform:uppercase">{{lisspanata_bsc.fname}}
                                                             {{lisspanata_bsc.mname}}
@@ -128,7 +127,7 @@
             <table style="font-size: small" class="datatable responsive-table highlight" id="pagedatatable">
                 <thead>
                     <tr>
-                        <th style="white-space: nowrap">Sr No.</th>
+                        <!-- <th style="white-space: nowrap">Sr No.</th> -->
                         <th style="white-space: nowrap">FSC Name</th>
                         <th style="white-space: nowrap">Contact Number</th>
                         <th style="white-space: nowrap">State</th>
@@ -139,9 +138,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        *ngFor="let listdata_fsc of alllist_fsc | paginate: { itemsPerPage: 5, currentPage: pf };let iff=index;">
-                        <td>{{(5*(pf-1))+(iff+1)}}</td>
+                    <tr *ngFor="let listdata_fsc of alllist_fsc">
+                        <!-- | paginate: { itemsPerPage: 5, currentPage: p };let iff=index;"> -->
+                        <!-- <td>{{(5*(p-1))+(iff+1)}}</td> -->
                         <td style="white-space: nowrap"><span style="text-transform:uppercase">{{listdata_fsc.fname}}
                                 {{listdata_fsc.mname}}
                                 {{listdata_fsc.lname}}</span></td>
@@ -167,8 +166,8 @@
                     </tr>
                 </tbody>
             </table>
-            <pagination-controls (pageChange)="pf = $event">
-            </pagination-controls>
+            <!-- <pagination-controls (pageChange)="p = $event">
+            </pagination-controls> -->
         </div>
         <div class="modal-footer">
             <a class="modal-close waves-effect waves-light btn">ok</a>
