@@ -147,7 +147,12 @@
                                         <th style="white-space: nowrap">Taluka</th>
                                         <th style="white-space: nowrap">Village</th>
                                         <th style="white-space: nowrap">Date</th>
-
+                                        <th style="white-space: nowrap">Aadhar Front Card</th>
+                                        <th style="white-space: nowrap">Aadhar Back Card</th>
+                                        <th style="white-space: nowrap">Light Bill</th>
+                                        <th style="white-space: nowrap">Pan Card</th>
+                                        <th style="white-space: nowrap">Product Purchase Bill</th>
+                                        <th style="white-space: nowrap">Shop Act</th>
 
                                         <th style="white-space: nowrap">Action</th>
                                     </tr>
@@ -189,6 +194,36 @@
 
                                         <td style="white-space: nowrap"><span>{{listdata.created_on| date:
                                                 'dd/MM/yyyy'}}</span></td>
+
+                                        <td style="white-space: nowrap"><span>
+                                                <a href="{{listdata.aadhar_card_image_front}}" download target="_blank">
+                                                    <img src="{{listdata.aadhar_card_image_front}}" /> </a></span></td>
+
+                                                    <td style="white-space: nowrap"><span>
+                                                        <a href="{{listdata.aadhar_card_image_back}}" download target="_blank">
+                                                            <img src="{{listdata.aadhar_card_image_back}}" /> </a></span></td>
+
+                                                            <td style="white-space: nowrap"><span>
+                                                                <a href="{{listdata.light_bill}}" download target="_blank">
+                                                                    <img src="{{listdata.light_bill}}" /> </a></span></td>
+
+                                                                    <td style="white-space: nowrap"><span>
+                                                                        <a href="{{listdata.pan_card}}" download target="_blank">
+                                                                            <img src="{{listdata.pan_card}}" /> </a></span></td>
+
+                                                                            <td style="white-space: nowrap"><span>
+                                                                                <a href="{{listdata.product_purchase_bill}}" download target="_blank">
+                                                                                    <img src="{{listdata.product_purchase_bill}}" /> </a></span></td>
+
+                                                                                    <td style="white-space: nowrap"><span>
+                                                                                        <a href="{{listdata.shop_act_image}}" download target="_blank">
+                                                                                            <img src="{{listdata.shop_act_image}}" /> </a></span></td>
+        
+
+                                                            
+                                                            
+
+                                                          
 
                                         <td style="white-space: nowrap;">
                                             <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
