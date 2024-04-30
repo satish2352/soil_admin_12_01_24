@@ -3,7 +3,12 @@ import { DistributorService } from "../../../../distributor/distributor.service"
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  Params,
+  Router,
+} from '@angular/router'
 declare var $: any;
 import * as M from "materialize-css/dist/js/materialize";
 @Component({
@@ -16,7 +21,7 @@ export class DistviewComponent implements OnInit {
 
   submitted: boolean = false;
   formGroupNew: FormGroup;
-  allstate: any= [];
+  allstate: any = [];
   alldist: any = [];
   allcity: any = [];
   alltaluka: any = [];
@@ -26,26 +31,96 @@ export class DistviewComponent implements OnInit {
   dummy: any;
   pagetitle: string;
 
+  aadhar_card_image_front: any;
+  aadhar_card_image_back: any;
+  light_bill: any;
+  pan_card: any;
+  product_purchase_bill: any;
+  shop_act_image: any;
+
   constructor(public distributorService: DistributorService,
     public http: HttpClient,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    public router: Router
-    ) { }
+    public router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    this.pagetitle='Add Distributor';
-    this.editdata = history.state;
-    // console.log(this.editdata);
+    this.route.params.subscribe((params: Params) => {
+      var obj = {
+        id: this.route.snapshot.params['id']
+      };
+      console.log(obj)
+      this.distributorService.webFrontGetByIdForEdit(obj).subscribe(res => {
+        if (res['result'] == true) {
+          this.editdata = res['data'];
+
+          this.formControlValueChanges();
+          $('select').formSelect();
+          setTimeout(() => {
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 3000);
+          let elems = document.querySelectorAll('select');
+          let instances = M.FormSelect.init(elems);
+          this.aadhar_card_image_front = this.editdata.aadhar_card_image_front;
+          this.aadhar_card_image_back = this.editdata.aadhar_card_image_back;
+          this.light_bill = this.editdata.light_bill;
+          this.pan_card = this.editdata.pan_card;
+          this.product_purchase_bill = this.editdata.product_purchase_bill;
+          this.shop_act_image = this.editdata.shop_act_image;
+          if (this.editdata && this.editdata.fname) {
+            this.pagetitle = 'Edit Distributor';
+            this.formGroupNew.patchValue({
+              fname: this.editdata.fname,
+              mname: this.editdata.mname,
+              lname: this.editdata.lname,
+              email: this.editdata.email,
+              phone: this.editdata.phone,
+              aadharcard: this.editdata.aadharcard,
+              state: this.editdata.state,
+              district: this.editdata.district,
+              taluka: this.editdata.taluka,
+              city: this.editdata.city,
+              address: this.editdata.address,
+              pincode: this.editdata.pincode,
+              occupation: this.editdata.occupation,
+              education: this.editdata.education,
+              exp_in_agricultural: this.editdata.exp_in_agricultural,
+              other_distributorship: this.editdata.other_distributorship,
+              reference_from: this.editdata.reference_from,
+              shop_location: this.editdata.shop_location,
+              password: this.editdata.password,
+              user_id: this.editdata.user_id,
+
+              datafor: 1,
+
+              alternate_mobile: this.editdata.alternate_mobile,
+              business_address: this.editdata.business_address,
+              state_business: this.editdata.state_business,
+              district_business: this.editdata.district_business,
+              taluka_business: this.editdata.taluka_business,
+              city_busines: this.editdata.city_busines,
+              why_want_take_distributorship: this.editdata.why_want_take_distributorship,
+
+            });
+            setTimeout(() => {
+              M.updateTextFields();
+            }, 1000);
+          }
+
+
+        }
+      });
+    })
+    this.pagetitle = 'Add Distributor';
     this.distributorService.getState().subscribe(allstate => {
       this.allstate = allstate['data'];
-      setTimeout(()=>{
+      setTimeout(() => {
         let elems = document.querySelectorAll('select');
         let instances = M.FormSelect.init(elems);
       }, 2000);
-      // if (this.editdata && !this.flag) {
-      //   this.getStateId(this.editdata.state);
-      // }
     });
 
     this.formGroupNew = new FormGroup({
@@ -70,55 +145,29 @@ export class DistviewComponent implements OnInit {
       reference_from: new FormControl('', [Validators.required]),
       shop_location: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
+      alternate_mobile: new FormControl('', [Validators.required]),
+      business_address: new FormControl('', [Validators.required]),
+
+      state_business: new FormControl('', [Validators.required]),
+      district_business: new FormControl('', [Validators.required]),
+      taluka_business: new FormControl('', [Validators.required]),
+      city_busines: new FormControl('', [Validators.required]),
+      why_want_take_distributorship: new FormControl('', [Validators.required]),
+
+
+
     });
 
-    this.formControlValueChanges();
-    $('select').formSelect();
-    setTimeout(()=>{
-      let elems = document.querySelectorAll('select');
-      let instances = M.FormSelect.init(elems);
-    }, 3000);
-    let elems = document.querySelectorAll('select');
-    let instances = M.FormSelect.init(elems);
-    
-    if (this.editdata && this.editdata['fname']) {
-      this.pagetitle='Edit Distributor';
-      this.formGroupNew.patchValue({
-        fname: this.editdata.fname,
-        mname: this.editdata.mname,
-        lname: this.editdata.lname,
-        email: this.editdata.email,
-        phone: this.editdata.phone,
-        aadharcard: this.editdata.aadharcard,
-        state: this.editdata.state,
-        district: this.editdata.district,
-        taluka: this.editdata.taluka,
-        city: this.editdata.city,
-        address: this.editdata.address,
-        pincode: this.editdata.pincode,
-        occupation: this.editdata.occupation,
-        education: this.editdata.education,
-        exp_in_agricultural: this.editdata.exp_in_agricultural,
-        other_distributorship: this.editdata.other_distributorship,
-        reference_from: this.editdata.reference_from,
-        shop_location: this.editdata.shop_location,
-        password: this.editdata.password,
-        user_id: this.editdata.user_id,
-        datafor: 1
-      });
-      setTimeout(()=>{
-        M.updateTextFields();
-      },1000);
-    }
+
 
   }
 
   formControlValueChanges() {
-    this.formGroupNew.get('state').valueChanges.subscribe(val=>{
+    this.formGroupNew.get('state').valueChanges.subscribe(val => {
       if (val) {
-        this.distributorService.getDist({ state_id: val}).subscribe((alldist) => {
+        this.distributorService.getDist({ state_id: val }).subscribe((alldist) => {
           this.alldist = alldist['data'];
-          setTimeout(()=>{
+          setTimeout(() => {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems);
           }, 2000);
@@ -129,11 +178,11 @@ export class DistviewComponent implements OnInit {
       }
     });
 
-    this.formGroupNew.get('district').valueChanges.subscribe(val=>{
+    this.formGroupNew.get('district').valueChanges.subscribe(val => {
       if (val) {
         this.distributorService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
           this.alltaluka = alltaluka['data'];
-          setTimeout(()=>{
+          setTimeout(() => {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems);
           }, 2000);
@@ -144,11 +193,11 @@ export class DistviewComponent implements OnInit {
       }
     });
 
-    this.formGroupNew.get('taluka').valueChanges.subscribe(val=>{
+    this.formGroupNew.get('taluka').valueChanges.subscribe(val => {
       if (val) {
         this.distributorService.getCity({ taluka_id: val }).subscribe((allcity) => {
           this.allcity = allcity['data'];
-          setTimeout(()=>{
+          setTimeout(() => {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems);
           }, 2000);
@@ -225,14 +274,14 @@ export class DistviewComponent implements OnInit {
     }
 
     if (this.formGroupNew.value.datafor == '0') {
-      this.distributorService.register(this.formGroupNew.value).subscribe(res=>{
+      this.distributorService.register(this.formGroupNew.value).subscribe(res => {
         if (res['result'] == true) {
           this.toastr.success("Distributor added successfully!");
           this.router.navigate(['/admin', 'distributor-list']);
         }
       });
     } else {
-      this.distributorService.updateDistributor(this.formGroupNew.value).subscribe(res=>{
+      this.distributorService.updateDistributor(this.formGroupNew.value).subscribe(res => {
         if (res['result'] == true) {
           this.toastr.success("Distributor updated successfully!");
           this.router.navigate(['/admin', 'distributor-list']);

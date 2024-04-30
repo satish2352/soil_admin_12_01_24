@@ -386,15 +386,12 @@ export class CareerdistributorlistComponent implements OnInit {
   }
 
   getForView(event) {
-    var obj = {
-      id: event
-    };
-
-    this.distributorService.webFrontGetByIdForEdit(obj).subscribe(res=>{
-      if (res['result']== true) {
-        this.router.navigate(['/admin','webcareerdist-view'], { state: res['data'] });
-      }
-     });
+    alert(event);
+    // this.distributorService.webFrontGetByIdForEdit(obj).subscribe(res=>{
+    //   if (res['result']== true) {
+        this.router.navigate(['/admin','webcareerdist-view', event]);
+    //   }
+    //  });
 
 
   }

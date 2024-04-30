@@ -625,7 +625,7 @@ const routes: Routes = [
       },
 
       {
-        path:'webcareerdist-view',
+        path:'webcareerdist-view/:id',
         component:DistviewComponent
       },
       {
