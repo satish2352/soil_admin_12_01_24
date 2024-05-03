@@ -75,7 +75,6 @@ export class CoverphotoaddComponent implements OnInit {
     reader.onload = (event) => {
       this.farmerphotoview = reader.result;
     };
-
     this.filesize = this.fileup.size;
     this.filetype = this.fileup.type;
 

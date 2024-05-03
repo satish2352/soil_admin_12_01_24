@@ -591,7 +591,7 @@ const routes: Routes = [
         component:FarmerdashboardreportComponent
       },
       {
-        path:'distdash-report/:id/:id1/:id2/:id3',
+        path:'distdash-report/:id/:id1/:id2/:id3/:id4',
         component:DistributordashboardreportComponent
       },
 

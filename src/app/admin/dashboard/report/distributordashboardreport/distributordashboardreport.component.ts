@@ -13,6 +13,7 @@ export class DistributordashboardreportComponent implements OnInit {
   id1: number;
   id2: number;
   id3: number;
+  dist_type: number;
 
   constructor(
     private router: Router,
@@ -31,12 +32,14 @@ export class DistributordashboardreportComponent implements OnInit {
     this.id1 = +this.route.snapshot.paramMap.get('id1');
     this.id2 = +this.route.snapshot.paramMap.get('id2');
     this.id3 = +this.route.snapshot.paramMap.get('id3');
+    this.dist_type = +this.route.snapshot.paramMap.get('id4');
 
     var data = {
       state: this.id,
       district: this.id1,
       taluka: this.id2,
       city: this.id3,
+      dist_type: this.dist_type,
     }
 
     this.DashboardService.getDistDashReport(data).subscribe(res => {

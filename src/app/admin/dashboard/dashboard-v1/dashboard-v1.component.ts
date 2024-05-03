@@ -17,7 +17,7 @@ export class DashboardV1Component implements OnInit {
   lat = 19.0760;
   lng = 72.8777;
   allagencylist: any;
-
+  dist_type = '';
   farmerForm: FormGroup;
   distForm: FormGroup
   allstate: any = [];
@@ -171,6 +171,7 @@ export class DashboardV1Component implements OnInit {
     this.id2 = '';
     this.id3 = '';
     this.id4 = '';
+    
     this.formdatanew = ''
 
     this.webdash_dist_count_all = [];
@@ -322,8 +323,7 @@ export class DashboardV1Component implements OnInit {
 
   selectDist(val) {
     console.log(val);
-
-    alert(val.target.value);
+    this.dist_type = val.target.value
     this.distGrapdata();
   }
 
@@ -342,7 +342,7 @@ export class DashboardV1Component implements OnInit {
     this.id1 = this.formdatanew.districtnew;
     this.id2 = this.formdatanew.talukanew;
     this.id3 = this.formdatanew.citynew;
-    this.id4 = this.formdatanew.dist_type;
+    this.id4 = this.dist_type;
 
     this.router.navigate(['/admin', 'distdash-report', this.id, this.id1, this.id2, this.id3, this.id4]);
   }
