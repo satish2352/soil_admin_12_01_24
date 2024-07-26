@@ -12,6 +12,8 @@
             </div>
         </div>
 
+
+
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="card">
@@ -23,7 +25,14 @@
                                             class="material-icons left">library_add</i>Add Blog Article</a></span>
                             </div>
                         </div>
-                        <table style="font-weight:small;" class="datatable responsive-table highlight"
+
+                        <div class="row">
+                            <div class="input-field col s3">
+                                <input [(ngModel)]="searchText" type="text" placeholder="Search">
+                            </div>
+                        </div>
+
+                        <table style="font-weight:small;" class="datatable responsive-table highlight newscroll"
                             id="pagedatatable">
                             <thead>
                                 <tr>

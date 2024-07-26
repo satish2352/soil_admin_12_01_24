@@ -41,7 +41,7 @@ export class FarmerlistComponent implements OnInit {
   id1: any;
   id2: any;
   id3: any;
-  dataNew:any;
+  dataNew: any;
 
   distributordetailsall: any;
   id4: any;
@@ -49,7 +49,7 @@ export class FarmerlistComponent implements OnInit {
   datefrom: any;
   dateto: any;
   added_by: any;
-  
+
 
   constructor(
     public fcofieldService: FcofieldService,
@@ -84,13 +84,13 @@ export class FarmerlistComponent implements OnInit {
       datefrom: new FormControl('', [Validators.required]),
       dateto: new FormControl('', [Validators.required]),
       added_by: new FormControl('', [Validators.required]),
-      
+
     });
     this.formControlValueChanges();
     var dataNew = {
-      
+
     }
-    
+
     this.distributorService.getDistributorList(dataNew).subscribe(distributordetailsall => {
       this.distributordetailsall = distributordetailsall['data'];
     });
@@ -248,7 +248,7 @@ export class FarmerlistComponent implements OnInit {
     this.datefrom = this.formdatanew.datefrom;
     this.dateto = this.formdatanew.dateto;
     this.added_by = this.formdatanew.added_by;
-    
+
 
     var data = {
       state: this.id,
@@ -259,7 +259,7 @@ export class FarmerlistComponent implements OnInit {
       datefrom: this.datefrom,
       dateto: this.dateto,
       added_by: this.added_by,
-      
+
 
     }
     this.fcofieldService.getFarmerList(data).subscribe(res => {
@@ -268,32 +268,32 @@ export class FarmerlistComponent implements OnInit {
       }
     });
 
-    
+
   }
-  
+
   searchText: string = '';
 
-    // Create a function to filter the data based on the search criteria
-    applySearchFilter() {
-        // If the search text is empty, return the original data
-        if (!this.searchText.trim()) {
-            return this.allfarmerlist;
-        }
-
-        // Use the filter method to match the search criteria
-        return this.allfarmerlist.filter(item =>
-            item.sct_farmer_fname.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.state.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.district.toLowerCase().includes(this.searchText.toLowerCase()) ||
-            item.phone.includes(this.searchText)
-            // Add more fields as needed
-        );
+  // Create a function to filter the data based on the search criteria
+  applySearchFilter() {
+    // If the search text is empty, return the original data
+    if (!this.searchText.trim()) {
+      return this.allfarmerlist;
     }
 
-    // Use the filtered data in your component
-    get filteredList() {
-        return this.applySearchFilter();
-    }
+    // Use the filter method to match the search criteria
+    return this.allfarmerlist.filter(item =>
+      item.sct_farmer_fname.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.state.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.district.toLowerCase().includes(this.searchText.toLowerCase()) ||
+      item.phone.includes(this.searchText)
+      // Add more fields as needed
+    );
+  }
+
+  // Use the filtered data in your component
+  get filteredList() {
+    return this.applySearchFilter();
+  }
   exportToExcel(): void {
     const date = new Date();
     const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -323,62 +323,62 @@ export class FarmerlistComponent implements OnInit {
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
-  
+
     if (tableElement) {
 
-      const tableHeaders = [  
-      "Farmer  Name",
-      "Distributor Name",
-      // "Dist Middle Name",
-      // "Dist Last  Name",
-      "Aadhar Card",
-      "Email",
-      "Phone",
-      "State",
-      "District",
-      "Taluka",
-      "City",
-      // "Address",
-      // "Pincode",
-      // "Crop",
+      const tableHeaders = [
+        "Farmer  Name",
+        "Distributor Name",
+        // "Dist Middle Name",
+        // "Dist Last  Name",
+        "Aadhar Card",
+        "Email",
+        "Phone",
+        "State",
+        "District",
+        "Taluka",
+        "City",
+        // "Address",
+        // "Pincode",
+        // "Crop",
       ];
 
       // Function to get all rows including those in hidden pages
       const getAllTableRows = async () => {
         const allRows = [];
         const totalRows = tableElement.querySelectorAll('tbody tr');
-  
+
         for (let i = 0; i < totalRows.length; i++) {
           const row = totalRows[i];
           const rowData = Array.from(row.children).map(cell => cell.textContent);
-        
+
           allRows.push(rowData);
         }
-        
+
         return allRows;
       };
-  
+
       // const tableHeaders = Object.keys(this.allfarmerlist[0]);
       const tableRows = this.allfarmerlist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[1], row[4]+" "+row[5]+" "+row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13]]);
-        // , row[15]]); // For example, extracting data from columns 1, 3, and 6
+      const specificData = tableRows.map(row => [row[1], row[4] + " " + row[5] + " " + row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13]]);
+      // , row[15]]); // For example, extracting data from columns 1, 3, and 6
       console.log(tableRows);
       // Calculate dynamic widths based on content length
       const dynamicWidths = tableHeaders.map(header => ({
         width: 'auto',
         minCellWidth: header.length * 10, // Adjust this multiplier as needed
       }));
-  
+
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-  
+
       // Combine the dynamic widths and the specific width
       console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
 
       // Adjust width for specific columns
-      const columnWidths = ['auto', 'auto' ,'auto', 100, 'auto', 'auto', 'auto', 'auto', 'auto']; // Adjust width for column 3 (index 2) as 100
-  
-  
+      const columnWidths = ['auto', 'auto', 'auto', 100, 'auto', 'auto', 'auto', 'auto', 'auto']; // Adjust width for column 3 (index 2) as 100
+
+
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
@@ -403,7 +403,7 @@ export class FarmerlistComponent implements OnInit {
           },
         },
       };
-  
+
       // Generate the PDF
       pdfMake.createPdf(documentDefinition).download('farmerlist.pdf');
     } else {

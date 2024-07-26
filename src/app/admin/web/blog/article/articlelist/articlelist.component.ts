@@ -51,5 +51,28 @@ export class ArticlelistComponent implements OnInit {
     this.editid = event;
     this.router.navigate(['/admin', 'blogarticle-edit', this.editid]);
   }
+
+
+  searchText: string = '';
+
+  // Create a function to filter the data based on the search criteria
+  applySearchFilter() {
+    // If the search text is empty, return the original data
+    if (!this.searchText.trim()) {
+      return this.alllist;
+    }
+
+    // Use the filter method to match the search criteria
+    return this.alllist.filter(item =>
+      item.content.toLowerCase().includes(this.searchText.toLowerCase())
+      // Add more fields as needed
+    );
+  }
+
+  // Use the filtered data in your component
+  get filteredList() {
+    return this.applySearchFilter();
+  }
+
 }
 

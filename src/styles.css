@@ -959,3 +959,17 @@ input.invalid:not([type]), input.invalid:not([type]):focus, input[type=text].inv
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* @media only screen and (max-width: 992px) {
+  table.responsive-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      position: relative;
+  }
+} */
+
+
+  

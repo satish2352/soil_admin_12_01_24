@@ -30,7 +30,7 @@ export class TestimonialaddComponent implements OnInit {
   filesizeone: any;
   filetypeone: any;
   filetypepresent: boolean = false;
-  filetypes: Array<string> = ['image/png', 'image/PNG'];
+  filetypes: Array<string> = ['image/png', 'image/PNG', 'image/JPG', 'image/jpg', 'image/JPEG', 'image/jpg'];
   constructor(public WebService: WebService,
     public http: HttpClient, private fb: FormBuilder,
     public router: Router, private location: Location,

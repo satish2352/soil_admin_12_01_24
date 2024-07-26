@@ -175,9 +175,9 @@ export class InterenshiplistComponent implements OnInit {
       id: id
     };
     this.ngxService.start();
-    this.webService.webVideoDelete(obj).subscribe(res => {
+    this.webService.webEntrenshipDelete(obj).subscribe(res => {
       if (res['result'] == true) {
-        this.toastr.success("Video deleted successfully!");
+        this.toastr.success("Data deleted successfully!");
         this.router.navigate(['/admin', 'redirectself'], { state: ['/admin', 'webcareerinternship-list'] });
       }
       if (res['error'] == true) {

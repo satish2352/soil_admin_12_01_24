@@ -431,6 +431,12 @@ export class WebService {
     return this.http.post(`${this.urlforapi}internship_get`, objnew);
   }
 
+  webEntrenshipDelete(obj) {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}internship_delete`, obj);
+  }
+
+
 
 
   webEntrenshipUpdate(formdata) {

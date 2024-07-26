@@ -15,6 +15,13 @@
 
         <div class="row">
             <div class="col s12 m12 l12">
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." class="validate" />
+                    </div>
+                </div>
+                
                 <div class="card">
                     <div class="card-content">
                         <form [formGroup]="formContent" (ngSubmit)="onSubmit()">
