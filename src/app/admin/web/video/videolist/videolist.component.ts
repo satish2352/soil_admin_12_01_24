@@ -3,6 +3,7 @@ import { WebService } from "../../web.service";
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+
 @Component({
   selector: 'app-videolist',
   templateUrl: './videolist.component.html',
@@ -12,6 +13,9 @@ export class VideolistComponent implements OnInit {
   p: number = 1;
   alllist: any = [];
   editid: any;
+  searchText: string = '';
+  filteredList: any[] = [];
+
   constructor(public webService: WebService,
     public router: Router,
     private toastr: ToastrService,
@@ -24,11 +28,25 @@ export class VideolistComponent implements OnInit {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
         this.alllist.sort((a, b) => b.id - a.id);
+        this.filteredList = this.alllist; // Initialize filteredList
       }
+      this.ngxService.stop();
     });
-    this.ngxService.stop();
   }
 
+  applySearchFilter(): void {
+    if (!this.searchText.trim()) {
+      this.filteredList = this.alllist;
+    } else {
+      this.filteredList = this.alllist.filter(item =>
+        item.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        item.description.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        item.language.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        item.url.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        item.created_at.includes(this.searchText)
+      );
+    }
+  }
 
   deleteItem(id) {
     var obj = {
@@ -43,8 +61,8 @@ export class VideolistComponent implements OnInit {
       if (res['error'] == true) {
         this.toastr.error("Something went wrong " + res['message']);
       }
+      this.ngxService.stop();
     });
-    this.ngxService.stop();
   }
 
   getForEdit(event) {
@@ -52,4 +70,3 @@ export class VideolistComponent implements OnInit {
     this.router.navigate(['/admin', 'webvideo-edit', this.editid]);
   }
 }
-

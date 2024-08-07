@@ -130,6 +130,7 @@ export class DistributorlistComponent implements OnInit {
 
   }
   async exportToPdf() {
+    console.log(".getElementById('exportTable');")
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
 
@@ -291,7 +292,7 @@ export class DistributorlistComponent implements OnInit {
       taluka: this.id2,
       city: this.id3,
       // dist_id: this.id4,
-    } 
+    }
 
     this.distributorService.getDistributorList(data).subscribe(list => {
       if (list['result'] == true) {
@@ -550,7 +551,7 @@ export class DistributorlistComponent implements OnInit {
     }, 500);
 
   }
-  
+
 
 
 }

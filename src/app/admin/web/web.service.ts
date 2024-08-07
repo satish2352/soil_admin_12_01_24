@@ -514,6 +514,12 @@ addWebProductInfo(formdata,file1)
     return this.http.post(`${this.urlforapi}job_posting_list`, data);
   }
 
+  webCareerJobDelete(data)
+  {
+    this.token = this.getToken();
+    return this.http.post(`${this.urlforapi}job_posting_delete`, data);
+  }
+
   webCareerJobEdit(obj) {
     var objnew={
       id:obj

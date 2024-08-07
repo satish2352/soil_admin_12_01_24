@@ -304,15 +304,22 @@ export class JoblistComponent implements OnInit {
   // }
 
 
+  confirmDelete(id: number) {
+    if (confirm('Are you sure you want to delete?')) {
+      this.deleteItem(id);
+    }
+  }
+  
+
   deleteItem(id) {
     var obj = {
       id: id
     };
     this.ngxService.start();
-    this.webService.webVideoDelete(obj).subscribe(res => {
+    this.webService.webCareerJobDelete(obj).subscribe(res => {
       if (res['result'] == true) {
-        this.toastr.success("Video deleted successfully!");
-        this.router.navigate(['/admin', 'redirectself'], { state: ['/admin', 'webvideo-list'] });
+        this.toastr.success("Job deleted successfully!");
+        this.router.navigate(['/admin', 'redirectself'], { state: ['/admin', 'webcareerjob-list'] });
       }
       if (res['error'] == true) {
         this.toastr.error("Something went wrong " + res['message']);

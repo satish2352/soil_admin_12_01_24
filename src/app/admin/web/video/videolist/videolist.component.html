@@ -24,6 +24,9 @@
                                             class="material-icons left">library_add</i>Add Video</a></span>
                             </div>
                         </div>
+                        <div class="input-field col s3">
+                            <input [(ngModel)]="searchText" (ngModelChange)="applySearchFilter()" type="text" placeholder="Search">
+                          </div>
                         <table style="font-weight:small;" class="datatable responsive-table highlight" id="pagedatatable">
                             <thead>
                                 <tr>
@@ -37,21 +40,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  *ngFor="let datalist of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                <tr *ngFor="let datalist of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
                                     <td>{{(10*(p-1))+(i+1)}}</td>
-                                    <td style="white-space: nowrap"><span >{{datalist.title}}</span></td>
-                                    <td style="white-space: nowrap"><span >{{datalist.created_at | date: 'dd/MM/yyyy'}}</span></td>
-                                    <td><span ><div [innerHtml]="datalist.description"></div></span></td>
+                                    <td style="white-space: nowrap"><span>{{datalist.title}}</span></td>
+                                    <td><span><div [innerHtml]="datalist.description"></div></span></td>
+                                    <td style="white-space: nowrap"><span>{{datalist.created_at | date: 'dd/MM/yyyy'}}</span></td>
                                     <td>{{datalist.url}}</td>
                                     <td>{{datalist.language}}</td>
                                     <td style="white-space: nowrap">
-                                        <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)" ><i
-                                                class="material-icons"
-                                                >edit</i></a>
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;" (click)="getForEdit(datalist.id)"><i class="material-icons">edit</i></a>
                                         &nbsp;
-                                        <a href="JavaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteItem(datalist.id)"
-                                        onclick="confirm('Are you sure want to delete')"><i
-                                                class="material-icons">delete</i></a>
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Delete" style="background-color: red;" (click)="deleteItem(datalist.id)" onclick="confirm('Are you sure want to delete')"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             </tbody>
