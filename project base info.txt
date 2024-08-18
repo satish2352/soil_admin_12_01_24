@@ -1,0 +1,4 @@
+npm install -g @angular/cli@15.0.0
+$ node -v
+v16.16.0
+

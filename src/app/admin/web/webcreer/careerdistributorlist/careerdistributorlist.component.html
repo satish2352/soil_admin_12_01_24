@@ -1,7 +1,7 @@
 <main>
     <div class="main-content">
         <div class="row">
-            <div class="col s12 m12 l12">
+            <div class="col s12">
                 <span class="page-title">
                     Distributor List
                 </span>
@@ -11,230 +11,100 @@
                 </ul>
             </div>
         </div>
-        <button style="margin-left:20px" class="btn btn-info text-white font-weight-normal text-xs"
-            (click)="exportToExcel()">Export to Excel</button>
-        &nbsp;&nbsp;&nbsp;<button class="btn btn-info text-white font-weight-normal text-xs"
-            (click)="exportToPdf()">Export to PDF</button>
 
+        <div class="actions">
+            <button class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToExcel()">Export to Excel</button>
+            <button class="btn btn-info text-white font-weight-normal text-xs" (click)="exportToPdf()">Export to PDF</button>
+        </div>
 
         <div class="row">
-            <div class="col s12 m12 l12">
+            <div class="col s12">
                 <div class="card">
                     <div class="card-content">
-                        <div class="row">
-                            <div class="col s12 m12 l12">
-                                <div class="row">
-                                    <form [formGroup]="farmerForm">
-                                        <div class="col s12 m12 l12">
-                                            <!-- <div class="card white"> -->
-                                            <div class="card-content white-red">
+                        <form [formGroup]="farmerForm">
+                            <div class="row">
+                                <div class="input-field col s12 m6 l3">
+                                    <select formControlName="state">
+                                        <option value="" disabled selected>Choose State</option>
+                                        <option *ngFor="let state of allstate" [value]="state.location_id">
+                                            {{ state.name }}
+                                        </option>
+                                    </select>
+                                </div>
 
-                                                <div class="row">
+                                <div class="input-field col s12 m6 l3">
+                                    <select formControlName="district">
+                                        <option value="" disabled selected>Choose District</option>
+                                        <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                                            {{ dist.name }}
+                                        </option>
+                                    </select>
+                                </div>
 
-                                                    <div class="input-field col s12 m3 l3">
-                                                        <select class="" formControlName="state">
-                                                            <option value="" disabled selected>Choose State</option>
-                                                            <option *ngFor="let state of allstate"
-                                                                [value]="state.location_id">
-                                                                {{state.name}}</option>
-                                                        </select>
-                                                        <!-- <div *ngIf="submitted && f.state.errors"
-                                                                class="invalid-input">
-                                                                <span class="red-text"><strong>Required*</strong></span>
-                                                            </div> -->
-                                                    </div>
+                                <div class="input-field col s12 m6 l3">
+                                    <select formControlName="taluka">
+                                        <option value="" disabled selected>Choose Taluka</option>
+                                        <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                                            {{ taluka.name }}
+                                        </option>
+                                    </select>
+                                </div>
 
-                                                    <div class="input-field col s12 m3 l3">
-
-                                                        <select class="" formControlName="district">
-                                                            <option value="" disabled selected>Choose District
-                                                            </option>
-                                                            <option *ngFor="let dist of alldist"
-                                                                [value]="dist.location_id">
-                                                                {{dist.name}}</option>
-                                                        </select>
-                                                        <!-- <div *ngIf="submitted && f.district.errors"
-                                                                class="invalid-input">
-                                                                <span class="red-text"><strong>Required*</strong></span>
-                                                            </div> -->
-                                                    </div>
-
-                                                    <div class="input-field col s12 m3 l3">
-
-                                                        <select class="" formControlName="taluka">
-                                                            <option value="" disabled selected>Choose Taluka
-                                                            </option>
-                                                            <option *ngFor="let taluka of alltaluka"
-                                                                [value]="taluka.location_id">
-                                                                {{taluka.name}}</option>
-                                                        </select>
-                                                        <!-- <div *ngIf="submitted && f.taluka.errors"
-                                                                class="invalid-input">
-                                                                <span class="red-text"><strong>Required*</strong></span>
-                                                            </div> -->
-                                                    </div>
-
-                                                    <div class="input-field col s12 m3 l3">
-
-                                                        <select class="" formControlName="city">
-                                                            <option value="" disabled selected>Choose City</option>
-                                                            <option *ngFor="let city of allcity"
-                                                                [value]="city.location_id">
-                                                                {{city.name}}</option>
-                                                        </select>
-
-                                                    </div>
-                                                    <!-- your-component.component.html -->
-
-                                                    <!-- <div class="input-field col s12 m3 l3">
-                                                        <select class="" formControlName="created_disctributor_id"
-                                                            (change)="filterDataByDistributor()">
-                                                            <option value="" disabled selected>Choose Distributor
-                                                            </option>
-                                                            <option *ngFor="let dist of filteredDistributor"
-                                                                [value]="dist.user_id">
-                                                                {{ dist.fname }} {{ dist.lname }} {{ dist.lname }}
-                                                            </option>
-                                                        </select>
-                                                    </div> -->
-                                                    <!-- your-component.component.html -->
-                                                    <!-- 
-                                                    <div class="input-field col s12 m3 l3">
-                                                        <select class="" formControlName="created_disctributor_id">
-                                                            <option value="" disabled selected>Choose Distributor
-                                                            </option>
-                                                            <option *ngFor="let dist of filteredDistributor"
-                                                                [value]="dist.user_id">
-                                                                {{ dist.fname }} {{ dist.lname }} {{ dist.lname }}
-                                                            </option>
-                                                        </select>
-                                                    </div> -->
-
-
-
-                                                    <!-- <div class="input-field col s12 m3 l3">
-                                                            <label>Select State</label>
-                                                            <select class="" formControlName="created_disctributor_id" (change)="getDataByDist()">
-                                                                <option value="" disabled selected>Choose Distributor</option>
-                                                                <option *ngFor="let distributordetails of distributordetailsall" [value]="distributordetails.user_id">
-                                                                    {{distributordetails.fname}} {{distributordetails.mname}} {{distributordetails.lname}}</option>
-                                                            </select>
-                                                            <div *ngIf="f.created_disctributor_id.errors && submitted">
-                                                                <span class="red-text"><strong>Required/Invalid*</strong></span>
-                                                            </div>
-                
-                                                        </div> -->
-
-                                                </div>
-
-                                            </div>
-                                            <!-- </div> -->
-                                        </div>
-                                    </form>
+                                <div class="input-field col s12 m6 l3">
+                                    <select formControlName="city">
+                                        <option value="" disabled selected>Choose City</option>
+                                        <option *ngFor="let city of allcity" [value]="city.location_id">
+                                            {{ city.name }}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                        <div class="nowrap">
-                            <table style="font-weight:small;" class="datatable responsive-table highlight table-responsive"
-                                id="exportTable">
+                        </form>
+
+                        <div class="table-container">
+                            <table class="highlight responsive-table">
                                 <thead>
                                     <tr>
-                                        <th style="white-space: nowrap">Sr No.</th>
-                                        <th style="white-space: nowrap">Name</th>
-                                        <th style="white-space: nowrap">Contact Number</th>
-                                        <th style="white-space: nowrap">State</th>
-                                        <th style="white-space: nowrap">District</th>
-                                        <th style="white-space: nowrap">Taluka</th>
-                                        <th style="white-space: nowrap">Village</th>
-                                        <th style="white-space: nowrap">Date</th>
-                                        <th style="white-space: nowrap">Aadhar Front Card</th>
-                                        <th style="white-space: nowrap">Aadhar Back Card</th>
-                                        <th style="white-space: nowrap">Light Bill</th>
-                                        <th style="white-space: nowrap">Pan Card</th>
-                                        <th style="white-space: nowrap">Product Purchase Bill</th>
-                                        <th style="white-space: nowrap">Shop Act</th>
-
-                                        <th style="white-space: nowrap">Action</th>
+                                        <th>Sr No.</th>
+                                        <th>Name</th>
+                                        <th>Contact Number</th>
+                                        <th>State</th>
+                                        <th>District</th>
+                                        <th>Taluka</th>
+                                        <th>Village</th>
+                                        <th>Date</th>
+                                        <th>Aadhar Front Card</th>
+                                        <th>Aadhar Back Card</th>
+                                        <th>Light Bill</th>
+                                        <th>Pan Card</th>
+                                        <th>Product Purchase Bill</th>
+                                        <th>Shop Act</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
-                                        <td>{{(10*(p-1))+(i+1)}}</td>
-                                        <!-- <td></td> -->
-                                        <!-- <tr
-                                    *ngFor="let listdata of alllist ;let i=index;">
-                                        <td>{{i+1}}</td> -->
-                                        <td style="white-space: nowrap"><span>{{listdata.fname}} {{listdata.mname}}
-                                                {{listdata.lname}}</span>&nbsp; &nbsp;
-                                            <span *ngIf="listdata.new_user_type"
-                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
-                                                class="blink_me"> &nbsp; {{listdata.new_user_type}} &nbsp;</span>
-
-
-                                            <span *ngIf="listdata.list_data_status == '0'"
-                                                style="background-color: green; color:whitesmoke; text-transform: capitalize;"
-                                                class="blink_me">New</span>
-
-                                            <span
-                                                *ngIf="listdata.list_data_status == '1' && listdata.list_data_read == 'y' "
-                                                style="background-color: red; color:whitesmoke; text-transform: capitalize;"
-                                                class="blink_me">Seen</span>
-
+                                    <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
+                                        <td>{{ (10 * (p - 1)) + (i + 1) }}</td>
+                                        <td><span>{{ listdata.fname }} {{ listdata.mname }} {{ listdata.lname }}</span>
+                                            <span *ngIf="listdata.new_user_type" class="badge green">{{ listdata.new_user_type }}</span>
+                                            <span *ngIf="listdata.list_data_status == '0'" class="badge green">New</span>
+                                            <span *ngIf="listdata.list_data_status == '1' && listdata.list_data_read == 'y'" class="badge red">Seen</span>
                                         </td>
-                                        <td style="white-space: nowrap"><span>{{listdata.phone}}</span></td>
-                                        <td style="white-space: nowrap"><span
-                                                style="text-transform:uppercase">{{listdata.state}}</span></td>
-                                        <td style="white-space: nowrap"><span
-                                                style="text-transform:uppercase">{{listdata.district}}</span></td>
-                                        <td style="white-space: nowrap"><span
-                                                style="text-transform:uppercase">{{listdata.taluka}}</span></td>
-                                        <td style="white-space: nowrap"><span
-                                                style="text-transform:uppercase">{{listdata.city}}</span></td>
-
-                                        <td style="white-space: nowrap"><span>{{listdata.created_on| date:
-                                                'dd/MM/yyyy'}}</span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.aadhar_card_image_front}}" download target="_blank">
-                                                    <img src="{{listdata.aadhar_card_image_front}}" alt="image" height="100px" /> </a></span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.aadhar_card_image_back}}" download target="_blank">
-                                                    <img src="{{listdata.aadhar_card_image_back}}" alt="image" height="100px" /> </a></span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.light_bill}}" download target="_blank">
-                                                    <img src="{{listdata.light_bill}}" alt="image" height="100px" /> </a></span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.pan_card}}" download target="_blank">
-                                                    <img src="{{listdata.pan_card}}" alt="image" height="100px" /> </a></span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.product_purchase_bill}}" download target="_blank">
-                                                    <img src="{{listdata.product_purchase_bill}}" alt="image" height="100px" /> </a></span></td>
-
-                                        <td style="white-space: nowrap"><span>
-                                                <a href="{{listdata.shop_act_image}}" download target="_blank">
-                                                    <img src="{{listdata.shop_act_image}}" alt="image" height="100px" /> </a></span></td>
-
-
-
-
-
-
-
-                                        <td style="white-space: nowrap;">
-                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
-                                                style="background-color: green;" (click)="getForUpdate(listdata.id)"><i
-                                                    class="material-icons">edit</i>{{listdata.id}}</a>
-                                            &nbsp;
-                                            <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
-                                                style="background-color: violet;" (click)="getForView(listdata.id)"><i
-                                                    class="material-icons">remove_red_eye</i></a>
-                                            &nbsp;
-
+                                        <td>{{ listdata.phone }}</td>
+                                        <td>{{ listdata.state | uppercase }}</td>
+                                        <td>{{ listdata.district | uppercase }}</td>
+                                        <td>{{ listdata.taluka | uppercase }}</td>
+                                        <td>{{ listdata.city | uppercase }}</td>
+                                        <td>{{ listdata.created_on | date: 'dd/MM/yyyy' }}</td>
+                                        <td><a target="_blank" href="{{ listdata.aadhar_card_image_front }}" download><img src="{{ listdata.aadhar_card_image_front }}" alt="Aadhar Front" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.aadhar_card_image_back }}" download><img src="{{ listdata.aadhar_card_image_back }}" alt="Aadhar Back" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.light_bill }}" download><img src="{{ listdata.light_bill }}" alt="Light Bill" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.pan_card }}" download><img src="{{ listdata.pan_card }}" alt="Pan Card" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.product_purchase_bill }}" download><img src="{{ listdata.product_purchase_bill }}" alt="Product Purchase Bill" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.shop_act_image }}" download><img src="{{ listdata.shop_act_image }}" alt="Shop Act" class="responsive-img" /></a></td>
+                                        <td>
+                                            <a href="JavaScript:void(0)" class="btn-floating green" title="Edit" (click)="getForUpdate(listdata.id)"><i class="material-icons">edit</i></a>
+                                            <a href="JavaScript:void(0)" class="btn-floating violet" title="View" (click)="getForView(listdata.id)"><i class="material-icons">remove_red_eye</i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -247,3 +117,64 @@
         </div>
     </div>
 </main>
+
+<style>
+    /* Styles for better responsiveness */
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .actions {
+        margin-bottom: 1rem;
+    }
+
+    .input-field select {
+        display: block;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .table-container table {
+        width: 100%;
+    }
+
+    .responsive-img {
+        max-height: 100px;
+        object-fit: cover;
+    }
+
+    .badge {
+        padding: 0.2rem 0.5rem;
+        color: #fff;
+        border-radius: 0.2rem;
+        font-size: 0.75rem;
+    }
+
+    .badge.green {
+        background-color: green;
+    }
+
+    .badge.red {
+        background-color: red;
+    }
+
+    .btn-floating {
+        margin: 0 0.5rem;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .page-title {
+            font-size: 1.2rem;
+        }
+
+        .input-field col {
+            padding: 0 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+    }
+</style>

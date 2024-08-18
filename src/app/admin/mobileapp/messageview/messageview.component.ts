@@ -13,6 +13,8 @@ export class MessageviewComponent implements OnInit {
   alllist:any;
   p:number = 1;
   farmerForm: FormGroup;
+  searchText: string = '';
+  filteredList: any[] = [];
   constructor(public mobileappService:MobileappService,public router:Router) { }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class MessageviewComponent implements OnInit {
     //     })
     //   }, 4000)
     // })
-
+    this.filteredList = this.alllist;
     this.farmerForm = new FormGroup({
       msg_status: new FormControl('', [Validators.required]),
     });
@@ -61,11 +63,32 @@ export class MessageviewComponent implements OnInit {
     this.mobileappService.getMobileAppHetMessegesList(data).subscribe(list => {
       this.alllist = [];
       this.alllist = list['data'];
-      // this.alllist.sort((a,b)=> b.id - a.id)
+      // this.alllist.sort((a, b) => b.id - a.id);
+        this.filteredList = this.alllist; // Initialize filteredList
     });
 
   }
 
+  
+  applySearchFilter(): void {
+    if (!this.searchText.trim()) {
+      this.filteredList = this.alllist;
+    } else {
+      this.filteredList = this.alllist.filter(item => {
+        const searchTextLower = this.searchText.toLowerCase();
+        const idtosearch = "sctmsg"+item.id
+        return (
+          (item.subject && item.subject.toLowerCase().includes(searchTextLower)) ||
+          (item.message && item.message.toLowerCase().includes(searchTextLower)) ||
+          (item.msg && item.msg.toLowerCase().includes(searchTextLower)) ||
+          (item.recipient_name && item.recipient_name.toLowerCase().includes(searchTextLower)) ||
+          (item.created_at && item.created_at.toLowerCase().includes(searchTextLower)) ||
+          (idtosearch.includes(searchTextLower))
+        );
+      });
+
+    }
+  }
 
 
 }

@@ -13,6 +13,8 @@ export class ComplaintviewComponent implements OnInit {
   alllist: any;
   p: number = 1;
   farmerForm: FormGroup;
+  searchText: string = '';
+  filteredList: any[] = [];
   constructor(public mobileappService: MobileappService, public router: Router) { }
 
   ngOnInit(): void {
@@ -67,12 +69,35 @@ export class ComplaintviewComponent implements OnInit {
       this.alllist = [];
       this.alllist = list['data'];
       // this.alllist.sort((a,b)=> b.id - a.id)
+      this.filteredList = this.alllist; // Initialize filteredList
     });
 
   }
 
   editMessege(id) {
     this.router.navigate(['/admin', 'mobileapp-complaint-view', id]);
+  }
+
+  
+  
+  applySearchFilter(): void {
+    if (!this.searchText.trim()) {
+      this.filteredList = this.alllist;
+    } else {
+      this.filteredList = this.alllist.filter(item => {
+        const searchTextLower = this.searchText.toLowerCase();
+        const idtosearch = "sctcomp"+item.id
+        return (
+          (item.subject && item.subject.toLowerCase().includes(searchTextLower)) ||
+          (item.message && item.message.toLowerCase().includes(searchTextLower)) ||
+          (item.msg && item.msg.toLowerCase().includes(searchTextLower)) ||
+          (item.recipient_name && item.recipient_name.toLowerCase().includes(searchTextLower)) ||
+          (item.created_at && item.created_at.toLowerCase().includes(searchTextLower))  ||
+          (idtosearch.includes(searchTextLower))
+        );
+      });
+
+    }
   }
 }
 

@@ -120,12 +120,13 @@
                                     <th>Date</th>
                                     <th>Present Farmer</th>
                                     <th>Meeting Title</th>
-                                    <th>Lat /Lon</th>
-                                    <th>Points Discuss</th>
+                                    <!-- <th>Lat /Lon</th> -->
+                                    <th>Description</th>
                                     <th>Meeting Photo 1</th>
                                     <th>Meeting Photo 2</th>
                                     <th>Meeting Photo 3</th>
                                     <th>Meeting Photo 4</th>
+                                    <th>Meeting Photo 5</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,13 +140,14 @@
                                             style="text-transform:uppercase">{{listdata.presentFarmerFormeeting}}</span>
                                     </td>
                                     <td><span style="text-transform:uppercase">{{listdata.meeting_title}}</span></td>
-                                    <td><span style="text-transform:uppercase">Lat :{{listdata.photo_one_lat}} /Lon :{{listdata.photo_one_long}}</span></td>
+                                    <!-- <td><span style="text-transform:uppercase">Lat :{{listdata.photo_one_lat}} /Lon :{{listdata.photo_one_long}}</span></td> -->
                                     <td><span style="text-transform:uppercase">{{listdata.meeting_description}}</span>
                                     </td>
                                     <td><span><img src={{listdata.photo_one}} alt="image" height="50px"></span></td>
                                     <td><span><img src={{listdata.photo_two}} alt="image" height="50px"></span></td>
                                     <td><span><img src={{listdata.photo_three}} alt="image" height="50px"></span></td>
                                     <td><span><img src={{listdata.photo_four}} alt="image" height="50px"></span></td>
+                                    <td><span><img src={{listdata.photo_five}} alt="image" height="50px"></span></td>
                                 </tr>
                             </tbody>
                         </table>
