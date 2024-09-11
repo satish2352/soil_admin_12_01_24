@@ -29,7 +29,7 @@ export class CoverphotoaddComponent implements OnInit {
   filesize: any;
   filetype: any;
   filetypepresent: boolean = false;
-  filetypes: Array<string> = ['image/png', 'image/PNG'];
+  filetypes: Array<string> = ['image/png', 'image/PNG', 'image/jpg', 'image/JPG', 'image/jpeg', 'image/JPEG'];
 
   constructor(
     public WebService: WebService,
