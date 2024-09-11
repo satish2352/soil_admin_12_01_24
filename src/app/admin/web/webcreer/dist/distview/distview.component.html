@@ -1,365 +1,280 @@
 <main>
-    <div class="main-content">
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <span class="page-title">
-                    {{pagetitle}}
-                </span>
-                <ul class="breadcrumbs">
-                    <li><a routerLink="/admin/dashboard">Home</a></li>
-                    <li><a routerLink="/admin/distributor-list">Distributors</a></li>
-                    <li class="active">{{pagetitle}}</li>
-                </ul>
+   <div class="main-content">
+      <div class="row">
+         <div class="col s12 m12 l12">
+            <span class="page-title">
+            {{pagetitle}}
+            </span>
+            <ul class="breadcrumbs">
+               <li><a routerLink="/admin/dashboard">Home</a></li>
+               <li><a routerLink="/admin/distributor-list">Distributors</a></li>
+               <li class="active">{{pagetitle}}</li>
+            </ul>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col s12 m12 l12">
+            <div class="card">
+               <div class="card-content">
+                  <form [formGroup]="formGroupNew" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="applicantFirstName" name="fname" class="validate" type="text" value=""
+                           style="text-transform:uppercase" formControlName="fname" required />
+                        <label for="first_name">First Name <span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.fname.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="applicantFirstName" name="mname"
+                           class="form-control input_capital  capitalize" type="text" value=""
+                           style="text-transform:uppercase" class="validate" formControlName="mname"
+                           required />
+                        <label for="middle_name">Middle Name<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.mname.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="applicantFirstName" name="lname" class="validate" type="text" value=""
+                           style="text-transform:uppercase" formControlName="lname" required />
+                        <label for="last_name">Last Name <span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.lname.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="mobileno" maxlength="10" name="phone" placeholder="" class="validate"
+                           type="number" value="" formControlName="phone" required />
+                        <label for="mobile_number">Mobile Number <span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">Alternate Mobile Number</i>
+                        <input id="alternate_mobile" maxlength="10" name="alternate_mobile" placeholder="" class="validate"
+                           type="number" value="" formControlName="alternate_mobile" required />
+                        <label for="mobile_number">Alternate Mobile Number<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.alternate_mobile.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <i class="material-icons prefix">alternate_email</i>
+                        <input id="emailId" name="email" class="validate" type="text" value=""
+                           formControlName="email" (change)="getCheckemailexist($event)" required />
+                        <label for="email_id">Email ID</label>
+                        <div *ngIf="submitted && f.email.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div id='educatioDetails'>
+                     <div>
+                        <p class="teal lighten-2" style="padding: 10px;"><b>Residential Details</b></p>
+                     </div>
+                     <div class='row'>
+                        <div class="input-field col s12 m4 l4">
+                           <select class="" formControlName="state">
+                              <option value="" disabled selected>Choose your state</option>
+                              <option *ngFor="let state of allstate" [value]="state.location_id">
+                              {{state.name}}</option>
+                           </select>
+                           <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                           </div>
+                        </div>
+                        <div class="input-field col s12 m4 l4">
+                           <select class="" formControlName="district">
+                              <option value="" disabled selected>Choose your District</option>
+                              <option *ngFor="let dist of alldist" [value]="dist.location_id">
+                              {{dist.name}}</option>
+                           </select>
+                           <div *ngIf="submitted && f.district.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                           </div>
+                        </div>
+                        <div class="input-field col s12 m4 l4">
+                           <select class="" formControlName="taluka">
+                              <option value="" disabled selected>Choose your Taluka</option>
+                              <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
+                              {{taluka.name}}</option>
+                           </select>
+                           <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                           </div>
+                        </div>
+                        <div class="input-field col s12 m4 l4">
+                           <select class="" formControlName="city">
+                              <option value="" disabled selected>Choose your City</option>
+                              <option *ngFor="let city of allcity" [value]="city.location_id">
+                              {{city.name}}</option>
+                           </select>
+                           <div *ngIf="submitted && f.city.errors" class="invalid-input">
+                              <span class="red-text"><strong>Required*</strong></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class='row'  id='empDetal'>
+                     <div>
+                        <p class="teal lighten-2" style="padding: 10px;"><b>Businees Details                                    </b></p>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <input id="business_address" name="business_address" class="validate" type="text" value=""
+                           formControlName="business_address" required />
+                        <label for="business_address">Business Address<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.business_address.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="business_state">
+                           <option value="" disabled selected>Choose your state</option>
+                           <option *ngFor="let state of b_allstate" [value]="state.location_id">
+                           {{state.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="business_district">
+                           <option value="" disabled selected>Choose your District</option>
+                           <option *ngFor="let dist of b_alldist" [value]="dist.location_id">
+                           {{dist.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.district.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="business_tuluka">
+                           <option value="" disabled selected>Choose your Taluka</option>
+                           <option *ngFor="let taluka of b_alltaluka" [value]="taluka.location_id">
+                           {{taluka.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="business_village">
+                           <option value="" disabled selected>Choose your City</option>
+                           <option *ngFor="let city of b_allcity" [value]="city.location_id">
+                           {{city.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.city.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="where_open_shop" id="where_open_shop" required="required">
+                           <option selected>Choose option...</option>
+                           <option value="1">Village Level</option>
+                           <option value="2">Taluka Level</option>
+                           <option value="3">District Level</option>
+                        </select>
+                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <select class="" formControlName="used_sct" id="used_sct" required="required">
+                           <option selected>Can You Used Soil Charger Technology</option>
+                           <option value="yes">Yes</option>
+                           <option value="no">No</option>
+                        </select>
+                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <input id="why_want_take_distributorship" name="why_want_take_distributorship" class="validate" type="text" value=""
+                           formControlName="why_want_take_distributorship" required />
+                        <label for="why_want_take_distributorship">Why Want Take Distributorship<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.why_want_take_distributorship.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                  </div>
+                     <div class="row">
+                     <div class="input-field col s12 m4 l4">
+                        <input id="distributorship_exerience" name="distributorship_exerience" class="validate" type="text" value=""
+                           formControlName="distributorship_exerience" required />
+                        <label for="distributorship_exerience">If You Used Then Tell Your Experience & Information<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.distributorship_exerience.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <input id="experience_farm_garder" name="experience_farm_garder" class="validate" type="text" value=""
+                           formControlName="experience_farm_garder" required />
+                        <label for="experience_farm_garder">Share Your Experience In Farm & Garden<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.experience_farm_garder.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="input-field col s12 m12 l12">
+                        <input id="goal" name="goal" class="validate" type="text" value=""
+                           formControlName="goal" required />
+                        <label for="goal">How Many Farmers Do You Want To Work With ? & Approximately How Much Of A Technology Can You Reach To The Farmers ? What Is Your Goal<span class="red-text">*</span></label>
+                        <div *ngIf="submitted && f.goal.errors" class="invalid-input">
+                           <span class="red-text"><strong>Required*</strong></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Aadhar Card Front</span>
+                        <a href="{{aadhar_card_image_front}}" download target="_blank">
+                        <img src="{{aadhar_card_image_front}}" alt="image" height="100px" /> </a>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Aadhar Card Back</span>
+                        <a href="{{aadhar_card_image_back}}" download target="_blank">
+                        <img src="{{aadhar_card_image_back}}" alt="image" height="100px" /> </a>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Light Bill</span>
+                        <a href="{{light_bill}}" download target="_blank">
+                        <img src="{{light_bill}}" alt="image" height="100px" /> </a>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Pan Card</span>
+                        <a href="{{pan_card}}" download target="_blank">
+                        <img src="{{pan_card}}" alt="image" height="100px" /> </a>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Product Purchase Bill</span>
+                        <a href="{{product_purchase_bill}}" download target="_blank">
+                        <img src="{{product_purchase_bill}}" alt="image" height="100px" /> </a>
+                     </div>
+                     <div class="input-field col s12 m4 l4">
+                        <span  class="image-label">Shop Act</span>
+                        <a href="{{shop_act_image}}" download target="_blank">
+                        <img src="{{shop_act_image}}" alt="image" height="100px" /> </a>
+                     </div>
+                  </div>
+                  <!-- <div class="row" style="float:right;">
+                     <div class="col s12">
+                        <button type="submit" class="btn btn-save">Save</button>
+                     </div>
+                  </div> -->
+                  </form>
+               </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col s12 m12 l12">
-                <div class="card">
-                    <div class="card-content">
-                        <form [formGroup]="formGroupNew" (ngSubmit)="onSubmit()">
-                            <div class="row">
-                                <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="applicantFirstName" name="fname" class="validate" type="text" value=""
-                                        style="text-transform:uppercase" formControlName="fname" required />
-                                    <label for="first_name">First Name <span class="red-text">*</span></label>
-                                    <div *ngIf="submitted && f.fname.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required*</strong></span>
-                                    </div>
-                                </div>
-                                <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="applicantFirstName" name="mname"
-                                        class="form-control input_capital  capitalize" type="text" value=""
-                                        style="text-transform:uppercase" class="validate" formControlName="mname"
-                                        required />
-                                    <label for="middle_name">Middle Name<span class="red-text">*</span></label>
-                                    <div *ngIf="submitted && f.mname.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required*</strong></span>
-                                    </div>
-
-                                </div>
-                                <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">account_circle</i>
-                                    <input id="applicantFirstName" name="lname" class="validate" type="text" value=""
-                                        style="text-transform:uppercase" formControlName="lname" required />
-                                    <label for="last_name">Last Name <span class="red-text">*</span></label>
-                                    <div *ngIf="submitted && f.lname.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required*</strong></span>
-                                    </div>
-                                </div>
-
-                                <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">phone</i>
-                                    <input id="mobileno" maxlength="10" name="phone" placeholder="" class="validate"
-                                        type="number" value="" formControlName="phone" required />
-                                    <label for="mobile_number">Mobile Number <span class="red-text">*</span></label>
-                                    <div *ngIf="submitted && f.phone.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required*</strong></span>
-                                    </div>
-                                </div>
-                                
-                                <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">alternate_email</i>
-
-                                    <input id="emailId" name="email" class="validate" type="text" value=""
-                                        formControlName="email" (change)="getCheckemailexist($event)" required />
-                                    <label for="email_id">Email ID</label>
-                                    <div *ngIf="submitted && f.email.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required*</strong></span>
-                                    </div>
-                                </div>
-
-                                
-
-                                <!-- <div class="input-field col s12 m4 l4">
-                                    <i class="material-icons prefix">format_list_numbered</i>
-                                    <input id="aadharcard" name="aadharcard" class="validate" type="number" value=""
-                                        formControlName="aadharcard" required />
-                                    <label for="aadharcard">Adhar Card No</label>
-                                    <div *ngIf="submitted && f.aadharcard.errors" class="invalid-input">
-                                        <div *ngIf="f.aadharcard.errors.required">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-
-
-                            <div id='educatioDetails'>
-                                <div>
-                                    <p class="teal lighten-2" style="padding: 10px;"><b>Residential Details</b></p>
-                                </div>
-                                <div class='row'>
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="state">
-                                            <option value="" disabled selected>Choose your state</option>
-                                            <option *ngFor="let state of allstate" [value]="state.location_id">
-                                                {{state.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.state.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="district">
-                                            <option value="" disabled selected>Choose your District</option>
-                                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
-                                                {{dist.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.district.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="taluka">
-                                            <option value="" disabled selected>Choose your Taluka</option>
-                                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
-                                                {{taluka.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.taluka.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="city">
-                                            <option value="" disabled selected>Choose your City</option>
-                                            <option *ngFor="let city of allcity" [value]="city.location_id">
-                                                {{city.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.city.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <!-- <div class="input-field col s12 m4 l4">
-                                        <input id="pincode" name="pincode" class="validate" type="number" value=""
-                                            formControlName="pincode" required />
-                                        <label for="pincode">Pincode<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.pincode.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div> 
-
-                                    <div class="input-field col s12 m12 l12">
-                                        <textarea id="address" class="materialize-textarea validate"
-                                            formControlName="address" required></textarea>
-                                        <label for="address" class='active'>Address<span
-                                                class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.address.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>-->
-                                </div>
-                            </div>
-
-                            <div id='empDetal'>
-                                <div>
-                                    <p class="teal lighten-2" style="padding: 10px;"><b>Other Details</b></p>
-                                </div>
-                                <div class='row'>
-                                    <!-- <div class="input-field col s12 m4 l4">
-                                        <input id="occupation" name="occupation" class="validate" type="text" value=""
-                                            style="text-transform:uppercase" formControlName="occupation" required />
-                                        <label for="occupation">Business/Occupation/Work <span
-                                                class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.occupation.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div> 
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="education" name="education" class="validate" type="text" value=""
-                                            formControlName="education" required />
-                                        <label for="education">Education<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.education.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="exp_in_agricultural" name="exp_in_agricultural" class="validate"
-                                            type="number" value="" formControlName="exp_in_agricultural" required />
-                                        <label for="exp_in_agricultural">Experience in Agricultural Field (in
-                                            years)<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.exp_in_agricultural.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="other_distributorship">
-                                            <option value="" disabled selected> Any Other Distributorship*</option>
-                                            <option value="0">No</option>
-                                            <option value="1">Yes</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.other_distributorship.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="reference_from" name="reference_from" class="validate" type="text"
-                                            value="" formControlName="reference_from" required />
-                                        <label for="reference_from">Reference From<span
-                                                class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.reference_from.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="shop_location" name="shop_location" class="validate" type="text"
-                                            value="" formControlName="shop_location" required />
-                                        <label for="shop_location">Shop Location<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.shop_location.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="password" name="password" class="validate" type="text" value=""
-                                            formControlName="password" required />
-                                        <label for="password">Password<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.password.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>-->
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="alternate_mobile" name="alternate_mobile" class="validate" type="text" value=""
-                                            formControlName="alternate_mobile" required />
-                                        <label for="alternate_mobile">Alternate Mobile<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.alternate_mobile.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="business_address" name="business_address" class="validate" type="text" value=""
-                                            formControlName="business_address" required />
-                                        <label for="business_address">Business Address<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.business_address.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <input id="why_want_take_distributorship" name="why_want_take_distributorship" class="validate" type="text" value=""
-                                            formControlName="why_want_take_distributorship" required />
-                                        <label for="why_want_take_distributorship">Why Want Take Distributorship<span class="red-text">*</span></label>
-                                        <div *ngIf="submitted && f.why_want_take_distributorship.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                 
-
-
-                                    <!-- <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="state_business">
-                                            <option value="" disabled selected>Choose your state</option>
-                                            <option *ngFor="let state of allstate" [value]="state.location_id">
-                                                {{state.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.state_business.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="district_business">
-                                            <option value="" disabled selected>Choose your District</option>
-                                            <option *ngFor="let dist of alldist" [value]="dist.location_id">
-                                                {{dist.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.district_business.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="taluka_business">
-                                            <option value="" disabled selected>Choose your Taluka</option>
-                                            <option *ngFor="let taluka of alltaluka" [value]="taluka.location_id">
-                                                {{taluka.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.taluka_business.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <select class="" formControlName="city_busines">
-                                            <option value="" disabled selected>Choose your City</option>
-                                            <option *ngFor="let city of allcity" [value]="city.location_id">
-                                                {{city.name}}</option>
-                                        </select>
-                                        <div *ngIf="submitted && f.city_busines.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
-                                        </div>
-                                    </div> -->
-
-
-                                  
-
-
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{aadhar_card_image_front}}" download target="_blank">
-                                            <img src="{{aadhar_card_image_front}}" alt="image" height="100px" /> </a>
-                                    </div>
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{aadhar_card_image_back}}" download target="_blank">
-                                            <img src="{{aadhar_card_image_back}}" alt="image" height="100px" /> </a>
-                                    </div>
-
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{light_bill}}" download target="_blank">
-                                            <img src="{{light_bill}}" alt="image" height="100px" /> </a>
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{pan_card}}" download target="_blank">
-                                            <img src="{{pan_card}}" alt="image" height="100px" /> </a>
-
-                                    </div>
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{product_purchase_bill}}" download target="_blank">
-                                            <img src="{{product_purchase_bill}}" alt="image" height="100px" /> </a>
-                                    </div>
-
-
-                                    <div class="input-field col s12 m4 l4">
-                                        <a href="{{shop_act_image}}" download target="_blank">
-                                            <img src="{{shop_act_image}}" alt="image" height="100px" /> </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" style="float:right;">
-                                <div class="col s12">
-                                    <button type="submit" class="btn btn-save">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </main>

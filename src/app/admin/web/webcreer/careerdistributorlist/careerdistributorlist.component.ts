@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { WebService } from "../../web.service";
+import { WebService } from '../../web.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { DistributorService } from "../../../distributor/distributor.service";
+import { DistributorService } from '../../../distributor/distributor.service';
 import * as XLSX from 'xlsx';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import 'jspdf-autotable';
@@ -16,13 +16,12 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { HelperService } from 'src/app/helper.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-
 import { log } from 'console';
 declare let $: any;
 @Component({
   selector: 'app-careerdistributorlist',
   templateUrl: './careerdistributorlist.component.html',
-  styleUrls: ['./careerdistributorlist.component.css']
+  styleUrls: ['./careerdistributorlist.component.css'],
 })
 export class CareerdistributorlistComponent implements OnInit {
   p: number = 1;
@@ -42,28 +41,24 @@ export class CareerdistributorlistComponent implements OnInit {
   data: any = '';
   distributor: any;
   filteredDistributor: any;
-  dataNew:any;
-  constructor(public webService: WebService,
+  dataNew: any;
+  constructor(
+    public webService: WebService,
     public router: Router,
     private toastr: ToastrService,
     private ngxService: NgxUiLoaderService,
-    public distributorService:DistributorService,
+    public distributorService: DistributorService,
     private HelperService: HelperService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.ngxService.start();
 
-    var obj={
-      
-    }
+    var obj = {};
 
-    this.webService.webCareerDistList(obj).subscribe(datalist => {
+    this.webService.webCareerDistList(obj).subscribe((datalist) => {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
-        // this.alllist.sort((a,b)=>b.id-a.id)
-        console.log(this.alllist);
-        
       }
     });
     this.ngxService.stop();
@@ -83,7 +78,6 @@ export class CareerdistributorlistComponent implements OnInit {
         let elems = document.querySelectorAll('select');
         let instances = M.FormSelect.init(elems);
       }, 1000);
-
     });
     this.fetchDistributorList();
     this.subscribeToFormChanges();
@@ -100,13 +94,12 @@ export class CareerdistributorlistComponent implements OnInit {
     //       buttons: [
     //         //'copy', 'csv', 'excel', 'pdf', 'print'
     //         'excel', 'pdf'
-    //       ]          
+    //       ]
     //     })
     //   }, 4000)
     // })
-    
   }
-  
+
   // exportToExcel(): void {
   //   const date = new Date();
   //   const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -150,14 +143,14 @@ export class CareerdistributorlistComponent implements OnInit {
   //     .getSeconds()
   //     .toString()
   //     .padStart(2, '0')}`;
-  
+
   //   const element: HTMLElement | null = document.getElementById('exportTable');
-  
+
   //   if (element) {
   //     html2canvas(element).then((canvas) => {
   //       const pdf = new jsPDF.jsPDF();
   //       const imgData = canvas.toDataURL('image/png');
-  
+
   //       pdf.addImage(imgData, 'PNG', 0, 0, 210, 297); // Adjust size as needed
   //       pdf.save(`career_${dateString}.pdf`);
   //     });
@@ -167,42 +160,47 @@ export class CareerdistributorlistComponent implements OnInit {
     const date = new Date();
     const dateString = `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()
-      .padStart(2, '0')}-${date
-        .getDate()
-        .toString()
-        .padStart(2, '0')}_${date
-          .getHours()
-          .toString()
-          .padStart(2, '0')}-${date
-            .getMinutes()
-            .toString()
-            .padStart(2, '0')}-${date
-              .getSeconds()
-              .toString()
-              .padStart(2, '0')}`;
-  
+      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}_${date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}-${date.getMinutes().toString().padStart(2, '0')}-${date
+      .getSeconds()
+      .toString()
+      .padStart(2, '0')}`;
+
     // Create a copy of alllist and add sr.no
-    const modifiedList = this.alllist.map((item, index) => ({ ...item, 'sr.no': index + 1 }));
-  
+    const modifiedList = this.alllist.map((item, index) => ({
+      ...item,
+      'sr.no': index + 1,
+    }));
+
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(modifiedList);
-    const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const data: Blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-    
+    const workbook: XLSX.WorkBook = {
+      Sheets: { data: worksheet },
+      SheetNames: ['data'],
+    };
+    const excelBuffer: any = XLSX.write(workbook, {
+      bookType: 'xlsx',
+      type: 'array',
+    });
+    const data: Blob = new Blob([excelBuffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    });
+
     saveAs(data, `career_${dateString}.xlsx`);
   }
-  
+
   // exportToPdf() {
   //   // Get the HTML table element by ID
   //   const tableElement = document.getElementById('exportTable');
-  
+
   //   if (tableElement) {
   //     // Extract table headers and rows from the HTML table
   //     const tableHeaders = Array.from(tableElement.querySelectorAll('thead th')).map((header) => header.textContent);
   //     const tableRows = Array.from(tableElement.querySelectorAll('tbody tr')).map((row) =>
   //       Array.from(row.children).map((cell) => cell.textContent)
   //     );
-  
+
   //     // Create the document definition
   //     const documentDefinition = {
   //       content: [
@@ -222,7 +220,7 @@ export class CareerdistributorlistComponent implements OnInit {
   //         },
   //       },
   //     };
-  
+
   //     // Generate the PDF
   //     pdfMake.createPdf(documentDefinition).download('Career_dist.pdf');
   //   } else {
@@ -232,113 +230,131 @@ export class CareerdistributorlistComponent implements OnInit {
   async exportToPdf() {
     // Get the HTML table element by ID
     const tableElement = document.getElementById('exportTable');
-  
+
     if (tableElement) {
       // Function to get all rows including those in hidden pages
       const getAllTableRows = async () => {
         const allRows = [];
         const totalRows = tableElement.querySelectorAll('tbody tr');
-  
+
         for (let i = 0; i < totalRows.length; i++) {
           const row = totalRows[i];
-          const rowData = Array.from(row.children).map(cell => cell.textContent);
+          const rowData = Array.from(row.children).map(
+            (cell) => cell.textContent
+          );
           allRows.push(rowData);
         }
-  
+
         return allRows;
       };
-    
 
-
-    //   "id": 16,
-    //   "list_data_status": "0",
-    //   "list_data_read": "n",
-    //   3"fname": "Nand",
-    //   "mname": "Sh",
-    //  5 "lname": "Wagh",
-    //   6"email": "nandonlinework8954@gmail.com",
-    //   7"phone": "7840904957",
-    //   8"alternate_mobile": "9898989899",
-    //   "state": "Bihar",
-    //   "district": "Begusarai",
-    //   "taluka": "Chandragiri",
-    //   "city": "Dungra",
-    //   "password": "434343",
-    //   "visible_password": null,
-    //   "user_type": "fsc",
-    //   "is_deleted": "no",
-    //   "active": "no",
-    //   "remember_token": null,
-    //   "is_verified": "0",
-    //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_front.PNG",
-    //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_back.PNG",
-    //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_pan_card.PNG",
-    //   "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_light_bill.PNG",
-    //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_shop_act_image.PNG",
-    //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_product_purchase_bill.PNG",
-    //   "business_address": "Shree niwas, plot no 41\nsuyog colony, sakora road",
-    //   "business_state": "109502",
-    //   "business_district": "137301",
-    //   "business_tuluka": "137737",
-    //   "business_village": "62298",
-    //   "where_open_shop": "3",
-    //   "used_sct": "no",
-    //   "why_want_take_distributorship": "gghh",
-    //   "distributorship_exerience": "hghb",
-    //   "experience_farm_garder": "hgj",
-    //   "goal": "bbj",
-    //   "geolocation": null,
-    //   "added_by": "superadmin",
-    //   "devicetoken": null,
-    //   "devicetype": null,
-    //   "devicename": null,
-    //   "deviceid": null,
-    //   "logintime": null,
-    //   "created_by": null,
-    //   "created_on": "2021-11-27 13:09:44",
-    //   "updated_on": null
-
+      //   "id": 16,
+      //   "list_data_status": "0",
+      //   "list_data_read": "n",
+      //   3"fname": "Nand",
+      //   "mname": "Sh",
+      //  5 "lname": "Wagh",
+      //   6"email": "nandonlinework8954@gmail.com",
+      //   7"phone": "7840904957",
+      //   8"alternate_mobile": "9898989899",
+      //   "state": "Bihar",
+      //   "district": "Begusarai",
+      //   "taluka": "Chandragiri",
+      //   "city": "Dungra",
+      //   "password": "434343",
+      //   "visible_password": null,
+      //   "user_type": "fsc",
+      //   "is_deleted": "no",
+      //   "active": "no",
+      //   "remember_token": null,
+      //   "is_verified": "0",
+      //   "aadhar_card_image_front": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_front.PNG",
+      //   "aadhar_card_image_back": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_aadhar_card_image_back.PNG",
+      //   "pan_card": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_pan_card.PNG",
+      //   "light_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_light_bill.PNG",
+      //   "shop_act_image": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_shop_act_image.PNG",
+      //   "product_purchase_bill": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/distributor\/frontdistributorown\/16_product_purchase_bill.PNG",
+      //   "business_address": "Shree niwas, plot no 41\nsuyog colony, sakora road",
+      //   "business_state": "109502",
+      //   "business_district": "137301",
+      //   "business_tuluka": "137737",
+      //   "business_village": "62298",
+      //   "where_open_shop": "3",
+      //   "used_sct": "no",
+      //   "why_want_take_distributorship": "gghh",
+      //   "distributorship_exerience": "hghb",
+      //   "experience_farm_garder": "hgj",
+      //   "goal": "bbj",
+      //   "geolocation": null,
+      //   "added_by": "superadmin",
+      //   "devicetoken": null,
+      //   "devicetype": null,
+      //   "devicename": null,
+      //   "deviceid": null,
+      //   "logintime": null,
+      //   "created_by": null,
+      //   "created_on": "2021-11-27 13:09:44",
+      //   "updated_on": null
 
       const tableHeaders = [
-        "Name",  //789
+        'Name', //789
         'Email',
         'Phone',
-        "Contact Number",  //11
-        "State", //1
-        "District",//2
-        "Taluka", //3
-        "Village",//4
-        "Date"   //51
-
+        'Contact Number', //11
+        'State', //1
+        'District', //2
+        'Taluka', //3
+        'Village', //4
+        'Date', //51
       ];
-      const tableRows = this.alllist.map(row => Object.values(row));
-      const specificData = tableRows.map(row => [row[3] + " " + row[4] + " " + row[5],row[6],row[7],row[8],row[9],row[10],row[11],row[12],row[45]]);
+      const tableRows = this.alllist.map((row) => Object.values(row));
+      const specificData = tableRows.map((row) => [
+        row[3] + ' ' + row[4] + ' ' + row[5],
+        row[6],
+        row[7],
+        row[8],
+        row[9],
+        row[10],
+        row[11],
+        row[12],
+        row[45],
+      ]);
       // , row[0], row[1], row[2], row[3], row[4], row[52]]);
-  
-  
+
       // const tableHeaders = Object.keys(this.alllist[0]);
       // const tableRows = this.alllist.map(row => Object.values(row));
 
-      
-  
       // Calculate dynamic widths based on content length
-      const dynamicWidths = tableHeaders.map(header => ({
+      const dynamicWidths = tableHeaders.map((header) => ({
         width: 'auto',
         minCellWidth: header.length * 7, // Adjust this multiplier as needed
       }));
-  
+
       // Set a specific width for the last column
       const specificWidth = [20, 20, 20, 20, 20, 20, 20];
-  
+
       // Combine the dynamic widths and the specific width
-      console.log('Dynamic Widths:', dynamicWidths.map(col => col.minCellWidth));
-      const columnWidths = ['auto','auto','auto','auto',45,45,45,45,'auto'];//, 'auto', 'auto', 'auto','auto', 'auto', 'auto'
+      console.log(
+        'Dynamic Widths:',
+        dynamicWidths.map((col) => col.minCellWidth)
+      );
+      const columnWidths = [
+        'auto',
+        'auto',
+        'auto',
+        'auto',
+        45,
+        45,
+        45,
+        45,
+        'auto',
+      ]; //, 'auto', 'auto', 'auto','auto', 'auto', 'auto'
       // const columnWidths = [...dynamicWidths.map(col => col.minCellWidth), ...specificWidth];
-  
+
       // Create the document definition
       const documentDefinition = {
         pageSize: 'A4',
-        pageOrientation: 'landscape', 
+        pageOrientation: 'landscape',
         pageMargins: [20, 20, 20, 20],
         content: [
           { text: 'Career Distributor', style: 'header' },
@@ -360,7 +376,7 @@ export class CareerdistributorlistComponent implements OnInit {
           },
         },
       };
-  
+
       // Generate the PDF
       pdfMake.createPdf(documentDefinition).download('career_dist.pdf');
     } else {
@@ -370,16 +386,18 @@ export class CareerdistributorlistComponent implements OnInit {
 
   deleteItem(id) {
     var obj = {
-      id: id
+      id: id,
     };
     this.ngxService.start();
-    this.webService.webVideoDelete(obj).subscribe(res => {
+    this.webService.webVideoDelete(obj).subscribe((res) => {
       if (res['result'] == true) {
-        this.toastr.success("Video deleted successfully!");
-        this.router.navigate(['/admin', 'redirectself'], { state: ['/admin', 'webvideo-list'] });
+        this.toastr.success('Video deleted successfully!');
+        this.router.navigate(['/admin', 'redirectself'], {
+          state: ['/admin', 'webvideo-list'],
+        });
       }
       if (res['error'] == true) {
-        this.toastr.error("Something went wrong " + res['message']);
+        this.toastr.error('Something went wrong ' + res['message']);
       }
     });
     this.ngxService.stop();
@@ -388,28 +406,27 @@ export class CareerdistributorlistComponent implements OnInit {
   getForView(event) {
     // this.distributorService.webFrontGetByIdForEdit(obj).subscribe(res=>{
     //   if (res['result']== true) {
-        this.router.navigate(['/admin','webcareerdist-view', event]);
+    this.router.navigate(['/admin', 'webcareerdist-view', event]);
     //   }
     //  });
-
-
   }
 
   getForUpdate(event) {
-
     var obj = {
-      id: event
+      id: event,
     };
 
-    this.distributorService.webFrontGetByIdForEdit(obj).subscribe(res=>{
-      if (res['result']== true) {
-        this.router.navigate(['/admin','webcareerdist-update'], { state: res['data'] });
+    this.distributorService.webFrontGetByIdForEdit(obj).subscribe((res) => {
+      if (res['result'] == true) {
+        this.router.navigate(['/admin', 'webcareerdist-update'], {
+          state: res['data'],
+        });
       }
-     });
+    });
   }
 
   formControlValueChanges() {
-    this.farmerForm.get('state').valueChanges.subscribe(val => {
+    this.farmerForm.get('state').valueChanges.subscribe((val) => {
       this.HelperService.getDist({ state_id: val }).subscribe((alldist) => {
         this.alldist = alldist['data'];
 
@@ -419,11 +436,10 @@ export class CareerdistributorlistComponent implements OnInit {
         }, 1000);
 
         this.getCareerDistributorListdata();
-
       });
     });
 
-    this.farmerForm.get('district').valueChanges.subscribe(val => {
+    this.farmerForm.get('district').valueChanges.subscribe((val) => {
       this.HelperService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
         this.alltaluka = alltaluka['data'];
         setTimeout(() => {
@@ -434,7 +450,7 @@ export class CareerdistributorlistComponent implements OnInit {
       });
     });
 
-    this.farmerForm.get('taluka').valueChanges.subscribe(val => {
+    this.farmerForm.get('taluka').valueChanges.subscribe((val) => {
       this.HelperService.getCity({ taluka_id: val }).subscribe((allcity) => {
         this.allcity = allcity['data'];
         setTimeout(() => {
@@ -445,7 +461,6 @@ export class CareerdistributorlistComponent implements OnInit {
       });
     });
 
-
     // this.distributorService.getDistributorList().subscribe((allsitributor)=>{
     //   this.distributor =allsitributor['data']
     //   setTimeout(() => {
@@ -454,21 +469,19 @@ export class CareerdistributorlistComponent implements OnInit {
     //   }, 1000);
     //   this.getCareerDistributorListdata();
     // });
-   
-
   }
   subscribeToFormChanges(): void {
-    this.farmerForm.get('created_disctributor_id').valueChanges.subscribe((val) => {
-      // Filter the data based on the selected distributor id
-      this.filterDataByDistributor(val);
-    });
+    this.farmerForm
+      .get('created_disctributor_id')
+      .valueChanges.subscribe((val) => {
+        // Filter the data based on the selected distributor id
+        this.filterDataByDistributor(val);
+      });
   }
 
   fetchDistributorList(): void {
-    var dataNew = {
-      
-    }
-    
+    var dataNew = {};
+
     this.distributorService.getDistributorList(dataNew).subscribe(
       (response) => {
         this.distributor = response['data'];
@@ -493,7 +506,6 @@ export class CareerdistributorlistComponent implements OnInit {
   }
 
   getCareerDistributorListdata() {
-
     this.formdatanew = this.farmerForm.value;
     this.id = this.formdatanew.state;
     this.id1 = this.formdatanew.district;
@@ -507,21 +519,16 @@ export class CareerdistributorlistComponent implements OnInit {
       taluka: this.id2,
       city: this.id3,
       added_by: this.id4,
-    }
+    };
 
-   
-
-    this.webService.webCareerDistList(data).subscribe(datalist => {
+    this.webService.webCareerDistList(data).subscribe((datalist) => {
       if (datalist['result'] == true) {
         this.alllist = datalist['data'];
       }
 
       if (datalist['error'] == true) {
-        this.toastr.error("Something went wrong " + datalist['message']);
+        this.toastr.error('Something went wrong ' + datalist['message']);
       }
     });
-
   }
-
 }
-

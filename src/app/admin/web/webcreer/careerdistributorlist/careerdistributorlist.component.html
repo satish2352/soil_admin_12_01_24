@@ -68,42 +68,47 @@
                                         <th>Sr No.</th>
                                         <th>Name</th>
                                         <th>Contact Number</th>
-                                        <th>State</th>
+                                        <!-- <th>State</th>
                                         <th>District</th>
                                         <th>Taluka</th>
-                                        <th>Village</th>
+                                        <th>Village</th> -->
                                         <th>Date</th>
-                                        <th>Aadhar Front Card</th>
+                                        <!-- <th>Aadhar Front Card</th>
                                         <th>Aadhar Back Card</th>
                                         <th>Light Bill</th>
                                         <th>Pan Card</th>
                                         <th>Product Purchase Bill</th>
-                                        <th>Shop Act</th>
+                                        <th>Shop Act</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
-                                        <td>{{ (10 * (p - 1)) + (i + 1) }}</td>
+                                        <td>
+                                            <div>
+                                                {{ (10 * (p - 1)) + (i + 1) }}
+                                                <span *ngIf="listdata.new_user_type" class="badge green">{{ listdata.new_user_type }}</span>
+                                                <span *ngIf="listdata.list_data_status == '0'" class="badge green">New</span>
+                                                <span *ngIf="listdata.list_data_status == '1' && listdata.list_data_read == 'y'" class="badge red">Seen</span>
+                                            </div>
+                                        </td>
                                         <td><span>{{ listdata.fname }} {{ listdata.mname }} {{ listdata.lname }}</span>
-                                            <span *ngIf="listdata.new_user_type" class="badge green">{{ listdata.new_user_type }}</span>
-                                            <span *ngIf="listdata.list_data_status == '0'" class="badge green">New</span>
-                                            <span *ngIf="listdata.list_data_status == '1' && listdata.list_data_read == 'y'" class="badge red">Seen</span>
+                                            
                                         </td>
                                         <td>{{ listdata.phone }}</td>
-                                        <td>{{ listdata.state | uppercase }}</td>
+                                        <!-- <td>{{ listdata.state | uppercase }}</td>
                                         <td>{{ listdata.district | uppercase }}</td>
                                         <td>{{ listdata.taluka | uppercase }}</td>
-                                        <td>{{ listdata.city | uppercase }}</td>
+                                        <td>{{ listdata.city | uppercase }}</td> -->
                                         <td>{{ listdata.created_on | date: 'dd/MM/yyyy' }}</td>
-                                        <td><a target="_blank" href="{{ listdata.aadhar_card_image_front }}" download><img src="{{ listdata.aadhar_card_image_front }}" alt="Aadhar Front" class="responsive-img" /></a></td>
+                                        <!-- <td><a target="_blank" href="{{ listdata.aadhar_card_image_front }}" download><img src="{{ listdata.aadhar_card_image_front }}" alt="Aadhar Front" class="responsive-img" /></a></td>
                                         <td><a target="_blank" href="{{ listdata.aadhar_card_image_back }}" download><img src="{{ listdata.aadhar_card_image_back }}" alt="Aadhar Back" class="responsive-img" /></a></td>
                                         <td><a target="_blank" href="{{ listdata.light_bill }}" download><img src="{{ listdata.light_bill }}" alt="Light Bill" class="responsive-img" /></a></td>
                                         <td><a target="_blank" href="{{ listdata.pan_card }}" download><img src="{{ listdata.pan_card }}" alt="Pan Card" class="responsive-img" /></a></td>
                                         <td><a target="_blank" href="{{ listdata.product_purchase_bill }}" download><img src="{{ listdata.product_purchase_bill }}" alt="Product Purchase Bill" class="responsive-img" /></a></td>
-                                        <td><a target="_blank" href="{{ listdata.shop_act_image }}" download><img src="{{ listdata.shop_act_image }}" alt="Shop Act" class="responsive-img" /></a></td>
+                                        <td><a target="_blank" href="{{ listdata.shop_act_image }}" download><img src="{{ listdata.shop_act_image }}" alt="Shop Act" class="responsive-img" /></a></td> -->
                                         <td>
-                                            <a href="JavaScript:void(0)" class="btn-floating green" title="Edit" (click)="getForUpdate(listdata.id)"><i class="material-icons">edit</i></a>
+                                            <!-- <a href="JavaScript:void(0)" class="btn-floating green" title="Edit" (click)="getForUpdate(listdata.id)"><i class="material-icons">edit</i></a> -->
                                             <a href="JavaScript:void(0)" class="btn-floating violet" title="View" (click)="getForView(listdata.id)"><i class="material-icons">remove_red_eye</i></a>
                                         </td>
                                     </tr>
@@ -146,10 +151,10 @@
     }
 
     .badge {
-        padding: 0.2rem 0.5rem;
+        /* padding: 0.2rem 0.5rem; */
         color: #fff;
-        border-radius: 0.2rem;
-        font-size: 0.75rem;
+        /* border-radius: 0.2rem;
+        font-size: 0.75rem; */
     }
 
     .badge.green {

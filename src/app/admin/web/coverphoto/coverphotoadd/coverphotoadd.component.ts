@@ -42,8 +42,8 @@ export class CoverphotoaddComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.formContent = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      content: new FormControl('', [Validators.required]),
+      title: new FormControl('coverphoto', [Validators.required]),
+      content: new FormControl('coverphoto', [Validators.required]),
       datafor: new FormControl('0'),
       id: new FormControl('0'),
     });

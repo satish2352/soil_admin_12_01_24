@@ -45,14 +45,21 @@ export class FarmeraddComponent implements OnInit {
     this.editdata = history.state;
     this.fcofieldService.getState().subscribe((allstate) => {
       this.allstate = allstate['data'];
-      setTimeout(() => {
+      setTimeout(()=>{
         let elems = document.querySelectorAll('select');
         let instances = M.FormSelect.init(elems);
-      }, 1000);
-      if (this.editdata[0] && !this.flag) {
-        this.getStateId(this.editdata[0].state);
-      }
+      }, 2000);
+      
     });
+
+    $('select').formSelect();
+    setTimeout(()=>{
+      let elems = document.querySelectorAll('select');
+      let instances = M.FormSelect.init(elems);
+    }, 3000);
+    let elems = document.querySelectorAll('select');
+    let instances = M.FormSelect.init(elems);
+    
 
     this.farmerForm = new FormGroup({
       fname: new FormControl('', [
@@ -97,20 +104,29 @@ export class FarmeraddComponent implements OnInit {
       ]),
       crop: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[A-Za-z']+( +[A-Za-z']+)*$/),
+        // Validators.pattern(/^[A-Za-z']+( +[A-Za-z']+)*$/),
       ]),
       acre: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[0-9]+$/),
+        // Validators.pattern(/^[0-9]+$/),
       ]),
-      password: new FormControl('', [Validators.required]),
+      // password: new FormControl('', [Validators.required]),
       farmerphoto: new FormControl(''),
       datafor: new FormControl('0'),
       user_id: new FormControl('0'),
     });
 
+
     this.formControlValueChanges();
     $('select').formSelect();
+    setTimeout(()=>{
+      let elems = document.querySelectorAll('select');
+      let instances = M.FormSelect.init(elems);
+    }, 3000);
+    elems = document.querySelectorAll('select');
+    instances = M.FormSelect.init(elems);
+
+   
 
     if (this.editdata[0]) {
       const editdatanew = this.editdata[0];
@@ -124,15 +140,15 @@ export class FarmeraddComponent implements OnInit {
         email: editdatanew.email,
         phone: editdatanew.phone,
         aadharcard: editdatanew.aadharcard,
-        // state: this.getStateId(editdatanew.state),
-        // district: this.getDistrictId(editdatanew.district),
-        // taluka: this.getTalukaId(editdatanew.taluka),
-        // city: this.getCityId(editdatanew.city),
+        state: editdatanew.state,
+        district: editdatanew.district,
+        taluka: editdatanew.taluka,
+        city: editdatanew.city,
         address: editdatanew.address,
         pincode: editdatanew.pincode,
         crop: editdatanew.crop,
         acre: editdatanew.acre,
-        password: editdatanew.password,
+        // password: editdatanew.password,
         datafor: 1,
         user_id: editdatanew.user_id,
       });
@@ -184,43 +200,49 @@ export class FarmeraddComponent implements OnInit {
   }
 
   formControlValueChanges() {
-    this.farmerForm.get('state').valueChanges.subscribe(val => {
-      this.fcofieldService.getDist({ state_id: val }).subscribe((alldist) => {
-        this.alldist = alldist['data'];
-        setTimeout(() => {
-          let elems = document.querySelectorAll('select');
-          let instances = M.FormSelect.init(elems);
-        }, 1000);
-        if (this.editdata[0] && !this.flag) {
-          this.getDistrictId(this.editdata[0].district);
-        }
-      });
+    this.farmerForm.get('state').valueChanges.subscribe(val=>{
+      if (val) {
+        this.fcofieldService.getDist({ state_id: val}).subscribe((alldist) => {
+          this.alldist = alldist['data'];
+          setTimeout(()=>{
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 2000);
+          // if (this.editdata[0] && !this.flag) {
+          //   this.getDistrictId(this.editdata[0].district);
+          // }
+        });
+      }
     });
 
-    this.farmerForm.get('district').valueChanges.subscribe(val => {
-      this.fcofieldService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
-        this.alltaluka = alltaluka['data'];
-        setTimeout(() => {
-          let elems = document.querySelectorAll('select');
-          let instances = M.FormSelect.init(elems);
-        }, 1000);
-        if (this.editdata[0] && !this.flag) {
-          this.getTalukaId(this.editdata[0].taluka);
-        }
-      });
+    this.farmerForm.get('district').valueChanges.subscribe(val=>{
+      if (val) {
+        this.fcofieldService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
+          this.alltaluka = alltaluka['data'];
+          setTimeout(()=>{
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 2000);
+          // if (this.editdata[0] && !this.flag) {
+          //   this.getTalukaId(this.editdata[0].taluka);
+          // }
+        });
+      }
     });
 
-    this.farmerForm.get('taluka').valueChanges.subscribe(val => {
-      this.fcofieldService.getCity({ taluka_id: val }).subscribe((allcity) => {
-        this.allcity = allcity['data'];
-        setTimeout(() => {
-          let elems = document.querySelectorAll('select');
-          let instances = M.FormSelect.init(elems);
-        }, 1000);
-        if (this.editdata[0] && !this.flag) {
-          this.getCityId(this.editdata[0].city);
-        }
-      });
+    this.farmerForm.get('taluka').valueChanges.subscribe(val=>{
+      if (val) {
+        this.fcofieldService.getCity({ taluka_id: val }).subscribe((allcity) => {
+          this.allcity = allcity['data'];
+          setTimeout(()=>{
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 2000);
+          // if (this.editdata[0] && !this.flag) {
+          //   this.getCityId(this.editdata[0].city);
+          // }
+        });
+      }
     });
   }
 
@@ -258,31 +280,45 @@ export class FarmeraddComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.filesize > 1000000) {
-      this.toastr.error("File Size Should be less than 1 MB");
-      return;
-    }
+    if(!this.editdata) {
 
-    this.filetypes.forEach(element => {
-      if (element == this.filetype) {
-        this.filetypepresent = true;
+      if (this.filesize > 1000000) {
+        this.toastr.error("File Size Should be less than 1 MB");
+        return;
       }
-
-    });
-    if (this.filetypepresent != true) {
-      this.toastr.error("File type should be png");
-      return;
+  
+      this.filetypes.forEach(element => {
+        if (element == this.filetype) {
+          this.filetypepresent = true;
+        }
+  
+      });
+      if (this.filetypepresent != true) {
+        this.toastr.error("File type should be png");
+        return;
+      }
     }
+    
 
     this.submitted = true;
     if (this.farmerForm.invalid) {
-      console.log("this.farmerForm ", this.farmerForm)
-      console.log("this.farmerForm.invalid ", this.farmerForm.invalid)
-      console.log(this.farmerForm.invalid)
-      console.log(this.farmerForm.controls)
+      
       this.toastr.warning('Form Invalid Something Missing/Invalid!');
       return;
     }
+
+     // Modify the crop field value before submission
+    let crop = this.farmerForm.value.crop;
+    if (crop) {
+      // Remove existing square brackets if any
+      crop = crop.replace(/[\[\]]/g, '');
+      crop = crop.replace(',', ' ');
+      // Add square brackets at the start and end
+      crop = `[${crop}]`;
+      // Update the crop field value in the form
+      this.farmerForm.patchValue({ crop });
+    }
+    
     // console.log(this.farmerForm.value);
     if (this.farmerForm.value.datafor == '0') {
       if (!this.fileup) {

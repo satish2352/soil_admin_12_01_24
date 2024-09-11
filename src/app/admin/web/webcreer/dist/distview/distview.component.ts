@@ -25,6 +25,12 @@ export class DistviewComponent implements OnInit {
   alldist: any = [];
   allcity: any = [];
   alltaluka: any = [];
+
+  b_allstate: any = [];
+  b_alldist: any = [];
+  b_allcity: any = [];
+  b_alltaluka: any = [];
+
   flag: number = 0;
   editdata: any;
   statelist: any;
@@ -61,9 +67,11 @@ export class DistviewComponent implements OnInit {
           setTimeout(() => {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems);
-          }, 3000);
+          }, 18000);
           let elems = document.querySelectorAll('select');
           let instances = M.FormSelect.init(elems);
+
+
           this.aadhar_card_image_front = this.editdata.aadhar_card_image_front;
           this.aadhar_card_image_back = this.editdata.aadhar_card_image_back;
           this.light_bill = this.editdata.light_bill;
@@ -78,49 +86,47 @@ export class DistviewComponent implements OnInit {
               lname: this.editdata.lname,
               email: this.editdata.email,
               phone: this.editdata.phone,
-              aadharcard: this.editdata.aadharcard,
+              alternate_mobile: this.editdata.alternate_mobile,
+
               state: this.editdata.state,
               district: this.editdata.district,
               taluka: this.editdata.taluka,
               city: this.editdata.city,
+
               address: this.editdata.address,
-              pincode: this.editdata.pincode,
-              occupation: this.editdata.occupation,
-              education: this.editdata.education,
-              exp_in_agricultural: this.editdata.exp_in_agricultural,
-              other_distributorship: this.editdata.other_distributorship,
-              reference_from: this.editdata.reference_from,
-              shop_location: this.editdata.shop_location,
-              password: this.editdata.password,
+              business_address: this.editdata.business_address,
+              business_district: this.editdata.business_district,
+              business_state: this.editdata.business_state,
+              business_tuluka: this.editdata.business_tuluka,
+              business_village: this.editdata.business_village,
+            
               user_id: this.editdata.user_id,
 
               datafor: 1,
 
-              alternate_mobile: this.editdata.alternate_mobile,
-              business_address: this.editdata.business_address,
-              state_business: this.editdata.state_business,
-              district_business: this.editdata.district_business,
-              taluka_business: this.editdata.taluka_business,
-              city_busines: this.editdata.city_busines,
+              where_open_shop:this.editdata.where_open_shop,
+              used_sct:this.editdata.used_sct,
               why_want_take_distributorship: this.editdata.why_want_take_distributorship,
+              distributorship_exerience: this.editdata.distributorship_exerience,
+              experience_farm_garder: this.editdata.experience_farm_garder,
+              goal: this.editdata.goal,
 
             });
             setTimeout(() => {
               M.updateTextFields();
-            }, 1000);
+            }, 5000);
           }
-
-
         }
       });
     })
     this.pagetitle = 'Add Distributor';
     this.distributorService.getState().subscribe(allstate => {
       this.allstate = allstate['data'];
+      this.b_allstate = allstate['data'];
       setTimeout(() => {
         let elems = document.querySelectorAll('select');
         let instances = M.FormSelect.init(elems);
-      }, 2000);
+      }, 4000);
     });
 
     this.formGroupNew = new FormGroup({
@@ -131,35 +137,25 @@ export class DistviewComponent implements OnInit {
       lname: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z]+$/)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]),
-      aadharcard: new FormControl('', [Validators.required, Validators.pattern(/^[0-9]{12}$/)]),
+      alternate_mobile: new FormControl('', [Validators.required]),
       state: new FormControl('', [Validators.required]),
       district: new FormControl('', [Validators.required]),
       taluka: new FormControl('', [Validators.required]),
       city: new FormControl('', [Validators.required]),
-      address: new FormControl('', [Validators.required]),
-      pincode: new FormControl('', [Validators.required]),
-      occupation: new FormControl('', [Validators.required]),
-      education: new FormControl('', [Validators.required]),
-      exp_in_agricultural: new FormControl('', [Validators.required]),
-      other_distributorship: new FormControl('', [Validators.required]),
-      reference_from: new FormControl('', [Validators.required]),
-      shop_location: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      alternate_mobile: new FormControl('', [Validators.required]),
+
       business_address: new FormControl('', [Validators.required]),
+      business_district: new FormControl('', [Validators.required]),
+      business_state: new FormControl('', [Validators.required]),
+      business_tuluka: new FormControl('', [Validators.required]),
+      business_village: new FormControl('', [Validators.required]),
 
-      state_business: new FormControl('', [Validators.required]),
-      district_business: new FormControl('', [Validators.required]),
-      taluka_business: new FormControl('', [Validators.required]),
-      city_busines: new FormControl('', [Validators.required]),
+      where_open_shop: new FormControl('', [Validators.required]),
+      used_sct: new FormControl('', [Validators.required]),
       why_want_take_distributorship: new FormControl('', [Validators.required]),
-
-
-
+      distributorship_exerience: new FormControl('', [Validators.required]),
+      experience_farm_garder: new FormControl('', [Validators.required]),
+      goal: new FormControl('', [Validators.required]),
     });
-
-
-
   }
 
   formControlValueChanges() {
@@ -186,6 +182,8 @@ export class DistviewComponent implements OnInit {
             let elems = document.querySelectorAll('select');
             let instances = M.FormSelect.init(elems);
           }, 2000);
+          this.formGroupNew.get('taluka').value(this.editdata.business_tuluka);
+
           // if (this.editdata[0] && !this.flag) {
           //   this.getTalukaId(this.editdata[0].taluka);
           // }
@@ -207,6 +205,87 @@ export class DistviewComponent implements OnInit {
         });
       }
     });
+
+
+
+    this.formGroupNew.get('business_state').valueChanges.subscribe(val => {
+      if (val) {
+        this.distributorService.getDist({ state_id: val }).subscribe((alldist) => {
+          this.b_alldist = alldist['data'];
+          setTimeout(() => {
+            let elems = document.querySelectorAll('select');
+            let instances = M.FormSelect.init(elems);
+          }, 2000);
+          
+        });
+      }
+    });
+
+    // this.formGroupNew.get('business_district').valueChanges.subscribe(val => {
+    //   if (val) {
+    //     this.distributorService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
+    //       this.b_alltaluka = alltaluka['data'];
+    //       setTimeout(() => {
+    //         let elems = document.querySelectorAll('select');
+    //         let instances = M.FormSelect.init(elems);
+    //       }, 3000);
+         
+    //     });
+    //   }
+    // });
+
+    this.formGroupNew.get('business_district').valueChanges.subscribe(val => {
+      if (val) {
+        this.distributorService.getTaluka({ dist_id: val }).subscribe((alltaluka) => {
+          this.b_alltaluka = alltaluka['data'];
+          setTimeout(() => {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+          }, 2000);
+    
+          // Optionally set the value of business_tuluka here if necessary
+          // For example, if you want to select the first Taluka from the updated list
+          if (this.b_alltaluka.length > 0) {
+            this.formGroupNew.get('business_tuluka').setValue(this.b_alltaluka[0].location_id, { emitEvent: false });
+          }
+        });
+      }
+    });
+
+    
+    this.formGroupNew.get('business_tuluka').valueChanges.subscribe(val => {
+      if (val) {
+        this.distributorService.getCity({ taluka_id: val }).subscribe((allcity) => {
+          this.b_allcity = allcity['data'];
+          setTimeout(() => {
+            let elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+          }, 2000);
+    
+          // Optionally set the value of business_tuluka here if necessary
+          // For example, if you want to select the first Taluka from the updated list
+          if (this.b_allcity.length > 0) {
+            this.formGroupNew.get('business_village').setValue(this.b_allcity[0].location_id, { emitEvent: false });
+          }
+        });
+      }
+    });
+
+    
+
+  //   this.formGroupNew.get('business_tuluka').valueChanges.subscribe(val => {
+  //     if (val) {
+  //       this.distributorService.getCity({ taluka_id: val }).subscribe((allcity) => {
+  //         this.b_allcity = allcity['data'];
+  //         setTimeout(() => {
+  //           let elems = document.querySelectorAll('select');
+  //           let instances = M.FormSelect.init(elems);
+  //         }, 4000);
+         
+  //       });
+  //     }
+  //   });
+
   }
 
   getCheckemailexist(event) {
@@ -223,46 +302,7 @@ export class DistviewComponent implements OnInit {
     }
   }
 
-  // getStateId(name: any) {
-  //   let state_id;
-  //   this.allstate.forEach(state => {
-  //     if (state['name'] == name) {
-  //       state_id = state['location_id'];
-  //     }
-  //   });
-  //   this.formGroupNew.get('state').setValue(state_id);
-  // }
-
-  // getDistrictId(name: any) {
-  //   let dist_id;
-  //   this.alldist.forEach(dt => {
-  //     if (dt['name'] == name) {
-  //       dist_id = dt['location_id'];
-  //     }
-  //   });
-  //   this.formGroupNew.get('district').setValue(dist_id);
-  // }
-
-  // getTalukaId(name: any) {
-  //   let taluka_id;
-  //   this.alltaluka.forEach(t => {
-  //     if (t['name'] == name) {
-  //       taluka_id = t['location_id'];
-  //     }
-  //   });
-  //   this.formGroupNew.get('taluka').setValue(taluka_id);
-  // }
-
-  // getCityId(name: any) {
-  //   let city_id;
-  //   this.allcity.forEach(ct => {
-  //     if (ct['name'] == name) {
-  //       city_id = ct['location_id'];
-  //     }
-  //   });
-  //   this.formGroupNew.get('city').setValue(city_id);
-  //   this.flag = 1;
-  // }
+  
 
   get f() { return this.formGroupNew.controls; }
 
