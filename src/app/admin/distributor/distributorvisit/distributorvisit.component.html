@@ -142,58 +142,62 @@
                                     <td><span style="text-transform:uppercase">{{listdata.about_visit}}</span></td>
                                     <td><span>{{listdata.created_at | date: 'dd/MM/yyyy'}}</span></td>
                                     <td>
-                                        <!-- <span>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photopathone); else notUploaded">
                                             <a href={{listdata.photopathone}} target="_blank" download>
                                                 <img src={{listdata.photopathone}} alt="image" height="50px">
-                                            </a>
-                                        </span> -->
-                                        <a href={{listdata.photopathone}} target="_blank" download>
-                                        <img src={{listdata.photopathone}}  alt="image" height="50px">
-                                        </a>
+                                            </a></ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+
                                     </td>
                                     <td>
-                                        <!-- <span>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photopathtwo); else notUploaded">
                                             <a href={{listdata.photopathtwo}} target="_blank" download>
-
                                                 <img src={{listdata.photopathtwo}} alt="image" height="50px">
                                             </a>
-                                        </span> -->
-                                        <a href={{listdata.photopathtwo}} target="_blank" download>
-                                        <img src={{listdata.photopathtwo}}  alt="image" height="50px">
-                                        </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
                                     </td>
                                     <td>
-                                        <!-- <span>
+                                        <ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopaththree); else notUploaded">
                                             <a href={{listdata.photopaththree}} target="_blank" download>
-
                                                 <img src={{listdata.photopaththree}} alt="image" height="50px">
                                             </a>
-                                        </span> -->
-                                        <a href={{listdata.photopaththree}} target="_blank" download>
-                                        <img src={{listdata.photopaththree}} alt="image" height="50px" >
-                                        </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
                                     </td>
                                     <td>
-                                        <!-- <span>
+                                        <ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopathfour); else notUploaded">
                                             <a href={{listdata.photopathfour}} target="_blank" download>
-
                                                 <img src={{listdata.photopathfour}} alt="image" height="50px">
                                             </a>
-                                        </span> -->
-                                        <a href={{listdata.photopathfour}} target="_blank" download>
-                                        <img src={{listdata.photopathfour}} alt="image" height="50px" >
-                                        </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
                                     </td>
                                     <td>
-                                        <!-- <span>
+                                        <ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopathfive); else notUploaded">
                                             <a href={{listdata.photopathfive}} target="_blank" download>
-
                                                 <img src={{listdata.photopathfive}} alt="image" height="50px">
                                             </a>
-                                        </span> -->
-                                        <a href={{listdata.photopathfive}} target="_blank" download>
-                                        <img src={{listdata.photopathfive}}   alt="image" height="50px" >
-                                        </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
                                     </td>
                                     <!-- <td>
                                         <a href="JavaScript:void(0)" class="btn-floating" title="Edit" style="background-color: green;"><i

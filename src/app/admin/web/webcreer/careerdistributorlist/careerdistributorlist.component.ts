@@ -395,6 +395,10 @@ export class CareerdistributorlistComponent implements OnInit {
 
   }
 
+  isValidPhotopath(path: string): boolean {
+    return /\d/.test(path); // Check if the path contains any digits
+  }
+
   getForUpdate(event) {
 
     var obj = {

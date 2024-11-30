@@ -24,6 +24,11 @@ export class SctresultlistComponent implements OnInit {
     });
 
   }
+  
+  isValidPhotopath(path: string): boolean {
+    return /\d/.test(path); // Check if the path contains any digits
+  }
+  
 
   ngOnInit(): void {
     let newval = {

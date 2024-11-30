@@ -135,8 +135,8 @@
                             </div>
                         </div>
                         <div class="nowrap">
-                            <table style="font-weight:small;" class="datatable responsive-table highlight table-responsive"
-                                id="exportTable">
+                            <table style="font-weight:small;"
+                                class="datatable responsive-table highlight table-responsive" id="exportTable">
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap">Sr No.</th>
@@ -195,29 +195,83 @@
                                         <td style="white-space: nowrap"><span>{{listdata.created_on| date:
                                                 'dd/MM/yyyy'}}</span></td>
 
-                                        <td style="white-space: nowrap"><span>
+                                        <td style="white-space: nowrap">
+                                            <ng-container
+                                                *ngIf="isValidPhotopath(listdata.aadhar_card_image_front); else notUploaded">
                                                 <a href="{{listdata.aadhar_card_image_front}}" download target="_blank">
-                                                    <img src="{{listdata.aadhar_card_image_front}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.aadhar_card_image_front}}" alt="image"
+                                                        height="100px" /> </a>
+                                            </ng-container>
 
-                                        <td style="white-space: nowrap"><span>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
+
+                                        <td style="white-space: nowrap">
+                                            <ng-container
+                                                *ngIf="isValidPhotopath(listdata.aadhar_card_image_back); else notUploaded">
                                                 <a href="{{listdata.aadhar_card_image_back}}" download target="_blank">
-                                                    <img src="{{listdata.aadhar_card_image_back}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.aadhar_card_image_back}}" alt="image"
+                                                        height="100px" /> </a>
+                                            </ng-container>
 
-                                        <td style="white-space: nowrap"><span>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
+
+                                        <td style="white-space: nowrap">
+                                            <ng-container
+                                                *ngIf="isValidPhotopath(listdata.light_bill); else notUploaded">
                                                 <a href="{{listdata.light_bill}}" download target="_blank">
-                                                    <img src="{{listdata.light_bill}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.light_bill}}" alt="image" height="100px" />
+                                                </a>
+                                            </ng-container>
 
-                                        <td style="white-space: nowrap"><span>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
+
+                                        <td style="white-space: nowrap">
+                                            <ng-container *ngIf="isValidPhotopath(listdata.pan_card); else notUploaded">
                                                 <a href="{{listdata.pan_card}}" download target="_blank">
-                                                    <img src="{{listdata.pan_card}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.pan_card}}" alt="image" height="100px" />
+                                                </a>
+                                            </ng-container>
 
-                                        <td style="white-space: nowrap"><span>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
+
+                                        <td style="white-space: nowrap">
+                                            <ng-container
+                                                *ngIf="isValidPhotopath(listdata.product_purchase_bill); else notUploaded">
                                                 <a href="{{listdata.product_purchase_bill}}" download target="_blank">
-                                                    <img src="{{listdata.product_purchase_bill}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.product_purchase_bill}}" alt="image"
+                                                        height="100px" /> </a>
+                                            </ng-container>
 
-                                        <td style="white-space: nowrap"><span>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
+
+
+                                        <td style="white-space: nowrap">
+                                            <ng-container
+                                                *ngIf="isValidPhotopath(listdata.shop_act_image); else notUploaded">
                                                 <a href="{{listdata.shop_act_image}}" download target="_blank">
-                                                    <img src="{{listdata.shop_act_image}}" alt="image" height="100px" /> </a></span></td>
+                                                    <img src="{{listdata.shop_act_image}}" alt="image" height="100px" />
+                                                </a>
+                                            </ng-container>
+
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
+                                        </td>
 
 
 

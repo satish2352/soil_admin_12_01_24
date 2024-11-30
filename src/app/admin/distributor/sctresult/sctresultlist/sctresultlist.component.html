@@ -23,18 +23,19 @@
                                     <form [formGroup]="farmerForm">
                                         <div class="col s12 m12 l12">
                                             <div class="card-content white-red">
-                                                    <div class="col s2 m2 l2">
-                                                        <select class="col s2 m2 l2" id="created_by" formControlName="created_by">
-                                                            <option value="" disabled selected>Choose Distributor
-                                                            </option>
-                                                            <option *ngFor="let distributordetails of alldistributor"
-                                                                [value]="distributordetails.user_id">
-                                                                {{distributordetails.fname}}
-                                                                {{distributordetails.mname}}
-                                                                {{distributordetails.lname}}
-                                                            </option>
-                                                        </select>
-                                                    </div>
+                                                <div class="col s2 m2 l2">
+                                                    <select class="col s2 m2 l2" id="created_by"
+                                                        formControlName="created_by">
+                                                        <option value="" disabled selected>Choose Distributor
+                                                        </option>
+                                                        <option *ngFor="let distributordetails of alldistributor"
+                                                            [value]="distributordetails.user_id">
+                                                            {{distributordetails.fname}}
+                                                            {{distributordetails.mname}}
+                                                            {{distributordetails.lname}}
+                                                        </option>
+                                                    </select>
+                                                </div>
 
                                             </div>
                                         </div>
@@ -51,85 +52,116 @@
                             </div>
                         </div>
                         <!-- <div class="nowrap"> -->
-                          <table style="font-size: small" class="datatable responsive-table highlight" id="">
+                        <table style="font-size: small" class="datatable responsive-table highlight" id="">
                             <thead>
                                 <tr>
                                     <th>Sr No.</th>
-                                    <th >Name</th>
-                                    <th >Title</th>
-                                    <th >Area</th>
-                                    <th >Description</th>
-                                    <th >Latitude</th>
-                                    <th >Longitude</th>
-                                    <th >Photo One</th>
-                                    <th >Photo Two</th>
-                                    <th >Photo Three</th>
-                                    <th >Photo Four</th>
-                                    <th >Photo Five</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Area</th>
+                                    <th>Description</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Photo One</th>
+                                    <th>Photo Two</th>
+                                    <th>Photo Three</th>
+                                    <th>Photo Four</th>
+                                    <th>Photo Five</th>
                                     <!-- <th style="white-space: nowrap">Created By</th> -->
 
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                <tr
+                                    *ngFor="let listdata of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
                                     <td>{{(10*(p-1))+(i+1)}}</td>
-                                    <td ><span >{{listdata.dfname}} {{listdata.dmname}}
+                                    <td><span>{{listdata.dfname}} {{listdata.dmname}}
                                             {{listdata.dlname}}</span></td>
-                                    <td ><span >{{listdata.title}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.area}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.description}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.photo_one_lat}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.photo_one_long}}</span></td>
-                                    <td><span>
-                                        <a href={{listdata.photopathone}} target="_blank" download>
+                                    <td><span>{{listdata.title}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.area}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.description}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.photo_one_lat}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.photo_one_long}}</span></td>
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photopathone); else notUploaded">
+                                            <a href={{listdata.photopathone}} target="_blank" download>
 
-                                       <img src={{listdata.photopathone}} alt="image" height="50px" width="30px">
-                                       
-                                     </a>
-                                    </span></td>
-                                    <td><span>
-                                        <a href={{listdata.photopathtwo}} target="_blank" download>
+                                                <img src={{listdata.photopathone}} alt="image" height="50px"
+                                                    width="30px">
 
-                                       <img src={{listdata.photopathtwo}} alt="image" height="50px">
-                                     </a>
-                                    </span></td>
-                                    <td><span>
-                                        <a href={{listdata.photopaththree}} target="_blank" download>
+                                            </a>
+                                        </ng-container>
 
-                                       <img src={{listdata.photopaththree}} alt="image" height="50px">
-                                     </a>
-                                    </span></td>
-                                    <td><span>
-                                        <a href={{listdata.photopathfour}} target="_blank" download>
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td><ng-container *ngIf="isValidPhotopath(listdata.photopathtwo); else notUploaded">
+                                            <a href={{listdata.photopathtwo}} target="_blank" download>
 
-                                       <img src={{listdata.photopathfour}} alt="image" height="50px">
-                                     </a>
-                                    </span></td>
-                                    <td><span>
-                                        <a href={{listdata.photopathfive}} target="_blank" download>
+                                                <img src={{listdata.photopathtwo}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
 
-                                       <img src={{listdata.photopathfive}} alt="image" height="50px">
-                                     </a>
-                                    </span></td>
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td><ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopaththree); else notUploaded">
+                                            <a href={{listdata.photopaththree}} target="_blank" download>
+
+                                                <img src={{listdata.photopaththree}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td><ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopathfour); else notUploaded">
+                                            <a href={{listdata.photopathfour}} target="_blank" download>
+
+                                                <img src={{listdata.photopathfour}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td><ng-container
+                                            *ngIf="isValidPhotopath(listdata.photopathfive); else notUploaded">
+                                            <a href={{listdata.photopathfive}} target="_blank" download>
+
+                                                <img src={{listdata.photopathfive}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
                                     <!-- <td style="white-space: nowrap"><span style="text-transform:uppercase">{{listdata.created_by}}</span></td> -->
-                                 
+
                                     <td style="white-space: nowrap;">
-                                       
-                                        <a href="JavaScript:void(0)" class="btn-floating"
-                                        title="Edit" style="background-color: violet;" (click)="getForView(listdata.id)"><i
-                                            class="material-icons" >remove_red_eye</i></a>
-                                    &nbsp;
-                                        
+
+                                        <a href="JavaScript:void(0)" class="btn-floating" title="Edit"
+                                            style="background-color: violet;" (click)="getForView(listdata.id)"><i
+                                                class="material-icons">remove_red_eye</i></a>
+                                        &nbsp;
+
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <!-- </div> -->
 </main>

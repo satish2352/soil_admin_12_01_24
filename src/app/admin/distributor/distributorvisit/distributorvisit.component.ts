@@ -64,6 +64,10 @@ export class DistributorvisitComponent implements OnInit {
   
   }
 
+  isValidPhotopath(path: string): boolean {
+    return /\d/.test(path); // Check if the path contains any digits
+  }
+
   getdata(data) {
   //  let data = {
   //     state: this.farmerForm.value.state,

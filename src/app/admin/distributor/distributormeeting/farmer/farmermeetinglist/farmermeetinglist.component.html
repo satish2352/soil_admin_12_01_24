@@ -120,6 +120,14 @@
                                     <th>Date</th>
                                     <th>Present Farmer</th>
                                     <th>Meeting Title</th>
+                                    <th>Meeting Place</th>
+
+                                    <th>Meeting State</th>
+                                    <th>Meeting Dist</th>
+                                    <th>Meeting Taluka</th>
+                                    <th>Meeting City</th>
+
+
                                     <th>Lat /Lon</th>
                                     <th>Points Discuss</th>
                                     <th>Meeting Photo 1</th>
@@ -135,17 +143,66 @@
                                     <td><span style="text-transform:uppercase">{{listdata.dfname}} {{listdata.dmname}}
                                             {{listdata.dlname}}</span></td>
                                     <td><span style="text-transform:uppercase">{{listdata.date}}</span></td>
-                                    <td><span
-                                            style="text-transform:uppercase">{{listdata.presentFarmerFormeeting}}</span>
+                                    <td>
+                                        <ul>
+                                            <li *ngFor="let farmernames of listdata.presentFarmers;let i=index;">{{i+1
+                                                }}
+                                                {{farmernames.fname}} {{farmernames.mname}} {{farmernames.lname}}</li>
+                                            <br>
+                                        </ul>
                                     </td>
                                     <td><span style="text-transform:uppercase">{{listdata.meeting_title}}</span></td>
-                                    <td><span style="text-transform:uppercase">Lat :{{listdata.photo_one_lat}} /Lon :{{listdata.photo_one_long}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.meeting_place}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.state_name}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.district_name}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.taluka_name}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.city_name}}</span></td>
+                                    <td><span style="text-transform:uppercase">Lat :{{listdata.photo_one_lat}} /Lon
+                                            :{{listdata.photo_one_long}}</span></td>
                                     <td><span style="text-transform:uppercase">{{listdata.meeting_description}}</span>
                                     </td>
-                                    <td><span><img src={{listdata.photo_one}} alt="image" height="50px"></span></td>
-                                    <td><span><img src={{listdata.photo_two}} alt="image" height="50px"></span></td>
-                                    <td><span><img src={{listdata.photo_three}} alt="image" height="50px"></span></td>
-                                    <td><span><img src={{listdata.photo_four}} alt="image" height="50px"></span></td>
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photo_one); else notUploaded">
+
+                                            <a href="{{listdata.photo_one}}" download target="_blank">
+                                                <img src={{listdata.photo_one}} alt="image" height="50px"></a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photo_two); else notUploaded">
+                                            <a href="{{listdata.photo_two}}" download target="_blank">
+                                                <img src={{listdata.photo_two}} alt="image" height="50px"></a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photo_three); else notUploaded">
+                                            <a href="{{listdata.photo_three}}" download target="_blank">
+                                                <img src={{listdata.photo_three}} alt="image" height="50px"></a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photo_four); else notUploaded">
+                                            <a href="{{listdata.photo_four}}" download target="_blank">
+                                                <img src={{listdata.photo_four}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

@@ -225,38 +225,7 @@ export class FarmermeetinglistComponent implements OnInit {
       };
 
 
-      // "id": 6,
-      1 // "tbl_farmer_meeting_id": 6,
-      2  // "date": "2024-03-04",
-      3// "meeting_place": "akole",
-      4 // "farmer_id": "241,241,241",
-      5// "meeting_title": "testing going",
-      6 // "meeting_description": "meeting",
-      7 // "created_by": 240,
-      8 // "photo_one": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
-      9 // "photo_one_lat": null,
-      10 // "photo_one_long": null,
-      11 // "photo_two": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
-      12// "photo_two_lat": null,
-      13// "photo_two_long": null,
-      14// "photo_three": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
-      15 // "photo_three_lat": null,
-      16 // "photo_three_long": null,
-      17 // "photo_four": "https:\/\/finalapi.soilchargertechnology.com\/public\/uploads\/farmer\/farmermeeting\/",
-      18 // "photo_four_lat": null,
-      19 // "photo_four_long": null,
-      20 // "photo_five": null,
-      21 // "photo_five_lat": null,
-      22// "photo_five_long": null,
-      23  // "latitude": null,
-      24// "longitude": null,
-      25// "is_deleted": "no",
-      26// "created_at": "2024-03-04 09:04:46",
-      27 // "updated_at": "2024-03-04 09:04:46",
-      28 // "dfname": "ANIKET",
-      29// "dmname": "BALKRISHNA",
-      30 // "dlname": "KASAR",
-      31 // "presentFarmerFormeeting": "1)anil Manoj ghule"
+      
 
       const tableHeaders = [
         "Dist Name",  //789
@@ -363,6 +332,11 @@ export class FarmermeetinglistComponent implements OnInit {
       this.distributordetailsall = data['data'];
       console.log('this.distributordetailsall', this.distributordetailsall);
     })
+  }
+
+        
+  isValidPhotopath(path: string): boolean {
+    return /\d/.test(path); // Check if the path contains any digits
   }
 
   getDataByDist() {
