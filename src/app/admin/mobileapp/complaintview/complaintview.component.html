@@ -28,6 +28,10 @@
                                     </select>
                                 </div>
                             </form>
+
+                            <div class="input-field col s3">
+                                <input [(ngModel)]="searchText" (ngModelChange)="applySearchFilter()" type="text" placeholder="Search">
+                              </div>
                         </div>
 
                         <div class="nowrap">
@@ -36,6 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Complaint ID</th>
                                         <th style="white-space: nowrap">Date</th>
                                         <th style="white-space: nowrap">Recipient</th>
                                         <th>Subject</th>
@@ -45,9 +50,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        *ngFor="let m of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <tr *ngFor="let m of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
                                         <td>{{(10*(p-1))+(i+1)}}</td>
+                                        <td>SCTCOMP{{m.id}}</td>
                                         <td style="white-space: nowrap"><span>{{m.date}}</span>
 
 

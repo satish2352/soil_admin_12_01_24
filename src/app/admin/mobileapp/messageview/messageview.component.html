@@ -27,9 +27,14 @@
                                         <option value="2">Messege Replied</option>
                                     </select>
                                 </div>
-                            </form>
-                        </div>
 
+                               
+                            </form>
+                        
+                        <div class="input-field col s3">
+                            <input [(ngModel)]="searchText" (ngModelChange)="applySearchFilter()" type="text" placeholder="Search">
+                          </div>
+                        </div>
 
                         <div class="nowrap">
                             <table style="font-size: small;" class="datatable responsive-table highlight"
@@ -37,6 +42,7 @@
                                 <thead>
                                     <tr>
                                         <th style="white-space: nowrap">Sr No.</th>
+                                        <th style="white-space: nowrap">Messege ID</th>
                                         <th style="white-space: nowrap">Date</th>
                                         <th style="white-space: nowrap">Recipient</th>
                                         <th style="white-space: nowrap">Give Reply</th>
@@ -47,9 +53,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr
-                                        *ngFor="let m of alllist | paginate: { itemsPerPage: 10, currentPage: p };let i=index;">
+                                    <tr *ngFor="let m of filteredList | paginate: { itemsPerPage: 10, currentPage: p }; let i = index;">
                                         <td>{{(10*(p-1))+(i+1)}}</td>
+                                        <td>SCTMSG{{m.id}}</td>
                                         <td style="white-space: nowrap"><span>{{m.date}}</span>
 
                                             <span *ngIf="m.msg_status == '0'"
@@ -67,7 +73,7 @@
                                         <td style="white-space: nowrap"><span>{{m.recipient_name}}</span></td>
                                         <td>{{m.subject}}</td>
                                         <td>{{m.message}}</td>
-                                        <td>{{m.message}}</td>
+                                        <td>{{m.msg}}</td>
                                         <td style="white-space: nowrap">
                                             <a href="javaScript:void(0)" class="btn-floating" title="Edit"
                                                 style="background-color: green;" (click)="editMessege(m.id)"><i
