@@ -56,17 +56,17 @@
                             <thead>
                                 <tr>
                                     <th>Sr No.</th>
-                                    <th >Name</th>
-                                    <th >Title</th>
-                                    <th >Area</th>
-                                    <th >Description</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Area</th>
+                                    <th>Description</th>
                                     <!-- <th >Latitude</th>
                                     <th >Longitude</th> -->
-                                    <th >Photo One</th>
-                                    <th >Photo Two</th>
-                                    <th >Photo Three</th>
-                                    <th >Photo Four</th>
-                                    <th >Photo Five</th>
+                                    <th>Photo One</th>
+                                    <th>Photo Two</th>
+                                    <th>Photo Three</th>
+                                    <th>Photo Four</th>
+                                    <th>Photo Five</th>
                                     <!-- <th style="white-space: nowrap">Created By</th> -->
 
                                     <th>Action</th>
@@ -78,23 +78,23 @@
                                     <td>{{(10*(p-1))+(i+1)}}</td>
                                     <td><span>{{listdata.dfname}} {{listdata.dmname}}
                                             {{listdata.dlname}}</span></td>
-                                    <td ><span >{{listdata.title}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.area}}</span></td>
-                                    <td ><span style="text-transform:uppercase">{{listdata.description}}</span></td>
+                                    <td><span>{{listdata.title}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.area}}</span></td>
+                                    <td><span style="text-transform:uppercase">{{listdata.description}}</span></td>
                                     <!-- <td ><span style="text-transform:uppercase">{{listdata.photo_one_lat}}</span></td>
                                     <td ><span style="text-transform:uppercase">{{listdata.photo_one_long}}</span></td> -->
-                                    <td><span>
-                                        <a href={{listdata.photopathone}} target="_blank" download>
+                                    <td><ng-container *ngIf="isValidPhotopath(listdata.photopathone); else notUploaded">
+                                            <a href={{listdata.photopathone}} target="_blank" download>
 
                                                 <img src={{listdata.photopathone}} alt="image" height="50px"
                                                     width="30px">
 
                                             </a>
-                                        </ng-container>
+                                            </ng-container>
 
-                                        <ng-template #notUploaded>
-                                            <span>Not Uploaded</span>
-                                        </ng-template>
+                                            <ng-template #notUploaded>
+                                                <span>Not Uploaded</span>
+                                            </ng-template>
                                     </td>
                                     <td><ng-container *ngIf="isValidPhotopath(listdata.photopathtwo); else notUploaded">
                                             <a href={{listdata.photopathtwo}} target="_blank" download>

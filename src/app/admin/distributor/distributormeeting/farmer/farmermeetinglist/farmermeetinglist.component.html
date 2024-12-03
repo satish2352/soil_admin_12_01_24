@@ -120,7 +120,7 @@
                                     <th>Date</th>
                                     <th>Present Farmer</th>
                                     <th>Meeting Title</th>
-                                    <th>Meeting Place</th>
+                                    <th>Meeting Place</th>                                    
 
                                     <th>Meeting State</th>
                                     <th>Meeting Dist</th>
@@ -204,6 +204,19 @@
                                             <span>Not Uploaded</span>
                                         </ng-template>
                                     </td>
+
+                                    <td>
+                                        <ng-container *ngIf="isValidPhotopath(listdata.photo_five); else notUploaded">
+                                            <a href="{{listdata.photo_five}}" download target="_blank">
+                                                <img src={{listdata.photo_five}} alt="image" height="50px">
+                                            </a>
+                                        </ng-container>
+
+                                        <ng-template #notUploaded>
+                                            <span>Not Uploaded</span>
+                                        </ng-template>
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
