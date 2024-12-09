@@ -192,6 +192,7 @@ export class TestimonialaddComponent implements OnInit {
           }
         });
         if(!this.editdata) {
+          console.log(this.filetypepresent)
           if (this.filetypepresent != true) {
             this.toastr.error('File type should be png');
             return;

@@ -148,7 +148,9 @@
                                         <ul>
                                             <li *ngFor="let farmernames of listdata.presentFarmers;let i=index;">{{i+1
                                                 }}
-                                                {{farmernames.fname}} {{farmernames.mname}} {{farmernames.lname}}</li>
+                                                <span style="text-transform: capitalize;">{{farmernames.fname}} </span>
+                                                 <!-- {{farmernames.mname}} {{farmernames.lname}} -->
+                                                </li>
                                             <br>
                                         </ul>
                                     </td>

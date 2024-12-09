@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <span class="page-title">
-                    View Farmer
+                    Add Farmer
                 </span>
                 <ul class="breadcrumbs">
                     <li><a routerLink="/admin/dashboard">Home</a></li>
                     <li><a routerLink="/admin/farmer-list">Farmer</a></li>
-                    <li class="active">Vie  w Farmer</li>
+                    <li class="active">Add Farmer</li>
                 </ul>
             </div>
         </div>
@@ -25,56 +25,67 @@
                                          class="active validate" required />
                                     <label for="fname">First Name<span class="red-text">*</span></label>
                                     <div *ngIf="f.fname.errors && submitted">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.fname.errors.required" ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.fname.errors.pattern" ><strong>Please enter character only*</strong></span>
                                     </div>
                                 </div>
                                 <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">account_circle</i>
                                     <input id="mname" name="mname" class="form-control input_capital  capitalize"
-                                        type="text" value="" class="validate" formControlName="mname" readonly required/>
+                                        type="text" value="" class="validate" formControlName="mname" required/>
                                     <label for="mname">Middle Name<span class="red-text">*</span></label>
                                     <div *ngIf="submitted && f.mname.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.mname.errors.required" ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.mname.errors.pattern" ><strong>Please enter character only*</strong></span>
                                     </div>
 
                                 </div>
                                 <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">account_circle</i>
                                     <input id="lanme" name="lname" class="validate" type="text" value=""
-                                        formControlName="lname" readonly required/>
+                                        formControlName="lname" required/>
                                     <label for="lanme">Last Name<span class="red-text">*</span></label>
                                     <div *ngIf="submitted && f.lname.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.lname.errors.required" ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.lname.errors.pattern" ><strong>Please enter character only*</strong></span>
                                     </div>
                                 </div>
 
                                 <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">phone</i>
                                     <input id="phone" maxlength="10" name="phone" placeholder="" class="validate"
-                                        type="text" value="" formControlName="phone" readonly required/>
+                                        type="text" value="" formControlName="phone" required/>
                                     <label for="phone">Mobile Number<span class="red-text">*</span></label>
                                     <div *ngIf="submitted && f.phone.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.phone.errors.required"  ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.phone.errors.pattern"  ><strong>Mobile Number should be numeric*</strong></span>
+                                        <span class="red-text" *ngIf="f.phone.errors.minlength"  ><strong>Mobile Number should be 10 digit*</strong></span>
+                                        <span class="red-text" *ngIf="f.phone.errors.maxlength"  ><strong>Mobile Number should be 10 digit*</strong></span>
                                     </div>
+
+
                                 </div>
                                 <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">alternate_email</i>
 
                                     <input id="email" name="email" class="validate" type="text" value=""
-                                        formControlName="email" (change)="getCheckemailexist($event)" readonly required/>
-                                    <label for="email">Email ID<span class="red-text">*</span></label>
+                                        formControlName="email" (change)="getCheckemailexist($event)"/>
+                                    <label for="email">Email ID<span class="red-text"></span></label>
                                     <div *ngIf="submitted && f.email.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.email.errors.required"  ><strong>Required*</strong></span>
                                     </div>
                                 </div>
 
                                 <div class="input-field col s12 m4 l4">
                                     <i class="material-icons prefix">format_list_numbered</i>
                                     <input id="aadharcard" name="aadharcard" class="validate" type="text" value=""
-                                        formControlName="aadharcard" readonly required/>
-                                    <label for="aadharcard">Adhar Card No<span class="red-text">*</span></label>
+                                        formControlName="aadharcard"/>
+                                    <label for="aadharcard">Adhar Card No<span class="red-text"></span></label>
                                     <div *ngIf="submitted && f.aadharcard.errors" class="invalid-input">
-                                        <span class="red-text"><strong>Required/Invalid*</strong></span>
+                                        <span class="red-text" *ngIf="f.aadharcard.errors.required"  ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.aadharcard.errors.pattern"  ><strong>Adhar card Number should be numeric*</strong></span>
+                                        <span class="red-text" *ngIf="f.aadharcard.errors.minlength"  ><strong>Adhar card Number should be 10 digit*</strong></span>
+                                        <span class="red-text" *ngIf="f.aadharcard.errors.maxlength"  ><strong>Adhar card Number should be 10 digit*</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -135,10 +146,13 @@
                                     </div>
                                     <div class="input-field col s12 m4 l4">
                                       <input id="pincode" name="pincode" class="validate" type="number" value=""
-                                          formControlName="pincode" readonly required/>
+                                          formControlName="pincode" required/>
                                       <label for="pincode">Pincode<span class="red-text">*</span></label>
                                       <div *ngIf="submitted && f.pincode.errors" class="invalid-input">
-                                          <span class="red-text"><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.pincode.errors.required"  ><strong>Required*</strong></span>
+                                        <span class="red-text" *ngIf="f.pincode.errors.pattern"  ><strong>Pincode should be numeric*</strong></span>
+                                        <span class="red-text" *ngIf="f.pincode.errors.minlength"  ><strong>Pincode should be 6 digit*</strong></span>
+                                        <span class="red-text" *ngIf="f.pincode.errors.maxlength"  ><strong>Pincode should be 6 digit*</strong></span>
                                       </div>
                                     </div>
                                     <div class="input-field col s12 m12 l12">
@@ -159,16 +173,17 @@
                                 <div class='row'>
                                     <div class="input-field col s12 m4 l4">
                                         <input id="crop" name="crop" class="validate" type="text" value=""
-                                            formControlName="crop" readonly required/>
+                                            formControlName="crop" required/>
                                         <label for="crop">Crop <span class="red-text">*</span></label>
                                         <div *ngIf="submitted && f.crop.errors" class="invalid-input">
-                                            <span class="red-text"><strong>Required*</strong></span>
+                                            <span class="red-text" *ngIf="f.crop.errors.required"><strong>Required*</strong></span>
+                                            <span class="red-text" *ngIf="f.crop.errors.pattern"><strong>Enter character only*</strong></span>
                                         </div>
                                     </div>
 
                                     <div class="input-field col s12 m4 l4">
-                                        <input id="acre" name="acre" class="validate" type="number" value=""
-                                            formControlName="acre" readonly required/>
+                                        <input id="acre" name="acre" class="validate" type="text" value=""
+                                            formControlName="acre" required/>
                                         <label for="acre">Acre<span class="red-text">*</span></label>
                                         <div *ngIf="submitted && f.acre.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
@@ -177,7 +192,7 @@
 
                                     <!-- <div class="input-field col s12 m4 l4">
                                         <input id="password" name="password" class="validate" type="text" value=""
-                                            formControlName="password" readonly required/>
+                                            formControlName="password" required/>
                                         <label for="password">Password<span class="red-text">*</span></label>
                                         <div *ngIf="submitted && f.password.errors" class="invalid-input">
                                             <span class="red-text"><strong>Required*</strong></span>
@@ -185,8 +200,8 @@
                                     </div> -->
                                 </div>
                             </div>
-                            <div class="row">
-                              <div class="col s12 m8 l8">
+                           <div class="row">
+                             <!--   <div class="col s12 m8 l8">
                                 <label>Upload Farmer Photo<span class="red-text">*</span></label>
                                 <div class="file-field input-field">
                                     <div class="btn">
@@ -197,22 +212,22 @@
                                         <input class="file-path validate" type="text" placeholder="Upload file" />
                                     </div>
                                 </div>
-                              </div>
+                              </div>-->
                               <div class="col s12 m4 l4">
-                                <img src={{photo}} alt="photo" height="100px"/>
+                                <img src={{farmerphotoview}} alt="farmerphoto" height="100px"/>
                               </div>
                             </div>
 
-                            <input id="datafor" name="datafor" class="validate" type="text" value="0"
+                            <!-- <input id="datafor" name="datafor" class="validate" type="text" value="0"
                                 formControlName="datafor" hidden />
                             <input id="user_id" name="user_id" class="validate" type="text" value="0"
                                 formControlName="user_id" hidden />
 
                             <div class="row" style="float:right;">
-                                <!-- <div class="col s12">
+                                <div class="col s12">
                                     <button type="submit" class="btn btn-save">Save</button>
-                                </div> -->
-                            </div>
+                                </div>
+                            </div>  -->
                         </form>
                     </div>
                 </div>
