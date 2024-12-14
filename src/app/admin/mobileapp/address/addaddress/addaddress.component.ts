@@ -47,6 +47,9 @@ export class AddaddressComponent implements OnInit {
       instagram_link: new FormControl('', [Validators.required]),
       twitter_link: new FormControl('', [Validators.required]),
       whatsapp_link: new FormControl('', [Validators.required]),
+      youtube_link: new FormControl('', [Validators.required]),
+
+      
 
       datafor: new FormControl(0),
       id: new FormControl(0)
@@ -72,6 +75,8 @@ export class AddaddressComponent implements OnInit {
             instagram_link:res['data'][0].instagram_link,
             twitter_link:res['data'][0].twitter_link,
             whatsapp_link:res['data'][0].whatsapp_link,
+            youtube_link:res['data'][0].youtube_link,
+
             datafor: 1,
             id: res['data'][0].id
           });

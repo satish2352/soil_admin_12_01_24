@@ -120,6 +120,16 @@
                   </div>
 
 
+                  <div class="input-field col s12 m12 l12">
+                    <input id="title" name="title" type="text" formControlName="youtube_link" class="active validate"
+                      required />
+                    <label for="title">Enter Youtube Link<span class="red-text">*</span></label>
+                    <div *ngIf="f.youtube_link.errors && submitted">
+                      <span class="red-text"><strong>Required*</strong></span>
+                    </div>
+                  </div>
+
+
                 </div>
                 <div class="row" style="float:right;">
                   <div class="col s12">
